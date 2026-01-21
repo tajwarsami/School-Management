@@ -1,12 +1,4 @@
 <template>
-  <section class="header-banner">
-    <img src="@/assets/images/pages-banner.jpg" alt="Header Banner" />
-    <div class="header-text">
-      <h1>Cantonment English School & College</h1>
-      <p>Committed to academic excellence, discipline, and moral values</p>
-    </div>
-  </section>
-
   <section class="institution-about-section">
     <div class="institution-about-container">
       <div class="institution-image">
@@ -29,42 +21,6 @@ export default {
 </script>
 
 <style scoped>
-.header-banner {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-}
-
-.header-banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-
-.header-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 20px 30px;
-  border-radius: 10px;
-}
-
-.header-text h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-.header-text p {
-  font-size: 18px;
-  line-height: 1.5;
-}
-
 .institution-about-section {
   padding: 40px 20px;
   background-color: #f5f5f5;
@@ -103,7 +59,6 @@ export default {
   line-height: 1.8;
   font-size: 18px;
 }
-
 
 @media (max-width: 768px) {
   .institution-about-container {

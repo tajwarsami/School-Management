@@ -17,19 +17,42 @@ import NoticeBoard from './NoticeBoard.vue'
 <style scoped>
 .top-section {
   display: flex;
-  height: 450px;
+  flex-wrap: nowrap;
+  align-items: stretch; 
   width: 100%;
+  gap: 20px;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .left {
-  width: 70%;
-  height: 100%;
+  flex: 0 0 75%;
+  min-width: 300px;
 }
 
 .right {
-  width: 30%;
-  height: 100%;
+  flex: 0 0 25%;
+  min-width: 280px;
   border-left: 1px solid #ddd;
-  overflow-y: auto;
+  overflow-y: auto;    
+}
+
+
+@media (max-width: 768px) {
+  .top-section {
+    flex-direction: column; 
+    gap: 15px;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #ddd;
+  }
+
+  .right {
+    margin-top: 10px;
+  }
 }
 </style>

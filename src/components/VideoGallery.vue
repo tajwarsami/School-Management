@@ -1,7 +1,5 @@
 <template>
   <section class="media-section">
-
-    <!-- Video Gallery -->
     <h2 class="section-title">Video Gallery</h2>
     <div class="video-grid">
       <div class="video-item" v-for="(video, index) in videos" :key="index">
@@ -14,15 +12,17 @@
       </div>
     </div>
 
-    <!-- News & Events -->
     <h2 class="section-title">News & Events</h2>
     <ul class="news-list">
-      <li v-for="(item, index) in news" :key="index" class="news-item">
+      <li v-for="(item, index) in limitedNews" :key="index" class="news-item">
         <span class="news-title">{{ item.title }}</span>
         <span class="news-date">{{ item.date }}</span>
       </li>
     </ul>
-
+    
+    <div class="see-more">
+  <router-link to="/news" class="see-more-link">See More</router-link>
+</div>
   </section>
 </template>
 
@@ -40,6 +40,8 @@ const news = [
   { title: "Science Fair", date: "Jun 12, 2026" },
   { title: "Art Exhibition", date: "Jul 20, 2026" },
 ];
+
+const limitedNews = news.slice(0, 3);
 </script>
 
 <style scoped>
@@ -50,7 +52,6 @@ const news = [
   font-family: 'Arial', sans-serif;
 }
 
-/* Section Title */
 .section-title {
   font-size: 28px;
   font-weight: 700;
@@ -59,7 +60,6 @@ const news = [
   text-align: center;
 }
 
-/* Video Grid */
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -76,7 +76,7 @@ const news = [
 
 .video-item iframe {
   width: 100%;
-  aspect-ratio: 16/9; /* keep 16:9 ratio */
+  aspect-ratio: 16/9;
   border-radius: 10px;
 }
 
@@ -88,7 +88,6 @@ const news = [
   color: #333;
 }
 
-/* News List */
 .news-list {
   list-style: none;
   padding: 0;
@@ -122,12 +121,27 @@ const news = [
   color: #555;
 }
 
-/* Responsive Breakpoints */
+.see-more {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.see-more-link {
+  font-weight: 600;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.see-more-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
 @media (max-width: 992px) {
   .video-grid {
-    grid-template-columns: 1fr; /* stack videos vertically */
+    grid-template-columns: 1fr;
   }
-
   .section-title {
     font-size: 24px;
   }
@@ -137,7 +151,6 @@ const news = [
   .section-title {
     font-size: 20px;
   }
-
   .video-item iframe {
     aspect-ratio: 16/9;
   }
