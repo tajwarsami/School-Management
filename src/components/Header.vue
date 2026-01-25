@@ -222,14 +222,14 @@ onUnmounted(() => clearInterval(timer))
   color: white;
   display: flex;
   justify-content: space-between;
-  padding: 10px 30px;
-  font-size: 15px;
+  padding: 20px 30px;
+  font-size: 20px;
 }
 
 .top-bar .right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
 }
 
 .top-bar a {
@@ -347,6 +347,12 @@ onUnmounted(() => clearInterval(timer))
 .dropbtn.active, .dropbtn:hover {
   background: #0a728a;
   color: white;
+}
+.menu > *,
+.dropbtn {
+  font-family: 'Arial', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .dropdown {
