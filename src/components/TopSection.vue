@@ -20,6 +20,7 @@ import NoticeBoard from './NoticeBoard.vue'
   width: 100vw;
   gap: 20px;
   box-sizing: border-box;
+  align-items: flex-start;
 }
 
 .left {
@@ -31,12 +32,13 @@ import NoticeBoard from './NoticeBoard.vue'
   flex: 1;
   min-width: 280px;
   background: #f7f9fc;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  border-left: #eee
+  border-left: 1px solid #eee;
 }
+
 
 
 @media (max-width: 768px) {

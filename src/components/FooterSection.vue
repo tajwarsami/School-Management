@@ -1,12 +1,27 @@
 <template>
   <footer class="footer">
     <div class="footer-top">
-      
+
+      <!-- Left Section: Logo + Motto + Social Icons -->
       <div class="footer-left">
         <img :src="logo" alt="School Logo" class="logo" />
         <p class="motto">Education is Life</p>
+
+        <!-- Social Icons under Logo -->
+        <div class="social-icons">
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
       </div>
 
+      <!-- Center Section: Links -->
       <div class="footer-center">
         <div class="footer-section">
           <h4>External Links</h4>
@@ -27,6 +42,7 @@
         </div>
       </div>
 
+      <!-- Right Section: Contact Info -->
       <div class="footer-right">
         <p class="school-name"><strong>Cantonment English School & College</strong></p>
         <p>Bayezid Bostami Rd, Chattogram - 4210</p>
@@ -35,18 +51,8 @@
       </div>
     </div>
 
+    <!-- Bottom Section: Copyright -->
     <div class="footer-bottom">
-      <div class="social-icons">
-        <a href="https://www.facebook.com/" target="_blank" rel="noopener">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-      </div>
       <p>&copy; 2026 Cantonment English School & College. All rights reserved.</p>
     </div>
   </footer>
@@ -74,53 +80,71 @@ const resultLinks = [
 </script>
 
 <style scoped>
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
-
 .footer {
   background-color: #0a728a;
   color: #fff;
   font-family: 'Poppins', sans-serif;
-  padding: 40px 20px 20px;
+  padding: 30px 15px 15px;
 }
 
 .footer-top {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 30px;
-  margin-bottom: 30px;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: flex-start;
 }
 
+/* Left Section: Logo + Motto + Social Icons */
 .footer-left {
-  flex: 1 1 250px;
+  flex: 1 1 180px;
   text-align: center;
 }
 
 .footer-left .logo {
-  height: 100px;
+  height: 60px;
   width: auto;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .motto {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 500;
   color: #ffdd57;
   margin-top: 5px;
   font-style: italic;
 }
 
+/* Social icons under logo */
+.footer-left .social-icons {
+  margin-top: 10px;
+}
+
+.footer-left .social-icons a {
+  color: #fff;
+  margin: 0 6px;
+  font-size: 18px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.footer-left .social-icons a:hover {
+  color: #ffdd57;
+  transform: scale(1.2);
+}
+
+/* Center Section: Links */
 .footer-center {
   display: flex;
-  flex: 2 1 500px;
-  gap: 50px;
+  flex: 2 1 300px;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .footer-section h4 {
-  margin-bottom: 10px;
-  font-size: 16px;
+  margin-bottom: 8px;
+  font-size: 15px;
   text-decoration: underline;
 }
 
@@ -131,7 +155,7 @@ const resultLinks = [
 }
 
 .footer-section ul li {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .footer-section ul li a {
@@ -144,9 +168,11 @@ const resultLinks = [
   color: #ffdd57;
 }
 
+/* Right Section: Contact */
 .footer-right {
-  flex: 1 1 250px;
+  flex: 1 1 180px;
   text-align: center;
+  font-size: 13px;
 }
 
 .footer-right a {
@@ -158,49 +184,58 @@ const resultLinks = [
   color: #ffdd57;
 }
 
+/* Bottom Section */
 .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.3);
-  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 15px;
   text-align: center;
 }
 
-.social-icons {
-  margin-bottom: 10px;
-}
-
-.social-icons a {
-  color: #fff;
-  margin: 0 12px;
-  font-size: 20px;
-  transition: color 0.3s, transform 0.3s;
-}
-
-.social-icons a:hover {
-  color: #ffdd57;
-  transform: scale(1.2);
-}
-
 .footer-bottom p {
-  font-size: 14px;
+  font-size: 10px;
   color: #f0f0f0;
 }
 
-
+/* Responsive */
 @media (max-width: 768px) {
   .footer-top {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 15px;
+  }
+
+  .footer-left, .footer-right {
+    flex: 1 1 auto;
   }
 
   .footer-center {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+    width: 100%;
     text-align: center;
   }
 
+  .footer-section {
+    width: 100%;
+  }
+
+  .footer-left .logo {
+    height: 60px;
+    margin-bottom: 5px;
+  }
+
+  .motto {
+    font-size: 14px;
+  }
+
   .footer-right {
-    text-align: center;
+    font-size: 13px;
+  }
+
+  .footer-left .social-icons a {
+    margin: 0 5px;
+    font-size: 16px;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <header ref="headerRef">
     <div class="top-bar">
-      <div class="left">{{ currentDateTime }}</div>
+      <div class="left">{{ currentDateTime}}</div>
 
       <div class="right">
         <div class="login-dropdown">
@@ -230,7 +230,7 @@ header {
   color: white;
   display: flex;
   justify-content: space-between;
-  padding: 20px 30px;
+  padding: 15px 20px;
   font-size: 20px;
 }
 
@@ -288,7 +288,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 5px 20px;
   background: white;
   border-bottom: 1px solid #ddd;
 }
@@ -297,20 +297,28 @@ header {
   display: flex;
   align-items: center;
   gap: 12px;
-  justify-content: flex-end;
+  flex-wrap: nowrap;
 }
 
 .logo-area img {
-  width: 80px;
+  width: 100px;
+  margin-bottom: -50px;
 }
 
 .logo-area h1 {
-  font-size: 24px;
+  font-size: clamp(18px, 2.5vw, 28px);
   margin: 0;
   font-weight: 700;
   color: #003f4f;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
-
+@media (min-width: 1200px) {
+  .logo-area h1 {
+    white-space: normal; 
+  }
+}
 .hamburger {
   display: none;
   flex-direction: column;
