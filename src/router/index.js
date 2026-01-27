@@ -9,7 +9,7 @@ import AboutDetails from '../views/AboutDetails.vue'
 import ContentPage from '../views/ContentPage.vue'
 import NewsPage from '../views/NewsPage.vue'
 import VideoGallery from '../views/VideoGallery.vue'
-
+import PhotoGallery from '../views/PhotoGallery.vue'
 
 import { contents } from '@/data/contents'
 import { isLoading } from '@/data/loader'
@@ -69,6 +69,12 @@ const routes = [
     component: () => import('../views/VideoDetail.vue'),
     props: true,
     meta: { banner: makeBanner('Video Details') }
+  },
+
+  {
+    path: '/photogallery',
+    component: PhotoGallery,
+    meta: { banner: makeBanner('Photo Gallery') }
   },
   {
     path: '/about-details',

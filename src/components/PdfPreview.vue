@@ -61,7 +61,7 @@ watch(() => props.src, renderPdf)
   gap: 10px;
   align-items: center;
   max-height: 400px;
-  overflow-y: auto; /* scroll if PDF is long */
+  overflow-y: auto;
 }
 
 canvas {
