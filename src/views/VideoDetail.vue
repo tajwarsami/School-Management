@@ -1,0 +1,85 @@
+<script setup>
+import { useRoute, useRouter } from 'vue-router'
+import { videos } from '@/data/videos'
+
+const route = useRoute()
+const router = useRouter()
+const videoId = Number(route.params.id)
+const video = videos.find(v => v.id === videoId)
+</script>
+
+<template>
+  <section class="media-section">
+    <button @click="router.back()" class="back-btn">← Back</button>
+
+    <div class="video-container" v-if="video">
+      <h1 class="video-title">{{ video.title }}</h1>
+      <iframe 
+        :src="video.url" 
+        frameborder="0" 
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <p v-else class="not-found">Video not found</p>
+  </section>
+</template>
+
+<style scoped>
+.media-section {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.back-btn {
+  align-self: flex-start;
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  border: none;
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.video-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.video-container iframe {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  border: 2px solid #ddd;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.not-found {
+  color: #ff4d4f;
+  font-weight: 600;
+  margin-top: 40px;
+}
+</style>

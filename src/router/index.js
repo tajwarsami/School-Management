@@ -10,6 +10,7 @@ import ContentPage from '../views/ContentPage.vue'
 import NewsPage from '../views/NewsPage.vue'
 import VideoGallery from '../views/VideoGallery.vue'
 
+
 import { contents } from '@/data/contents'
 import { isLoading } from '@/data/loader'
 
@@ -61,6 +62,13 @@ const routes = [
     path: '/videos',
     component: VideoGallery,
     meta: { banner: makeBanner('Video Gallery') }
+  },
+  {
+    path: '/videos/:id',
+    name: 'VideoDetail',
+    component: () => import('../views/VideoDetail.vue'),
+    props: true,
+    meta: { banner: makeBanner('Video Details') }
   },
   {
     path: '/about-details',

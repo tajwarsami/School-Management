@@ -1,10 +1,23 @@
+<script setup>
+import { useRouter } from 'vue-router'
+import { videos } from '@/data/videos'
+
+const router = useRouter()
+
+const goToVideo = (id) => {
+  router.push({ name: 'VideoDetail', params: { id } })
+}
+</script>
+
 <template>
   <section class="media-section">
     <div class="video-grid">
       <div
+        v-for="video in videos"
+        :key="video.id"
         class="video-item"
-        v-for="(video, index) in videos"
-        :key="index"
+        @click="goToVideo(video.id)"
+        style="cursor:pointer"
       >
         <iframe :src="video.url" frameborder="0" allowfullscreen></iframe>
         <p class="video-title">{{ video.title }}</p>
@@ -12,16 +25,6 @@
     </div>
   </section>
 </template>
-
-<script setup>
-const videos = [
-  { title: 'Message from Principal', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
-  { title: 'Annual Day Highlights', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
-  { title: 'Cultural Program', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
-  { title: 'Science Fair', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
-  { title: 'Sports Day Highlights', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' }
-]
-</script>
 
 <style scoped>
 .media-section {
