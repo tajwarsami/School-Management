@@ -3,6 +3,7 @@
     <div class="left">
       <ImageSlider />
     </div>
+
     <div class="right">
       <NoticeBoard />
     </div>
@@ -40,15 +41,20 @@ import NoticeBoard from './NoticeBoard.vue'
 }
 
 
-
 @media (max-width: 768px) {
   .top-section {
     flex-direction: column;
+    align-items: center;
   }
+
   .right {
+    width: 100%;
+    max-width: 500px; 
     border-left: none;
     border-top: 1px solid #ddd;
     margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 </style>
