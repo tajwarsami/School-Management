@@ -22,7 +22,6 @@ import { PlayCircle } from 'lucide-vue-next';
       </div>
       
       <div class="hero-image">
-        <!-- Image will be injected here via CSS or img tag -->
         <div class="image-placeholder">
            <img src="/hero_dashboard.png" alt="Edufy Dashboard" class="dashboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
            <div class="fallback-box">
@@ -32,7 +31,6 @@ import { PlayCircle } from 'lucide-vue-next';
       </div>
     </div>
     
-    <!-- Background Elements -->
     <div class="bg-blob blob-1"></div>
     <div class="bg-blob blob-2"></div>
   </section>
@@ -114,7 +112,7 @@ import { PlayCircle } from 'lucide-vue-next';
 }
 
 .fallback-box {
-  display: none; /* Shown only if img error */
+  display: none;
   width: 100%;
   height: 400px;
   background: linear-gradient(135deg, #f0f4ff 0%, #e0e9ff 100%);
@@ -132,7 +130,6 @@ import { PlayCircle } from 'lucide-vue-next';
   100% { transform: translateY(0px); }
 }
 
-/* Background Blobs */
 .bg-blob {
   position: absolute;
   border-radius: 50%;

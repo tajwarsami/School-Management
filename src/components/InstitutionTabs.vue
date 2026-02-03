@@ -1,12 +1,13 @@
 <script setup>
 import { ref } from 'vue';
-import { BookOpen, GraduationCap, School, Book } from 'lucide-vue-next';
+import { BookOpen, GraduationCap, School, Book, University } from 'lucide-vue-next';
 
 const tabs = [
   { id: 'kindergarten', label: 'Kindergarten', icon: BookOpen },
   { id: 'school', label: 'School', icon: School },
   { id: 'madrasah', label: 'Madrasah', icon: Book },
-  { id: 'college', label: 'College', icon: GraduationCap }
+  { id: 'college', label: 'College', icon: GraduationCap },
+  { id: 'university', label: 'university', icon: University }
 ];
 
 const activeTab = ref('school');
@@ -28,6 +29,11 @@ const content = {
     features: ["Hifz Progress Tracker", "Daily Lesson Logs", "Board Exam Prep"]
   },
   college: {
+    title: "Higher Ed Academic System",
+    desc: "Manage courses, credit hours, and complex department structures with ease.",
+    features: ["Course Management", "Transcript Generation", "Research Publishing"]
+  },
+  university: {
     title: "Higher Ed Academic System",
     desc: "Manage courses, credit hours, and complex department structures with ease.",
     features: ["Course Management", "Transcript Generation", "Research Publishing"]
@@ -69,7 +75,6 @@ const content = {
         </div>
         <div class="content-visual">
           <div class="visual-card" :class="activeTab">
-            <!-- decorative visual elements -->
             <div class="circle c1"></div>
             <div class="circle c2"></div>
             <div class="bar b1"></div>
@@ -208,7 +213,6 @@ const content = {
   border: 1px solid #E2E8F0;
 }
 
-/* Visual Abstract Elements */
 .visual-card .circle {
   position: absolute;
   border-radius: 50%;

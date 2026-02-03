@@ -10,12 +10,9 @@
       </div>
       
       <div class="map-container">
-        <!-- Abstract World Map using CSS/Dot Pattern or SVG -->
         <div class="world-map">
-           <!-- Simplified Map Silhouette (CSS-based shape approximation or just a placeholder for the SVG look) -->
            <div class="map-image-placeholder">World Map</div>
            
-           <!-- Hotspots -->
            <div class="hotspot bangladesh" style="top: 45%; left: 70%;"></div>
            <div class="hotspot usa" style="top: 35%; left: 20%;"></div>
            <div class="hotspot uk" style="top: 30%; left: 48%;"></div>

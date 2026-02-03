@@ -11,7 +11,6 @@ import { Smartphone, Download } from 'lucide-vue-next';
       </div>
 
       <div class="phones-container">
-        <!-- Admin App -->
         <div class="phone-mockup admin">
           <div class="notch"></div>
           <div class="screen">
@@ -26,7 +25,6 @@ import { Smartphone, Download } from 'lucide-vue-next';
           <p class="phone-label">Admin App</p>
         </div>
 
-        <!-- Teacher App -->
         <div class="phone-mockup teacher">
           <div class="notch"></div>
           <div class="screen">
@@ -41,7 +39,6 @@ import { Smartphone, Download } from 'lucide-vue-next';
           <p class="phone-label">Teacher App</p>
         </div>
 
-        <!-- Guardian App -->
         <div class="phone-mockup guardian">
           <div class="notch"></div>
           <div class="screen">

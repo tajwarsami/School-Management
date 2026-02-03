@@ -8,7 +8,6 @@ const stats = ref([
   { label: 'Guardians Registered', value: 25000, suffix: '+', current: 0 },
 ]);
 
-// Simple simulation of "animate on view" - in production use IntersectionObserver
 onMounted(() => {
   stats.value.forEach(stat => {
     const duration = 2000;
