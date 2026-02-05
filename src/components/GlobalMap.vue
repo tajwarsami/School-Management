@@ -26,7 +26,7 @@
 <style scoped>
 .map-section {
   padding: 6rem 0;
-  background-color: #111827; /* Dark background for map to pop */
+  background-color: #111827;
   color: white;
   text-align: center;
 }

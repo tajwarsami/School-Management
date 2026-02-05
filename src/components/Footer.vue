@@ -68,7 +68,7 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
 .footer {
   background-color: #0F172A;
   color: #94A3B8;
-  padding-top: 12rem; /* Extra padding for overlap */
+  padding-top: 12rem;
   padding-bottom: 2rem;
 }
 

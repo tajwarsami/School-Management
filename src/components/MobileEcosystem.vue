@@ -153,7 +153,7 @@ import { Smartphone, Download } from 'lucide-vue-next';
   letter-spacing: 1px;
 }
 
-/* Screen Placeholders */
+
 .chart-placeholder {
   height: 120px;
   background: #E0E7FF;

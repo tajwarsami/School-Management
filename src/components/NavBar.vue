@@ -118,7 +118,7 @@ const isActive = (path) => route.path === path
   color: var(--color-primary);
 }
 
-/* More dropdown */
+
 .more-wrapper {
   position: relative;
 }
