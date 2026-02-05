@@ -167,7 +167,6 @@ const formatPrice = (price) => {
         </p>
       </div>
 
-      <!-- Billing Toggle -->
       <div class="billing-toggle-wrapper">
         <div class="billing-toggle">
           <button 
@@ -186,7 +185,6 @@ const formatPrice = (price) => {
         </div>
       </div>
 
-      <!-- Pricing Cards -->
       <div class="pricing-grid">
         <div
           v-for="plan in plans"
@@ -222,7 +220,6 @@ const formatPrice = (price) => {
             </p>
           </div>
 
-          <!-- Student Range Selector -->
           <div v-if="!plan.custom" class="range-selector">
             <label class="range-label">
               <Users :size="16" />
@@ -244,7 +241,6 @@ const formatPrice = (price) => {
             </div>
           </div>
 
-          <!-- Features List -->
           <div class="features-section">
             <h4 class="features-title">What's included:</h4>
             <ul class="features-list">
@@ -264,7 +260,6 @@ const formatPrice = (price) => {
         </div>
       </div>
 
-      <!-- Additional Information -->
       <div class="info-section">
         <div class="info-cards">
           <div class="info-card">
@@ -285,7 +280,6 @@ const formatPrice = (price) => {
         </div>
       </div>
 
-      <!-- Notes -->
       <div class="notes">
         <p>* 5% VAT applicable on all fees and charges</p>
         <p>* Each add-on module has a separate charge</p>
@@ -339,7 +333,6 @@ const formatPrice = (price) => {
   z-index: 1;
 }
 
-/* Section Header */
 .section-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -365,7 +358,6 @@ const formatPrice = (price) => {
   line-height: 1.5;
 }
 
-/* Billing Toggle */
 .billing-toggle-wrapper {
   display: flex;
   justify-content: center;
@@ -414,7 +406,6 @@ const formatPrice = (price) => {
   box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 }
 
-/* Pricing Grid */
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -468,7 +459,6 @@ const formatPrice = (price) => {
   white-space: nowrap;
 }
 
-/* Card Header */
 .card-header {
   text-align: center;
   margin-bottom: 1.25rem;
@@ -494,7 +484,6 @@ const formatPrice = (price) => {
   line-height: 1.4;
 }
 
-/* Price Section */
 .price-section {
   text-align: center;
   margin-bottom: 1.25rem;
@@ -544,7 +533,6 @@ const formatPrice = (price) => {
   font-weight: 500;
 }
 
-/* Range Selector */
 .range-selector {
   margin-bottom: 1.25rem;
 }
@@ -640,7 +628,6 @@ const formatPrice = (price) => {
   text-align: left;
 }
 
-/* Features Section */
 .features-section {
   margin-bottom: 1.25rem;
   flex-grow: 1;
@@ -683,7 +670,6 @@ const formatPrice = (price) => {
   box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
 }
 
-/* CTA Button */
 .cta-button {
   width: 100%;
   padding: 0.75rem 1.5rem;
@@ -729,7 +715,6 @@ const formatPrice = (price) => {
   transform: translateX(4px);
 }
 
-/* Info Section */
 .info-section {
   margin: 2.5rem 0 2rem;
 }
@@ -775,7 +760,6 @@ const formatPrice = (price) => {
   line-height: 1.4;
 }
 
-/* Notes */
 .notes {
   text-align: center;
   padding: 1.5rem;
@@ -791,7 +775,6 @@ const formatPrice = (price) => {
   margin: 0.3rem 0;
 }
 
-/* Responsive Design */
 @media (max-width: 1400px) {
   .pricing-grid {
     grid-template-columns: repeat(2, 1fr);
