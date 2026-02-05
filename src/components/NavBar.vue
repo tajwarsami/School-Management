@@ -18,13 +18,11 @@ const isActive = (path) => route.path === path
 <template>
   <header class="navbar">
     <div class="container navbar-content">
-      <!-- Logo -->
       <div class="logo" @click="goTo('/')">
         <span class="logo-text">Edufy</span>
         <div class="logo-dot"></div>
       </div>
 
-      <!-- Navigation -->
       <nav class="nav-links">
         <a @click.prevent="goTo('/')" :class="['nav-link', isActive('/') && 'active']">Home</a>
         <a @click.prevent="goTo('/features')" :class="['nav-link', isActive('/features') && 'active']">Features</a>
@@ -34,7 +32,6 @@ const isActive = (path) => route.path === path
         <a @click.prevent="goTo('/about')" :class="['nav-link', isActive('/about') && 'active']">About Us</a>
         <a @click.prevent="goTo('/contact')" :class="['nav-link', isActive('/contact') && 'active']">Contact</a>
 
-        <!-- More Dropdown -->
         <div class="more-wrapper" @mouseleave="showMore = false">
           <button class="btn-more" @click="showMore = !showMore">
             More <ChevronDown :size="16" />
@@ -57,7 +54,6 @@ const isActive = (path) => route.path === path
         </div>
       </nav>
 
-      <!-- CTA -->
       <div class="nav-actions">
         <button class="btn btn-primary">Request Demo</button>
       </div>
