@@ -45,7 +45,7 @@
           </div>
 
           <div class="form-group">
-            <label for="district">Location (District in Bangladesh) <span class="required">*</span></label>
+            <label for="district">Location <span class="required">*</span></label>
             <select 
               id="district" 
               v-model="formData.district"
@@ -98,8 +98,7 @@
       <div class="location-content">
         <div class="map-container">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.0449856738746!2d90.41259207599506!3d23.780689687532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7a1c8f7f8f7%3A0x8b8b8b8b8b8b8b8b!2sGulshan%20Avenue%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1234567890123!5m2!1sen!2sbd"
-            width="100%"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.0276977267287!2d90.41414631498175!3d23.780935084577174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7a1f5e5e5e5%3A0x1f5e5e5e5e5e5e5!2sGulshan%20Avenue%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1234567890123!5m2!1sen!2sbd"            width="100%"
             height="100%"
             style="border:0;"
             allowfullscreen=""

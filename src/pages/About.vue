@@ -1,11 +1,21 @@
 <template>
   <div class="about-page">
-
     <section class="hero-section">
+      <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+      </div>
       <div class="container">
         <div class="hero-content">
-          <div class="description">
-            <h1 class="main-title">About Edumate</h1>
+          <div class="description" data-aos="fade-right">
+            <div class="badge-tag">
+              <span class="pulse-dot"></span>
+              Education Technology
+            </div>
+            <h1 class="main-title">
+              About <span class="gradient-text">Edumate</span>
+            </h1>
             <p class="intro-text">
               Welcome to our comprehensive school management solution designed to streamline
               educational administration and enhance the learning experience. Our platform
@@ -18,27 +28,62 @@
               educators to focus on what matters most - nurturing young minds and fostering
               academic excellence.
             </p>
+            <div class="hero-stats">
+              <div class="hero-stat-item">
+                <div class="stat-value">10K+</div>
+                <div class="stat-text">Active Users</div>
+              </div>
+              <div class="hero-stat-item">
+                <div class="stat-value">150+</div>
+                <div class="stat-text">Schools</div>
+              </div>
+              <div class="hero-stat-item">
+                <div class="stat-value">99.9%</div>
+                <div class="stat-text">Uptime</div>
+              </div>
+            </div>
           </div>
-          
-          <div class="image-carousel">
-            <transition name="fade" mode="out-in">
-              <img 
-                :key="currentImage" 
-                :src="carouselImages[currentImage]" 
-                :alt="`School image ${currentImage + 1}`"
-                class="carousel-image"
-              />
-            </transition>
+          <div class="image-carousel" data-aos="fade-left">
+            <div class="carousel-frame">
+              <transition name="fade" mode="out-in">
+                <img 
+                  :key="currentImage" 
+                  :src="carouselImages[currentImage]" 
+                  :alt="`School image ${currentImage + 1}`"
+                  class="carousel-image"
+                />
+              </transition>
+              <div class="carousel-indicators">
+                <span 
+                  v-for="(img, index) in carouselImages" 
+                  :key="index"
+                  :class="['indicator', { active: currentImage === index }]"
+                  @click="currentImage = index"
+                ></span>
+              </div>
+            </div>
+            <div class="floating-card card-1">
+              <div class="card-icon">📚</div>
+              <div class="card-text">Smart Learning</div>
+            </div>
+            <div class="floating-card card-2">
+              <div class="card-icon">🎓</div>
+              <div class="card-text">Excellence</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
     <section class="mission-vision-section">
       <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Our Purpose</span>
+          <h2 class="section-title-alt">Mission & Vision</h2>
+        </div>
         <div class="mv-grid">
-          <div class="mv-card mission">
-            <div class="icon">🎯</div>
+          <div class="mv-card mission" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-glow"></div>
+            <div class="mv-number">01</div>
             <h2>Our Mission</h2>
             <p>
               To revolutionize educational management by providing innovative, user-friendly
@@ -46,10 +91,11 @@
               bridge the gap between traditional educational practices and modern technology,
               creating seamless experiences for administrators, teachers, students, and parents.
             </p>
+            <div class="card-decoration"></div>
           </div>
-          
-          <div class="mv-card vision">
-            <div class="icon">🌟</div>
+          <div class="mv-card vision" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-glow"></div>
+            <div class="mv-number">02</div>
             <h2>Our Vision</h2>
             <p>
               To be the leading force in educational technology transformation, where every
@@ -57,59 +103,78 @@
               transparency, and academic success. We envision a future where technology
               enhances human connection and elevates the quality of education globally.
             </p>
+            <div class="card-decoration"></div>
           </div>
         </div>
       </div>
     </section>
-
+    <section class="values-section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">What We Stand For</span>
+          <h2 class="section-title-alt">Core Values</h2>
+        </div>
+        <div class="values-grid">
+          <div class="value-card" v-for="(value, index) in values" :key="value.id" 
+               data-aos="zoom-in" :data-aos-delay="index * 100">
+            <div class="value-icon-wrapper">
+              <div class="value-icon">{{ value.icon }}</div>
+            </div>
+            <h3>{{ value.title }}</h3>
+            <p>{{ value.description }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="company-section">
       <div class="container">
-        <h2 class="section-title">About Automate IT</h2>
-        
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Meet Our Company</span>
+          <h2 class="section-title-alt">About Automate IT</h2>
+        </div>
         <div class="company-content">
           <div class="company-showcase">
-            <div class="company-text">
+            <div class="company-text" data-aos="fade-right">
               <div class="company-badge">
                 <span class="badge-icon">🚀</span>
                 <span class="badge-text">Innovating Since 2015</span>
               </div>
-              
               <h3 class="company-subtitle">Transforming Businesses Through Technology</h3>
-              
               <p class="company-para">
                 Automate IT is a forward-thinking software development company specializing in
                 creating intelligent automation solutions for businesses and educational institutions.
                 With years of expertise in software engineering, we develop robust, scalable, and
                 innovative applications that transform the way organizations operate.
               </p>
-              
               <p class="company-para">
                 Our team of dedicated professionals combines technical excellence with deep industry
                 knowledge to deliver solutions that not only meet but exceed our clients' expectations.
                 From concept to deployment, we are committed to excellence in every project we undertake.
               </p>
-
               <div class="company-stats">
                 <div class="stat-item">
+                  <div class="stat-icon">🏆</div>
                   <div class="stat-number">500+</div>
                   <div class="stat-label">Projects Delivered</div>
                 </div>
                 <div class="stat-item">
+                  <div class="stat-icon">👥</div>
                   <div class="stat-number">50+</div>
                   <div class="stat-label">Expert Team</div>
                 </div>
                 <div class="stat-item">
+                  <div class="stat-icon">⭐</div>
                   <div class="stat-number">98%</div>
                   <div class="stat-label">Client Satisfaction</div>
                 </div>
                 <div class="stat-item">
+                  <div class="stat-icon">🕐</div>
                   <div class="stat-number">24/7</div>
                   <div class="stat-label">Support Available</div>
                 </div>
               </div>
             </div>
-
-            <div class="company-images">
+            <div class="company-images" data-aos="fade-left">
               <div class="image-grid">
                 <div class="company-img-wrapper main-img">
                   <img 
@@ -120,6 +185,7 @@
                   <div class="img-overlay">
                     <span>Our Team at Work</span>
                   </div>
+                  <div class="img-border"></div>
                 </div>
                 <div class="company-img-wrapper">
                   <img 
@@ -130,6 +196,7 @@
                   <div class="img-overlay">
                     <span>Innovation Hub</span>
                   </div>
+                  <div class="img-border"></div>
                 </div>
                 <div class="company-img-wrapper">
                   <img 
@@ -140,106 +207,78 @@
                   <div class="img-overlay">
                     <span>Modern Workspace</span>
                   </div>
+                  <div class="img-border"></div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="contact-wrapper">
-            <div class="contact-banner">
-              <div class="contact-content">
-                <h3 class="contact-title">Let's Build Something Amazing Together</h3>
-                <p class="contact-subtitle">Have a project in mind? We'd love to hear from you!</p>
-              </div>
-              
-              <div class="contact-info-grid">
-                <div class="contact-card">
-                  <div class="contact-icon">📧</div>
-                  <h4>Email Us</h4>
-                  <a href="mailto:info@automateit.com" class="contact-link">info@automateit.com</a>
-                  <a href="mailto:support@automateit.com" class="contact-link">support@automateit.com</a>
+              <div class="awards-badge">
+                <div class="award-icon">🏅</div>
+                <div class="award-text">
+                  <div class="award-title">Award Winning</div>
+                  <div class="award-subtitle">Excellence in Innovation</div>
                 </div>
-
-                <div class="contact-card">
-                  <div class="contact-icon">📞</div>
-                  <h4>Call Us</h4>
-                  <a href="tel:+8801234567890" class="contact-link">+880 123 456 7890</a>
-                  <a href="tel:+8809876543210" class="contact-link">+880 987 654 3210</a>
-                </div>
-
-                <div class="contact-card">
-                  <div class="contact-icon">📍</div>
-                  <h4>Visit Us</h4>
-                  <p class="contact-address">
-                    House 123, Road 45<br>
-                    Gulshan-2, Dhaka 1212<br>
-                    Bangladesh
-                  </p>
-                </div>
-
-                <div class="contact-card">
-                  <div class="contact-icon">🌐</div>
-                  <h4>Follow Us</h4>
-                  <div class="social-links">
-                    <a href="#" class="social-link" title="Facebook">
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                      </svg>
-                    </a>
-                    <a href="#" class="social-link" title="LinkedIn">
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                      </svg>
-                    </a>
-                    <a href="#" class="social-link" title="Twitter">
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="cta-buttons">
-                <a href="#contact-form" class="btn-primary">Get in Touch</a>
-                <a href="#portfolio" class="btn-secondary">View Our Work</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
     <section class="services-section">
       <div class="container">
-        <h2 class="section-title">Our Services</h2>
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">What We Offer</span>
+          <h2 class="section-title-alt">Our Services</h2>
+          <p class="section-description">Comprehensive solutions tailored to your needs</p>
+        </div>
         <div class="services-grid">
-          <div class="service-card" v-for="service in services" :key="service.id">
-            <div class="service-icon">{{ service.icon }}</div>
+          <div class="service-card" v-for="(service, index) in services" :key="service.id"
+               data-aos="flip-left" :data-aos-delay="index * 100">
+            <div class="service-bg-pattern"></div>
+            <div class="service-icon-wrapper">
+              <div class="service-icon">{{ service.icon }}</div>
+            </div>
             <h3>{{ service.title }}</h3>
             <p>{{ service.description }}</p>
+            <div class="service-link">
+              <span>Learn More</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
     <section class="products-section">
       <div class="container">
-        <h2 class="section-title">Our Products</h2>
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Our Solutions</span>
+          <h2 class="section-title-alt">Featured Products</h2>
+          <p class="section-description">Powerful tools to accelerate your growth</p>
+        </div>
         <div class="products-grid">
-          <div class="product-card" v-for="product in products" :key="product.id">
+          <div class="product-card" v-for="(product, index) in products" :key="product.id"
+               data-aos="fade-up" :data-aos-delay="index * 150">
+            <div class="product-glow"></div>
             <div class="product-header">
-              <div class="product-icon">{{ product.icon }}</div>
+              <div class="product-icon-wrapper">
+                <div class="product-icon">{{ product.icon }}</div>
+              </div>
               <h3>{{ product.title }}</h3>
             </div>
             <p class="product-description">{{ product.description }}</p>
             <ul class="product-features">
               <li v-for="(feature, index) in product.features" :key="index">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 13l4 4L19 7"/>
+                </svg>
                 {{ feature }}
               </li>
             </ul>
             <a :href="product.link" class="product-link">
-              Learn More →
+              <span>Explore Product</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7v10"/>
+              </svg>
             </a>
           </div>
         </div>
@@ -259,6 +298,44 @@ export default {
         'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop',
         'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&h=600&fit=crop',
         'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop'
+      ],
+      values: [
+        {
+          id: 1,
+          icon: '💡',
+          title: 'Innovation',
+          description: 'Constantly pushing boundaries to deliver cutting-edge solutions that stay ahead of the curve.'
+        },
+        {
+          id: 2,
+          icon: '🤝',
+          title: 'Integrity',
+          description: 'Building trust through transparency, honesty, and ethical practices in everything we do.'
+        },
+        {
+          id: 3,
+          icon: '⚡',
+          title: 'Excellence',
+          description: 'Committed to delivering the highest quality in every project, every time.'
+        },
+        {
+          id: 4,
+          icon: '🎯',
+          title: 'Customer Focus',
+          description: 'Your success is our priority. We listen, understand, and deliver solutions that matter.'
+        },
+        {
+          id: 5,
+          icon: '🌱',
+          title: 'Growth',
+          description: 'Fostering continuous learning and development for our team and clients.'
+        },
+        {
+          id: 6,
+          icon: '🌍',
+          title: 'Impact',
+          description: 'Creating meaningful change in education and business through technology.'
+        }
       ],
       services: [
         {
@@ -360,6 +437,7 @@ export default {
   },
   mounted() {
     this.startCarousel();
+    this.initAOS();
   },
   beforeUnmount() {
     if (this.carouselInterval) {
@@ -370,635 +448,799 @@ export default {
     startCarousel() {
       this.carouselInterval = setInterval(() => {
         this.currentImage = (this.currentImage + 1) % this.carouselImages.length;
-      }, 3000);
+      }, 4000);
+    },
+    initAOS() {
+      if (typeof window !== 'undefined' && window.AOS) {
+        window.AOS.init({
+          duration: 1000,
+          once: true,
+          easing: 'ease-out-cubic'
+        });
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 .about-page {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
+  overflow-x: hidden;
 }
-
 .container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
-
 .hero-section {
+  position: relative;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 80px 0;
+  padding: 80px 0 60px;
+  overflow: hidden;
 }
-
+.animated-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: float 20s infinite ease-in-out;
+}
+.orb-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+  top: -200px;
+  left: -100px;
+  animation-delay: 0s;
+}
+.orb-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(118,75,162,0.6) 0%, transparent 70%);
+  bottom: -150px;
+  right: -100px;
+  animation-delay: 5s;
+}
+.orb-3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(102,126,234,0.5) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  animation-delay: 10s;
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(100px, -50px) scale(1.1); }
+  66% { transform: translate(-50px, 100px) scale(0.9); }
+}
 .hero-content {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: center;
 }
-
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
 .main-title {
-  font-size: 3rem;
-  margin-bottom: 30px;
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: 3.5rem;
+  margin-bottom: 32px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
-
+.gradient-text {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 .intro-text {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   line-height: 1.8;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   opacity: 0.95;
+  font-weight: 400;
 }
-
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 32px;
+}
+.hero-stat-item {
+  text-align: center;
+}
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-text {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
 .image-carousel {
-  height: 400px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
-
+.carousel-frame {
+  position: relative;
+  height: 500px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  border: 4px solid rgba(255, 255, 255, 0.2);
+}
 .carousel-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.8s ease;
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
 }
-
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.indicator.active {
+  width: 32px;
+  border-radius: 5px;
+  background: white;
+}
+.floating-card {
+  position: absolute;
+  background: white;
+  padding: 16px 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: floatCard 3s infinite ease-in-out;
+}
+.card-1 {
+  top: 60px;
+  right: -40px;
+  animation-delay: 0s;
+}
+.card-2 {
+  bottom: 60px;
+  left: -40px;
+  animation-delay: 1.5s;
+}
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+.card-icon {
+  font-size: 2rem;
+}
+.card-text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #667eea;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s ease;
+}
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
 }
-
-.mission-vision-section {
-  padding: 80px 0;
-  background: #f8f9fa;
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
 }
-
+.section-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 6px 20px;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+.section-title-alt {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1f2937;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.section-description {
+  font-size: 1.25rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.mission-vision-section {
+  padding: 30px 0;
+  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+}
 .mv-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  gap: 32px;
 }
-
 .mv-card {
+  position: relative;
   background: white;
-  padding: 50px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 30px;
+  border-radius: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  border: 1px solid #f3f4f6;
 }
-
 .mv-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-color: #667eea;
 }
-
-.mv-card .icon {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
+.card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(102,126,234,0.1), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
-
+.mv-card:hover .card-glow {
+  opacity: 1;
+}
+.mv-card .mv-number {
+  font-size: 5rem;
+  font-weight: 800;
+  color: #667eea;
+  opacity: 0.15;
+  line-height: 1;
+  margin-bottom: 24px;
+  font-family: 'Inter', sans-serif;
+}
 .mv-card h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #667eea;
-}
-
-.mv-card p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: #555;
-}
-
-.company-section {
-  padding: 100px 0;
-  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-}
-
-.section-title {
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 60px;
-  color: #333;
+  color: #1f2937;
   font-weight: 700;
-  position: relative;
 }
-
-.section-title::after {
-  content: '';
+.mv-card p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: #6b7280;
+}
+.card-decoration {
   position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 2px;
+  bottom: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  opacity: 0.05;
 }
-
+.values-section {
+  padding: 20px 0;
+  background: white;
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.value-card {
+  text-align: center;
+  padding: 32px 24px;
+  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+  border-radius: 20px;
+  border: 2px solid #f3f4f6;
+  transition: all 0.3s ease;
+}
+.value-card:hover {
+  border-color: #667eea;
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.15);
+}
+.value-icon-wrapper {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+}
+.value-icon {
+  font-size: 2rem;
+}
+.value-card h3 {
+  font-size: 1.375rem;
+  color: #1f2937;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.value-card p {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  line-height: 1.7;
+}
+.company-section {
+  padding: 60px 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+}
 .company-content {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
 }
-
 .company-showcase {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 60px;
   align-items: center;
-  margin-bottom: 80px;
+  margin-bottom: 0;
 }
-
 .company-text {
-  padding: 20px;
+  padding: 24px;
 }
-
 .company-badge {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 12px 24px;
+  padding: 12px 28px;
   border-radius: 50px;
-  margin-bottom: 25px;
+  margin-bottom: 28px;
   font-weight: 600;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  font-size: 0.9375rem;
 }
-
 .badge-icon {
-  font-size: 1.3rem;
+  font-size: 1.375rem;
 }
-
-.badge-text {
-  font-size: 0.95rem;
-}
-
 .company-subtitle {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 25px;
-  font-weight: 700;
-  line-height: 1.3;
+  font-size: 2.25rem;
+  color: #1f2937;
+  margin-bottom: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
-
 .company-para {
-  font-size: 1.05rem;
+  font-size: 1.0625rem;
   line-height: 1.9;
-  color: #555;
-  margin-bottom: 20px;
-  text-align: justify;
+  color: #4b5563;
+  margin-bottom: 24px;
 }
-
 .company-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-top: 40px;
+  gap: 24px;
+  margin-top: 32px;
 }
-
 .stat-item {
   text-align: center;
-  padding: 20px;
+  padding: 28px 20px;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 1px solid #f3f4f6;
 }
-
 .stat-item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  border-color: #667eea;
 }
-
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
 .stat-number {
-  font-size: 2.2rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 800;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 8px;
+  line-height: 1;
 }
-
 .stat-label {
-  font-size: 0.9rem;
-  color: #666;
-  font-weight: 500;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 600;
 }
-
 .company-images {
   position: relative;
 }
-
 .image-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
-
 .main-img {
   grid-column: 1 / -1;
 }
-
 .company-img-wrapper {
   position: relative;
   overflow: hidden;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .company-img-wrapper:hover {
   transform: scale(1.05);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
 }
-
 .company-img-wrapper:hover .img-overlay {
   opacity: 1;
 }
-
 .company-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-
 .main-img .company-img {
-  height: 300px;
+  height: 320px;
 }
-
 .image-grid .company-img-wrapper:not(.main-img) .company-img {
-  height: 200px;
+  height: 220px;
 }
-
+.img-border {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  pointer-events: none;
+}
 .img-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
   color: white;
-  padding: 20px;
+  padding: 24px;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
 }
-
 .img-overlay span {
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.contact-wrapper {
-  margin-top: 60px;
-}
-
-.contact-banner {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20px;
-  padding: 60px;
-  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
-  color: white;
-}
-
-.contact-content {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.contact-title {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
   font-weight: 700;
+  font-size: 1.125rem;
 }
-
-.contact-subtitle {
-  font-size: 1.2rem;
-  opacity: 0.95;
-}
-
-.contact-info-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  margin-bottom: 40px;
-}
-
-.contact-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.contact-card:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-5px);
-}
-
-.contact-icon {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-}
-
-.contact-card h4 {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-.contact-link {
-  display: block;
-  color: white;
-  text-decoration: none;
-  margin: 8px 0;
-  font-size: 0.95rem;
-  opacity: 0.9;
-  transition: opacity 0.3s ease;
-}
-
-.contact-link:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
-
-.contact-address {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  opacity: 0.9;
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 15px;
-}
-
-.social-link {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
+.awards-badge {
+  position: absolute;
+  top: 20px;
+  right: -20px;
+  background: white;
+  padding: 16px 24px;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: white;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  gap: 12px;
+  animation: floatBadge 3s infinite ease-in-out;
 }
-
-.social-link:hover {
-  background: white;
-  color: #667eea;
-  transform: translateY(-3px);
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
-
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 40px;
+.award-icon {
+  font-size: 2rem;
 }
-
-.btn-primary,
-.btn-secondary {
-  padding: 15px 40px;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1.05rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  display: inline-block;
+.award-title {
+  font-weight: 700;
+  color: #1f2937;
+  font-size: 0.9375rem;
 }
-
-.btn-primary {
-  background: white;
-  color: #667eea;
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+.award-subtitle {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 500;
 }
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-}
-
-.btn-secondary:hover {
-  background: white;
-  color: #667eea;
-  transform: translateY(-3px);
-}
-
 .services-section {
-  padding: 80px 0;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
 }
-
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 24px;
 }
-
 .service-card {
+  position: relative;
   background: white;
-  padding: 40px;
-  border-radius: 15px;
+  padding: 36px 28px;
+  border-radius: 24px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f3f4f6;
+  overflow: hidden;
 }
-
 .service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-12px);
+  box-shadow: 0 20px 48px rgba(102, 126, 234, 0.15);
+  border-color: #667eea;
 }
-
+.service-bg-pattern {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(102,126,234,0.05) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.service-card:hover .service-bg-pattern {
+  opacity: 1;
+}
+.service-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+  transition: transform 0.4s ease;
+}
+.service-card:hover .service-icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+}
 .service-icon {
-  font-size: 3rem;
+  font-size: 2.5rem;
+}
+.service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #1f2937;
+  font-weight: 700;
+}
+.service-card p {
+  color: #6b7280;
+  line-height: 1.75;
+  font-size: 0.9375rem;
   margin-bottom: 20px;
 }
-
-.service-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 15px;
-  color: #333;
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #667eea;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  transition: gap 0.3s ease;
 }
-
-.service-card p {
-  color: #666;
-  line-height: 1.7;
+.service-card:hover .service-link {
+  gap: 12px;
 }
-
 .products-section {
-  padding: 80px 0;
+  padding: 60px 0;
   background: white;
 }
-
 .products-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  gap: 32px;
 }
-
 .product-card {
+  position: relative;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
+  padding: 36px;
+  border-radius: 28px;
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.25);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
-
 .product-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-12px);
+  box-shadow: 0 24px 64px rgba(102, 126, 234, 0.35);
 }
-
+.product-glow {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
 .product-header {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
-
+.product-icon-wrapper {
+  width: 72px;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
 .product-icon {
-  font-size: 2.5rem;
-  margin-right: 15px;
+  font-size: 2.25rem;
 }
-
 .product-card h3 {
-  font-size: 1.6rem;
-  font-weight: 600;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
 }
-
 .product-description {
-  font-size: 1.05rem;
-  margin-bottom: 20px;
+  font-size: 1.0625rem;
+  margin-bottom: 28px;
   opacity: 0.95;
-  line-height: 1.6;
+  line-height: 1.7;
 }
-
 .product-features {
   list-style: none;
-  margin-bottom: 25px;
+  margin-bottom: 32px;
 }
-
 .product-features li {
-  padding: 8px 0;
-  padding-left: 25px;
-  position: relative;
-  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  font-size: 0.9375rem;
+  font-weight: 500;
 }
-
-.product-features li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  font-weight: bold;
+.product-features li svg {
+  flex-shrink: 0;
   color: #4ade80;
 }
-
 .product-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   color: white;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 1.05rem;
-  padding: 12px 30px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  transition: background 0.3s ease;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  padding: 14px 32px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
 .product-link:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.25);
+  gap: 14px;
+  transform: translateX(4px);
 }
-
-@media (max-width: 968px) {
+@media (max-width: 1024px) {
   .hero-content {
     grid-template-columns: 1fr;
+    gap: 60px;
   }
-  
+  .carousel-frame {
+    height: 400px;
+  }
   .mv-grid {
     grid-template-columns: 1fr;
   }
-
   .company-showcase {
     grid-template-columns: 1fr;
+    gap: 60px;
   }
-
-  .company-stats {
+  .values-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .contact-info-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
   .products-grid {
     grid-template-columns: 1fr;
   }
 }
-
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.5rem;
+  }
+  .section-title-alt {
+    font-size: 2.25rem;
+  }
+  .hero-stats {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .company-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
 @media (max-width: 640px) {
   .main-title {
     font-size: 2rem;
   }
-
   .company-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
-
-  .contact-banner {
-    padding: 40px 25px;
-  }
-
-  .contact-title {
-    font-size: 1.8rem;
-  }
-
-  .contact-info-grid {
-    grid-template-columns: 1fr;
-  }
-
   .company-stats {
     grid-template-columns: 1fr;
   }
-
-  .cta-buttons {
-    flex-direction: column;
-  }
-  
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .section-title {
+  .section-title-alt {
     font-size: 2rem;
+  }
+  .floating-card {
+    display: none;
   }
 }
 </style>
