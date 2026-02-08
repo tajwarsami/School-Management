@@ -104,8 +104,9 @@ const prev = () => {
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  background: white;
-  color: var(--color-text-main);
+  background: var(--color-card-dark);
+  color: var(--color-text-card);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-btn:hover {
@@ -115,7 +116,7 @@ const prev = () => {
 }
 
 .testimonial-card {
-  background-color: white;
+  background-color: var(--color-card-dark);
   padding: 4rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -130,7 +131,7 @@ const prev = () => {
 }
 
 .quote-icon {
-  color: var(--color-primary);
+  color: #E91E63;
   opacity: 0.1;
   margin-bottom: 1.5rem;
 }
@@ -139,7 +140,7 @@ const prev = () => {
   font-size: 1.5rem;
   line-height: 1.5;
   font-weight: 500;
-  color: var(--color-text-main);
+  color: var(--color-text-card);
   margin-bottom: 3rem;
   max-width: 900px;
 }
@@ -170,11 +171,11 @@ const prev = () => {
 
 .author-role {
   font-size: 0.95rem;
-  color: var(--color-text-muted);
+  color: var(--color-text-card-muted);
 }
 
 .institution {
-  color: var(--color-primary);
+  color: #E91E63;
   font-weight: 500;
 }
 </style>

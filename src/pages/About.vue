@@ -482,7 +482,7 @@ export default {
 }
 .hero-section {
   position: relative;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #6A1B9A 0%, #E91E63 100%);
   color: white;
   padding: 80px 0 60px;
   overflow: hidden;
@@ -642,7 +642,7 @@ export default {
 }
 .floating-card {
   position: absolute;
-  background: white;
+  background: rgba(42, 10, 59, 0.6);
   padding: 16px 24px;
   border-radius: 16px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
@@ -650,6 +650,7 @@ export default {
   align-items: center;
   gap: 12px;
   animation: floatCard 3s infinite ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .card-1 {
   top: 60px;
@@ -671,7 +672,7 @@ export default {
 .card-text {
   font-size: 1rem;
   font-weight: 700;
-  color: #667eea;
+  color: #E91E63;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity 1s ease;
@@ -697,6 +698,7 @@ export default {
 .section-title-alt {
   font-size: 3rem;
   font-weight: 800;
+  font-weight: 800;
   color: #1f2937;
   margin-bottom: 16px;
   letter-spacing: -0.02em;
@@ -709,7 +711,7 @@ export default {
 }
 .mission-vision-section {
   padding: 30px 0;
-  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+  background: var(--color-bg-light);
 }
 .mv-grid {
   display: grid;
@@ -718,18 +720,18 @@ export default {
 }
 .mv-card {
   position: relative;
-  background: white;
+  background: var(--color-card-dark);
   padding: 30px;
   border-radius: 24px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-md);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
-  border: 1px solid #f3f4f6;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .mv-card:hover {
   transform: translateY(-12px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: #667eea;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border-color: #E91E63;
 }
 .card-glow {
   position: absolute;
@@ -748,7 +750,7 @@ export default {
 .mv-card .mv-number {
   font-size: 5rem;
   font-weight: 800;
-  color: #667eea;
+  color: rgba(255, 255, 255, 0.1);
   opacity: 0.15;
   line-height: 1;
   margin-bottom: 24px;
@@ -763,7 +765,8 @@ export default {
 .mv-card p {
   font-size: 1.0625rem;
   line-height: 1.8;
-  color: #6b7280;
+  line-height: 1.8;
+  color: var(--color-text-card-muted);
 }
 .card-decoration {
   position: absolute;
@@ -771,13 +774,13 @@ export default {
   right: -50px;
   width: 150px;
   height: 150px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #6A1B9A 0%, #E91E63 100%);
   border-radius: 50%;
   opacity: 0.05;
 }
 .values-section {
   padding: 20px 0;
-  background: white;
+  background: var(--color-bg-light);
 }
 .values-grid {
   display: grid;
@@ -787,44 +790,46 @@ export default {
 .value-card {
   text-align: center;
   padding: 32px 24px;
-  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+  background: var(--color-card-dark);
   border-radius: 20px;
-  border: 2px solid #f3f4f6;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 .value-card:hover {
-  border-color: #667eea;
+  border-color: #E91E63;
   transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.15);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
 }
 .value-icon-wrapper {
   width: 72px;
   height: 72px;
   margin: 0 auto 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #6A1B9A 0%, #E91E63 100%);
   border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 .value-icon {
   font-size: 2rem;
 }
 .value-card h3 {
   font-size: 1.375rem;
-  color: #1f2937;
+  font-size: 1.375rem;
+  color: var(--color-text-card);
   margin-bottom: 12px;
   font-weight: 700;
 }
 .value-card p {
   font-size: 0.9375rem;
-  color: #6b7280;
+  font-size: 0.9375rem;
+  color: var(--color-text-card-muted);
   line-height: 1.7;
 }
 .company-section {
   padding: 60px 0;
-  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+  background: var(--color-bg-light);
 }
 .company-content {
   max-width: 1280px;
@@ -850,7 +855,7 @@ export default {
   border-radius: 50px;
   margin-bottom: 28px;
   font-weight: 600;
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 24px rgba(106, 27, 154, 0.3);
   font-size: 0.9375rem;
 }
 .badge-icon {
@@ -879,16 +884,16 @@ export default {
 .stat-item {
   text-align: center;
   padding: 28px 20px;
-  background: white;
+  background: var(--color-card-dark);
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
-  border: 1px solid #f3f4f6;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .stat-item:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
-  border-color: #667eea;
+  border-color: #E91E63;
 }
 .stat-icon {
   font-size: 2rem;
@@ -897,7 +902,8 @@ export default {
 .stat-number {
   font-size: 2.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-weight: 800;
+  background: linear-gradient(135deg, #6A1B9A 0%, #E91E63 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -906,7 +912,8 @@ export default {
 }
 .stat-label {
   font-size: 0.875rem;
-  color: #6b7280;
+  font-size: 0.875rem;
+  color: var(--color-text-card-muted);
   font-weight: 600;
 }
 .company-images {
@@ -1002,7 +1009,7 @@ export default {
   font-weight: 500;
 }
 .services-section {
-  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+  background: var(--color-bg-light);
 }
 .services-grid {
   display: grid;
@@ -1011,19 +1018,19 @@ export default {
 }
 .service-card {
   position: relative;
-  background: white;
+  background: var(--color-card-dark);
   padding: 36px 28px;
   border-radius: 24px;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  border: 1px solid #f3f4f6;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
 }
 .service-card:hover {
   transform: translateY(-12px);
-  box-shadow: 0 20px 48px rgba(102, 126, 234, 0.15);
-  border-color: #667eea;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
+  border-color: #E91E63;
 }
 .service-bg-pattern {
   position: absolute;
@@ -1043,12 +1050,12 @@ export default {
   width: 80px;
   height: 80px;
   margin: 0 auto 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #6A1B9A 0%, #E91E63 100%);
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 8px 24px rgba(106, 27, 154, 0.25);
   transition: transform 0.4s ease;
 }
 .service-card:hover .service-icon-wrapper {
@@ -1060,11 +1067,11 @@ export default {
 .service-card h3 {
   font-size: 1.5rem;
   margin-bottom: 16px;
-  color: #1f2937;
+  color: var(--color-text-card);
   font-weight: 700;
 }
 .service-card p {
-  color: #6b7280;
+  color: var(--color-text-card-muted);
   line-height: 1.75;
   font-size: 0.9375rem;
   margin-bottom: 20px;
@@ -1073,7 +1080,7 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #667eea;
+  color: #E91E63;
   font-weight: 700;
   font-size: 0.9375rem;
   transition: gap 0.3s ease;
@@ -1083,7 +1090,7 @@ export default {
 }
 .products-section {
   padding: 60px 0;
-  background: white;
+  background: var(--color-bg-light);
 }
 .products-grid {
   display: grid;
@@ -1096,13 +1103,13 @@ export default {
   color: white;
   padding: 36px;
   border-radius: 28px;
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 12px 40px rgba(106, 27, 154, 0.25);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
 .product-card:hover {
   transform: translateY(-12px);
-  box-shadow: 0 24px 64px rgba(102, 126, 234, 0.35);
+  box-shadow: 0 24px 64px rgba(106, 27, 154, 0.35);
 }
 .product-glow {
   position: absolute;

@@ -32,7 +32,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 20px 40px -10px rgba(43, 89, 255, 0.4);
+  box-shadow: 0 20px 40px -10px rgba(106, 27, 154, 0.4);
   color: white;
   position: relative;
   overflow: hidden;

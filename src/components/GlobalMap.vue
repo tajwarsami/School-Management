@@ -26,7 +26,7 @@
 <style scoped>
 .map-section {
   padding: 6rem 0;
-  background-color: #111827;
+  background-color: var(--color-card-dark);
   color: white;
   text-align: center;
 }
@@ -51,10 +51,10 @@
   max-width: 900px;
   margin: 0 auto;
   aspect-ratio: 16/9;
-  background-image: radial-gradient(#374151 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
   background-size: 20px 20px;
   border-radius: var(--radius-lg);
-  border: 1px solid #374151;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,7 +64,7 @@
 .map-image-placeholder {
   font-size: 5rem;
   font-weight: 800;
-  color: #1F2937;
+  color: rgba(255, 255, 255, 0.1);
   text-transform: uppercase;
   letter-spacing: 10px;
   user-select: none;

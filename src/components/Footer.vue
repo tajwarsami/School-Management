@@ -66,7 +66,7 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
 
 <style scoped>
 .footer {
-  background-color: #0F172A;
+  background-color: #1a0524;
   color: #94A3B8;
   padding-top: 12rem;
   padding-bottom: 2rem;

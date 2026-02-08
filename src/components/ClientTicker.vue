@@ -25,10 +25,10 @@ const clients = [
 <style scoped>
 .ticker-section {
   padding: 4rem 0;
-  background-color: #F8FAFC;
+  background-color: var(--color-card-dark);
   overflow: hidden;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header {
@@ -38,7 +38,7 @@ const clients = [
 
 .trusted-text {
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--color-text-card-muted);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.875rem;
@@ -62,12 +62,12 @@ const clients = [
 
 .ticker-wrap::before {
   left: 0;
-  background: linear-gradient(to right, #F8FAFC, transparent);
+  background: linear-gradient(to right, var(--color-card-dark), transparent);
 }
 
 .ticker-wrap::after {
   right: 0;
-  background: linear-gradient(to left, #F8FAFC, transparent);
+  background: linear-gradient(to left, var(--color-card-dark), transparent);
 }
 
 .ticker {
@@ -86,7 +86,7 @@ const clients = [
 .client-logo {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #94A3B8;
+  color: var(--color-text-card-muted);
   white-space: nowrap;
 }
 

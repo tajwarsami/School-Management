@@ -49,7 +49,7 @@ const features = [
 <style scoped>
 .features-section {
   padding: 5rem 0;
-  background-color: var(--color-bg-light);
+  background: linear-gradient(to bottom, #FCE4EC 0%, #F3E5F5 100%);
 }
 
 .section-header {
@@ -89,24 +89,24 @@ const features = [
 }
 
 .feature-card {
-  background-color: var(--color-white);
+  background-color: var(--color-card-dark);
   padding: 2rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .feature-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
-  border-color: rgba(43, 89, 255, 0.1);
+  border-color: #E91E63;
 }
 
 .icon-wrapper {
   width: 56px;
   height: 56px;
-  background-color: rgba(43, 89, 255, 0.1);
+  background-color: rgba(106, 27, 154, 0.05);
   color: var(--color-primary);
   border-radius: var(--radius-md);
   display: flex;
@@ -125,12 +125,12 @@ const features = [
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: var(--color-text-main);
+  color: var(--color-text-card);
 }
 
 .feature-desc {
   font-size: 0.95rem;
-  color: var(--color-text-muted);
+  color: var(--color-text-card-muted);
   line-height: 1.5;
 }
 </style>

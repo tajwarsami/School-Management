@@ -1,151 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 import { Check, Users } from 'lucide-vue-next'
+import { plans as initialPlans, studentRanges } from '../data/pricing'
 
 const billingType = ref('monthly')
 
-const studentRanges = [
-  { label: '0-300', value: '0-300' },
-  { label: '301-500', value: '301-500' },
-  { label: '501-1000', value: '501-1000' },
-  { label: '1001-1500', value: '1001-1500' },
-  { label: '1501-2000', value: '1501-2000' },
-  { label: '2001-3000', value: '2001-3000' },
-  { label: '3001-5000', value: '3001-5000' },
-  { label: '5001-8000', value: '5001-8000' }
-]
-
-const plans = ref([
-  {
-    name: 'Basic',
-    description: 'Perfect for small institutions starting their digital journey',
-    oneTimeCharge: 2000,
-    selectedRange: '0-300',
-    icon: '📚',
-    features: [
-      'Student Management System',
-      'Basic Attendance Tracking',
-      'Grade Management',
-      'Parent Portal Access',
-      'Email Support'
-    ],
-    prices: {
-      monthly: {
-        '0-300': 2000,
-        '301-500': 3000,
-        '501-1000': 5500,
-        '1001-1500': 7500,
-        '1501-2000': 9000,
-        '2001-3000': 12000,
-        '3001-5000': 17500,
-        '5001-8000': 24000
-      },
-      yearly: {
-        '0-300': 22000,
-        '301-500': 33000,
-        '501-1000': 60000,
-        '1001-1500': 82000,
-        '1501-2000': 98000,
-        '2001-3000': 130000,
-        '3001-5000': 185000,
-        '5001-8000': 250000
-      }
-    }
-  },
-  {
-    name: 'Standard',
-    description: 'Ideal for growing schools with expanding needs',
-    oneTimeCharge: 3000,
-    selectedRange: '0-300',
-    icon: '🎓',
-    features: [
-      'Everything in Basic',
-      'Advanced Analytics Dashboard',
-      'SMS Notifications',
-      'Online Exam Module',
-      'Library Management',
-      'Priority Support'
-    ],
-    prices: {
-      monthly: {
-        '0-300': 2500,
-        '301-500': 4000,
-        '501-1000': 7500,
-        '1001-1500': 10500,
-        '1501-2000': 13000,
-        '2001-3000': 18000,
-        '3001-5000': 27500,
-        '5001-8000': 40000
-      },
-      yearly: {
-        '0-300': 27000,
-        '301-500': 45000,
-        '501-1000': 85000,
-        '1001-1500': 115000,
-        '1501-2000': 145000,
-        '2001-3000': 200000,
-        '3001-5000': 310000,
-        '5001-8000': 460000
-      }
-    }
-  },
-  {
-    name: 'Premium',
-    recommended: true,
-    description: 'Complete solution for modern educational institutions',
-    oneTimeCharge: 5000,
-    selectedRange: '0-300',
-    icon: '👑',
-    features: [
-      'Everything in Standard',
-      'Custom Mobile App',
-      'AI-Powered Insights',
-      'Video Conferencing',
-      'Advanced Security Features',
-      'Custom Integrations',
-      '24/7 Dedicated Support'
-    ],
-    prices: {
-      monthly: {
-        '0-300': 4000,
-        '301-500': 6500,
-        '501-1000': 12000,
-        '1001-1500': 17500,
-        '1501-2000': 22000,
-        '2001-3000': 32000,
-        '3001-5000': 50000,
-        '5001-8000': 75000
-      },
-      yearly: {
-        '0-300': 45000,
-        '301-500': 70000,
-        '501-1000': 135000,
-        '1001-1500': 190000,
-        '1501-2000': 240000,
-        '2001-3000': 360000,
-        '3001-5000': 580000,
-        '5001-8000': 850000
-      }
-    }
-  },
-  {
-    name: 'Enterprise',
-    custom: true,
-    description: 'Tailored solutions for large institutions',
-    icon: '🏢',
-    features: [
-      'Everything from Premium',
-      'Unlimited Students',
-      'Android & iOS App',
-      'Dedicated Support Team',
-      'Premium School Website',
-      'Deploy Your Own Server',
-      'White Label License',
-      'Custom Feature Development',
-      'Onsite Training & Support'
-    ]
-  }
-])
+const plans = ref(JSON.parse(JSON.stringify(initialPlans)))
 
 const getPrice = (plan) => {
   if (plan.custom) return 'Custom'
@@ -156,6 +16,8 @@ const formatPrice = (price) => {
   return new Intl.NumberFormat('en-BD').format(price)
 }
 </script>
+
+
 
 <template>
   <section class="pricing-section">
@@ -241,7 +103,7 @@ const formatPrice = (price) => {
             </div>
           </div>
 
-          <div class="features-section">
+          <div v-if="plan.custom" class="features-section">
             <h4 class="features-title">What's included:</h4>
             <ul class="features-list">
               <li v-for="feature in plan.features" :key="feature">
@@ -296,7 +158,7 @@ const formatPrice = (price) => {
 
 .pricing-section {
   padding: 3rem 1.5rem;
-  background: linear-gradient(to bottom, #fff5f0 0%, #ffffff 50%, #f0f9ff 100%);
+  background: linear-gradient(to bottom, #FFFFFF 0%, #F3E5F5 100%);
   min-height: 100vh;
   position: relative;
   overflow: hidden;
@@ -309,7 +171,7 @@ const formatPrice = (price) => {
   right: -10%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(255, 107, 0, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(106, 27, 154, 0.1) 0%, transparent 70%);
   border-radius: 50%;
   z-index: 0;
 }
@@ -321,7 +183,7 @@ const formatPrice = (price) => {
   left: -10%;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(233, 30, 99, 0.1) 0%, transparent 70%);
   border-radius: 50%;
   z-index: 0;
 }
@@ -343,7 +205,7 @@ const formatPrice = (price) => {
   font-weight: 800;
   color: #1a1a1a;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 50%, #3b82f6 100%);
+  background: linear-gradient(135deg, #6A1B9A 0%, #AB47BC 50%, #E91E63 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -387,9 +249,9 @@ const formatPrice = (price) => {
 }
 
 .billing-toggle button.active {
-  background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+  background: linear-gradient(135deg, #6A1B9A 0%, #8E24AA 100%);
   color: white;
-  box-shadow: 0 4px 12px rgba(255, 107, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.4);
   transform: scale(1.02);
 }
 
@@ -403,7 +265,7 @@ const formatPrice = (price) => {
   padding: 2px 5px;
   border-radius: 8px;
   font-weight: 700;
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 2px 8px rgba(233, 30, 99, 0.3);
 }
 
 .pricing-grid {
@@ -414,11 +276,11 @@ const formatPrice = (price) => {
 }
 
 .pricing-card {
-  background: white;
+  background: var(--color-card-dark);
   border-radius: 16px;
   padding: 1.5rem;
   position: relative;
-  border: 2px solid transparent;
+  border: 2px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
@@ -433,14 +295,14 @@ const formatPrice = (price) => {
 }
 
 .pricing-card.recommended {
-  border-color: #ff6b00;
-  background: linear-gradient(135deg, #ffffff 0%, #fffaf5 100%);
-  box-shadow: 0 8px 25px rgba(255, 107, 0, 0.2);
+  border-color: #E91E63;
+  background: linear-gradient(135deg, #4A148C 0%, #2A0A3B 100%);
+  box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
   transform: scale(1.03);
 }
 
 .pricing-card.recommended:hover {
-  box-shadow: 0 15px 40px rgba(255, 107, 0, 0.25);
+  box-shadow: 0 15px 40px rgba(233, 30, 99, 0.25);
   transform: translateY(-5px) scale(1.03);
 }
 
@@ -449,13 +311,13 @@ const formatPrice = (price) => {
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+  background: linear-gradient(135deg, #E91E63 0%, #C2185B 100%);
   color: white;
   padding: 5px 15px;
   font-size: 0.7rem;
   font-weight: 700;
   border-radius: 50px;
-  box-shadow: 0 4px 12px rgba(255, 107, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.4);
   white-space: nowrap;
 }
 
@@ -473,7 +335,7 @@ const formatPrice = (price) => {
 .plan-name {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--color-text-card);
   margin-bottom: 0.25rem;
   letter-spacing: -0.3px;
 }
@@ -488,7 +350,7 @@ const formatPrice = (price) => {
   text-align: center;
   margin-bottom: 1.25rem;
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .price {
@@ -508,7 +370,7 @@ const formatPrice = (price) => {
 .amount {
   font-size: 2.2rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--color-text-card);
   line-height: 1;
   letter-spacing: -1px;
 }
@@ -542,7 +404,7 @@ const formatPrice = (price) => {
   align-items: center;
   gap: 0.4rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--color-text-card);
   margin-bottom: 0.75rem;
   font-size: 0.8rem;
 }
@@ -566,7 +428,7 @@ const formatPrice = (price) => {
 }
 
 .range-grid::-webkit-scrollbar-thumb {
-  background: #ff6b00;
+  background: #6A1B9A;
   border-radius: 10px;
 }
 
@@ -575,27 +437,27 @@ const formatPrice = (price) => {
   align-items: center;
   gap: 0.5rem;
   padding: 0.6rem 0.7rem;
-  border: 1.5px solid #e5e7eb;
-  background: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 0.75rem;
   font-weight: 500;
-  color: #4b5563;
+  color: var(--color-text-card-muted);
 }
 
 .range-button:hover {
-  border-color: #ff6b00;
-  background: #fff5f0;
+  border-color: #6A1B9A;
+  background: rgba(106, 27, 154, 0.2);
   transform: scale(1.03);
 }
 
 .range-button.active {
-  border-color: #ff6b00;
-  background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+  border-color: #6A1B9A;
+  background: linear-gradient(135deg, #6A1B9A 0%, #8E24AA 100%);
   color: white;
-  box-shadow: 0 3px 10px rgba(255, 107, 0, 0.3);
+  box-shadow: 0 3px 10px rgba(106, 27, 154, 0.3);
 }
 
 .radio-circle {
@@ -636,7 +498,7 @@ const formatPrice = (price) => {
 .features-title {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--color-text-card);
   margin-bottom: 0.75rem;
 }
 
@@ -651,7 +513,7 @@ const formatPrice = (price) => {
   align-items: flex-start;
   gap: 0.5rem;
   padding: 0.4rem 0;
-  color: #4b5563;
+  color: var(--color-text-card-muted);
   font-size: 0.8rem;
   line-height: 1.4;
 }
@@ -667,15 +529,15 @@ const formatPrice = (price) => {
   color: white;
   flex-shrink: 0;
   margin-top: 1px;
-  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 2px 6px rgba(106, 27, 154, 0.3);
 }
 
 .cta-button {
   width: 100%;
   padding: 0.75rem 1.5rem;
-  border: 2px solid #ff6b00;
+  border: 2px solid #6A1B9A;
   background: white;
-  color: #ff6b00;
+  color: #E91E63;
   border-radius: 10px;
   font-size: 0.95rem;
   font-weight: 700;
@@ -689,21 +551,21 @@ const formatPrice = (price) => {
 }
 
 .cta-button:hover {
-  background: #ff6b00;
+  background: #E91E63;
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 107, 0, 0.35);
+  box-shadow: 0 8px 20px rgba(106, 27, 154, 0.35);
 }
 
 .cta-button.primary {
-  background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+  background: linear-gradient(135deg, #6A1B9A 0%, #E91E63 100%);
   color: white;
   border: none;
-  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.35);
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.35);
 }
 
 .cta-button.primary:hover {
-  box-shadow: 0 8px 25px rgba(255, 107, 0, 0.45);
+  box-shadow: 0 8px 25px rgba(233, 30, 99, 0.45);
 }
 
 .arrow {
@@ -726,11 +588,11 @@ const formatPrice = (price) => {
 }
 
 .info-card {
-  background: white;
+  background: var(--color-card-dark);
   padding: 1.5rem;
   border-radius: 14px;
   text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
@@ -738,7 +600,7 @@ const formatPrice = (price) => {
 .info-card:hover {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   transform: translateY(-4px);
-  border-color: rgba(255, 107, 0, 0.2);
+  border-color: rgba(106, 27, 154, 0.2);
 }
 
 .info-icon {
@@ -749,13 +611,13 @@ const formatPrice = (price) => {
 
 .info-card h4 {
   font-size: 1rem;
-  color: #1a1a1a;
+  color: var(--color-text-card);
   margin-bottom: 0.4rem;
   font-weight: 700;
 }
 
 .info-card p {
-  color: #666;
+  color: var(--color-text-card-muted);
   font-size: 0.85rem;
   line-height: 1.4;
 }
@@ -763,14 +625,14 @@ const formatPrice = (price) => {
 .notes {
   text-align: center;
   padding: 1.5rem;
-  background: linear-gradient(135deg, #fff5f0 0%, #f0f9ff 100%);
+  background: rgba(42, 10, 59, 0.6);
   border-radius: 12px;
-  border: 1px solid rgba(255, 107, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .notes p {
-  color: #6b7280;
+  color: var(--color-text-card-muted);
   font-size: 0.8rem;
   margin: 0.3rem 0;
 }

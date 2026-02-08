@@ -90,7 +90,7 @@ const content = {
 <style scoped>
 .tabs-section {
   padding: 5rem 0;
-  background-color: var(--color-bg-light);
+  background: linear-gradient(to bottom, #FFFFFF 0%, #F3E5F5 100%);
 }
 
 .section-title-wrap {
@@ -133,7 +133,7 @@ const content = {
   background-color: var(--color-primary);
   color: var(--color-white);
   border-color: var(--color-primary);
-  box-shadow: 0 4px 12px rgba(43, 89, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.3);
   transform: translateY(-2px);
 }
 
@@ -142,7 +142,7 @@ const content = {
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
-  background-color: var(--color-white);
+  background-color: var(--color-card-dark);
   padding: 3rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -159,7 +159,7 @@ const content = {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--color-accent);
-  background: rgba(255, 107, 0, 0.1);
+  background: rgba(233, 30, 99, 0.1);
   padding: 4px 12px;
   border-radius: var(--radius-full);
   margin-bottom: 1rem;
@@ -169,12 +169,12 @@ const content = {
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: var(--color-text-main);
+  color: var(--color-text-card);
 }
 
 .content-desc {
   font-size: 1.05rem;
-  color: var(--color-text-muted);
+  color: var(--color-text-card-muted);
   margin-bottom: 2rem;
 }
 
@@ -206,11 +206,11 @@ const content = {
 
 .visual-card {
   height: 300px;
-  background: #F8FAFC;
+  background: var(--color-card-dark);
   border-radius: var(--radius-md);
   position: relative;
   overflow: hidden;
-  border: 1px solid #E2E8F0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .visual-card .circle {
@@ -228,20 +228,20 @@ const content = {
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.visual-card.kindergarten { background: #E0F2FE; }
-.visual-card.kindergarten .c1 { width: 100px; height: 100px; background: #0EA5E9; right: -20px; top: -20px; }
+.visual-card.kindergarten { background: #E1BEE7; }
+.visual-card.kindergarten .c1 { width: 100px; height: 100px; background: #AB47BC; right: -20px; top: -20px; }
 .visual-card.kindergarten .b1 { width: 200px; top: 100px; }
 
-.visual-card.school { background: #F0F9FF; }
+.visual-card.school { background: #F3E5F5; }
 .visual-card.school .c1 { width: 150px; height: 150px; background: var(--color-primary); bottom: -50px; right: -30px; }
 .visual-card.school .b1 { width: 60%; top: 60px; }
 .visual-card.school .b2 { width: 80%; top: 100px; }
 .visual-card.school .b3 { width: 40%; top: 140px; }
 
-.visual-card.madrasah { background: #ECFDF5; }
-.visual-card.madrasah .c1 { width: 80px; height: 80px; background: #10B981; top: 20px; right: 20px; }
+.visual-card.madrasah { background: #FCE4EC; }
+.visual-card.madrasah .c1 { width: 80px; height: 80px; background: #F06292; top: 20px; right: 20px; }
 
-.visual-card.college { background: #EEF2FF; }
-.visual-card.college .c1 { width: 200px; height: 200px; border: 20px solid #6366F1; opacity: 0.1; left: -50px; bottom: -50px; }
+.visual-card.college { background: #EDE7F6; }
+.visual-card.college .c1 { width: 200px; height: 200px; border: 20px solid #7E57C2; opacity: 0.1; left: -50px; bottom: -50px; }
 
 </style>

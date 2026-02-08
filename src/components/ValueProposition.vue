@@ -6,19 +6,19 @@ const values = [
     title: "Streamlined Operations",
     desc: "Automate daily administrative tasks, reduce paperwork, and focus more on education quality. Our intelligent workflows handle the boring stuff for you.",
     icon: Settings,
-    color: "#2B59FF"
+    color: "#6A1B9A"
   },
   {
     title: "Bank-Grade Security",
     desc: "Your data is protected with enterprise-grade encryption and daily backups. We ensure that sensitive student and financial records never fall into the wrong hands.",
     icon: Shield,
-    color: "#FF6B00"
+    color: "#E91E63"
   },
   {
     title: "Lightning Fast Performance",
     desc: "Built on modern cloud infrastructure, Edufy ensures zero lag even during peak admission seasons. Experience an interface that keeps up with your speed.",
     icon: Zap,
-    color: "#10B981"
+    color: "#1565C0"
   }
 ];
 </script>
@@ -62,7 +62,7 @@ const values = [
 <style scoped>
 .value-section {
   padding: 6rem 0;
-  background-color: var(--color-bg-light);
+  background: linear-gradient(to bottom, #F3E5F5 0%, #FFFFFF 100%);
 }
 
 .section-title {
@@ -87,6 +87,14 @@ const values = [
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
+  background-color: var(--color-card-dark);
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--color-card-dark);
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 968px) {
@@ -133,10 +141,12 @@ const values = [
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  color: var(--color-text-card);
+  color: var(--color-text-card);
 }
 
 .text-content p {
-  color: var(--color-text-muted);
+  color: var(--color-text-card-muted);
   font-size: 1.1rem;
   line-height: 1.6;
 }

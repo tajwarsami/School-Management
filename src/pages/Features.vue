@@ -414,14 +414,15 @@ function toggleModule(name) {
 }
 
 .demo-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #6A1B9A 0%, #E91E63 100%);
   border-radius: 24px;
   padding: 60px;
   margin-bottom: 80px;
   color: white;
-  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 20px 60px rgba(106, 27, 154, 0.3);
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .demo-section::before {
@@ -464,7 +465,7 @@ function toggleModule(name) {
   gap: 10px;
   padding: 16px 32px;
   background: white;
-  color: #667eea;
+  color: #6A1B9A;
   border: none;
   border-radius: 12px;
   font-size: 16px;
@@ -486,9 +487,9 @@ function toggleModule(name) {
 
 .floating-card {
   position: absolute;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(42, 10, 59, 0.6);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 20px;
   text-align: center;
@@ -561,12 +562,12 @@ function toggleModule(name) {
 }
 
 .accordion-item {
-  background: white;
+  background: var(--color-card-dark);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .accordion-item:hover {
@@ -574,8 +575,8 @@ function toggleModule(name) {
 }
 
 .accordion-item.active {
-  border-color: #e2e8f0;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  border-color: #E91E63;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
 }
 
 .accordion-item.active::before {
@@ -604,11 +605,11 @@ function toggleModule(name) {
 }
 
 .accordion-header:hover {
-  background: #fafbfc;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .accordion-item.active .accordion-header {
-  background: #f8fafc;
+  background: rgba(255, 255, 255, 0.05);
   padding-bottom: 24px;
 }
 
@@ -630,12 +631,12 @@ function toggleModule(name) {
 .module-icon-wrapper {
   width: 72px;
   height: 72px;
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
   border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
 }
 
@@ -655,12 +656,12 @@ function toggleModule(name) {
   font-size: 24px;
   font-weight: 700;
   margin: 0 0 6px 0;
-  color: #1a202c;
+  color: var(--color-text-card);
 }
 
 .module-subtitle {
   font-size: 15px;
-  color: #64748b;
+  color: var(--color-text-card-muted);
   margin: 0;
 }
 
@@ -672,12 +673,12 @@ function toggleModule(name) {
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: #f1f5f9;
+  background: rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  color: #64748b;
+  color: var(--color-text-card-muted);
 }
 
 .toggle-icon.rotated {
@@ -697,7 +698,7 @@ function toggleModule(name) {
 .content-description p {
   font-size: 16px;
   line-height: 1.7;
-  color: #64748b;
+  color: var(--color-text-card-muted);
   margin: 0;
 }
 
@@ -708,8 +709,8 @@ function toggleModule(name) {
 }
 
 .feature-box {
-  background: linear-gradient(135deg, #fafbfc 0%, #ffffff 100%);
-  border: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 24px;
   transition: all 0.3s ease;
@@ -729,16 +730,17 @@ function toggleModule(name) {
 }
 
 .feature-box:hover {
-  border-color: #cbd5e0;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  border-color: #E91E63;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
   transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .feature-icon-circle {
   width: 52px;
   height: 52px;
-  background: white;
-  border: 2px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -751,13 +753,13 @@ function toggleModule(name) {
   font-size: 17px;
   font-weight: 700;
   margin: 0 0 8px 0;
-  color: #1a202c;
+  color: var(--color-text-card);
 }
 
 .feature-text {
   font-size: 14px;
   line-height: 1.6;
-  color: #64748b;
+  color: var(--color-text-card-muted);
   margin: 0;
 }
 
@@ -784,20 +786,20 @@ function toggleModule(name) {
 }
 
 .benefit-card {
-  background: white;
+  background: var(--color-card-dark);
   border-radius: 20px;
   padding: 40px 30px;
   text-align: center;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
 
 .benefit-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  border-color: #e2e8f0;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  border-color: #E91E63;
 }
 
 .benefit-icon {

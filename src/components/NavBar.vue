@@ -105,10 +105,10 @@ const toggleMobileMenu = () => {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(42, 10, 59, 0.95);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-content {
@@ -136,8 +136,8 @@ const toggleMobileMenu = () => {
 }
 
 .logo-text {
-  color: #1e40af;
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #6A1B9A, #AB47BC);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -147,7 +147,7 @@ const toggleMobileMenu = () => {
 .logo-dot {
   width: 8px;
   height: 8px;
-  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  background: linear-gradient(135deg, #AB47BC, #E91E63);
   border-radius: 50%;
   animation: pulse 2s infinite;
   margin-bottom: 4px;
@@ -177,7 +177,7 @@ const toggleMobileMenu = () => {
 .nav-link {
   font-weight: 500;
   font-size: 0.938rem;
-  color: #4b5563;
+  color: var(--color-text-card-muted);
   cursor: pointer;
   transition: all 0.25s ease;
   position: relative;
@@ -193,13 +193,13 @@ const toggleMobileMenu = () => {
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #2563eb, #7c3aed);
+  background: linear-gradient(90deg, #6A1B9A, #E91E63);
   transition: width 0.3s ease;
   border-radius: 2px;
 }
 
 .nav-link:hover {
-  color: #2563eb;
+  color: #E91E63;
 }
 
 .nav-link:hover::after {
@@ -207,7 +207,7 @@ const toggleMobileMenu = () => {
 }
 
 .nav-link.active {
-  color: #2563eb;
+  color: #FFFFFF;
   font-weight: 600;
 }
 
@@ -225,7 +225,7 @@ const toggleMobileMenu = () => {
   gap: 6px;
   font-weight: 600;
   font-size: 0.938rem;
-  color: #1f2937;
+  color: var(--color-text-card);
   padding: 0.5rem 0.875rem;
   cursor: pointer;
   border-radius: 6px;
@@ -236,8 +236,8 @@ const toggleMobileMenu = () => {
 }
 
 .btn-more:hover {
-  background: rgba(37, 99, 235, 0.08);
-  color: #2563eb;
+  background: rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
 }
 
 .chevron {
@@ -253,8 +253,8 @@ const toggleMobileMenu = () => {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  background: var(--color-card-dark);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   min-width: 160px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -269,7 +269,7 @@ const toggleMobileMenu = () => {
   text-align: left;
   font-size: 0.938rem;
   font-weight: 500;
-  color: #1f2937;
+  color: var(--color-text-card);
   cursor: pointer;
   transition: all 0.2s;
   background: transparent;
@@ -278,8 +278,8 @@ const toggleMobileMenu = () => {
 }
 
 .dropdown-item:hover {
-  background: linear-gradient(90deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.05));
-  color: #2563eb;
+  background: rgba(255, 255, 255, 0.05);
+  color: #E91E63;
 }
 
 .nav-actions {
@@ -293,19 +293,19 @@ const toggleMobileMenu = () => {
   padding: 0.625rem 1.5rem;
   font-weight: 600;
   font-size: 0.938rem;
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  background: linear-gradient(135deg, #6A1B9A, #E91E63);
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 2px 8px rgba(106, 27, 154, 0.25);
   white-space: nowrap;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 4px 16px rgba(106, 27, 154, 0.4);
 }
 
 .btn-primary:active {
@@ -323,7 +323,7 @@ const toggleMobileMenu = () => {
   padding: 0.5rem;
   background: transparent;
   border: none;
-  color: #1f2937;
+  color: white;
   cursor: pointer;
   border-radius: 6px;
   transition: background 0.2s;
@@ -331,7 +331,7 @@ const toggleMobileMenu = () => {
 }
 
 .mobile-menu-toggle:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .mobile-menu-toggle:active {
@@ -339,8 +339,8 @@ const toggleMobileMenu = () => {
 }
 
 .mobile-nav {
-  border-top: 1px solid #e5e7eb;
-  background: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--color-card-dark);
 }
 
 .mobile-nav-links {
@@ -353,7 +353,7 @@ const toggleMobileMenu = () => {
   padding: 0.875rem 1.25rem;
   font-weight: 500;
   font-size: 1rem;
-  color: #4b5563;
+  color: var(--color-text-card-muted);
   cursor: pointer;
   transition: all 0.2s;
   border-left: 3px solid transparent;
@@ -363,9 +363,9 @@ const toggleMobileMenu = () => {
 
 .mobile-nav-link:hover,
 .mobile-nav-link.active {
-  color: #2563eb;
-  background: rgba(37, 99, 235, 0.05);
-  border-left-color: #2563eb;
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  border-left-color: #E91E63;
 }
 
 .mobile-nav-link.active {
@@ -375,16 +375,16 @@ const toggleMobileMenu = () => {
 .mobile-nav-link.submenu {
   padding-left: 2.5rem;
   font-size: 0.938rem;
-  background: #f9fafb;
+  background: rgba(0,0,0,0.2);
 }
 
 .mobile-nav-link.submenu:hover {
-  background: rgba(37, 99, 235, 0.08);
+  background: rgba(106, 27, 154, 0.08);
 }
 
 .mobile-more-section {
-  border-top: 1px solid #e5e7eb;
-  border-bottom: 1px solid #e5e7eb;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   margin: 0.5rem 0;
 }
 
@@ -396,7 +396,7 @@ const toggleMobileMenu = () => {
   padding: 0.875rem 1.25rem;
   font-weight: 600;
   font-size: 1rem;
-  color: #1f2937;
+  color: white;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -408,7 +408,7 @@ const toggleMobileMenu = () => {
 }
 
 .mobile-more-items {
-  background: #f9fafb;
+  background: #2A0A3B;
 }
 
 .mobile-cta {

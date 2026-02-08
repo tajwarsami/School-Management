@@ -41,7 +41,7 @@ import { PlayCircle } from 'lucide-vue-next';
   position: relative;
   padding: 5rem 0;
   overflow: hidden;
-  background-color: var(--color-white);
+  background: linear-gradient(to bottom, #F3E5F5 0%, #FFFFFF 100%);
 }
 
 .hero-content {
@@ -115,7 +115,7 @@ import { PlayCircle } from 'lucide-vue-next';
   display: none;
   width: 100%;
   height: 400px;
-  background: linear-gradient(135deg, #f0f4ff 0%, #e0e9ff 100%);
+  background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
   border-radius: var(--radius-lg);
   align-items: center;
   justify-content: center;
@@ -141,7 +141,7 @@ import { PlayCircle } from 'lucide-vue-next';
 .blob-1 {
   width: 500px;
   height: 500px;
-  background-color: rgba(43, 89, 255, 0.08);
+  background-color: rgba(106, 27, 154, 0.08);
   top: -100px;
   left: -100px;
 }
@@ -149,7 +149,7 @@ import { PlayCircle } from 'lucide-vue-next';
 .blob-2 {
   width: 400px;
   height: 400px;
-  background-color: rgba(255, 107, 0, 0.05);
+  background-color: rgba(233, 30, 99, 0.05);
   bottom: -50px;
   right: -50px;
 }

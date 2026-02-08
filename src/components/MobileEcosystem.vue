@@ -73,7 +73,7 @@ import { Smartphone, Download } from 'lucide-vue-next';
 <style scoped>
 .mobile-section {
   padding: 6rem 0;
-  background: linear-gradient(180deg, var(--color-white) 0%, #F0F4FF 100%);
+  background: var(--color-bg-light);
   text-align: center;
   overflow: hidden;
 }
