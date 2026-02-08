@@ -18,19 +18,19 @@ import Footer from '../components/Footer.vue'
 <template>
   <main>
     <HeroSection />
-    <FeatureGrid />
-    <TemplateShowcase />
-    <InstitutionTabs />
-    <MobileEcosystem />
-    <PricingSection />
-    <ClientTicker />
-    <ValueProposition />
-    <GlobalMap />
-    <StatsCounter />
-    <CustomerExperience />
-    <FaqSection />
-    <CtaSection />
-    <Footer />
+    <FeatureGrid class="section-grey" />
+    <TemplateShowcase class="section-white" />
+    <InstitutionTabs class="section-grey" />
+    <MobileEcosystem class="section-white" />
+    <PricingSection class="section-grey" />
+    <ClientTicker class="section-white" />
+    <ValueProposition class="section-grey" />
+    <GlobalMap class="section-white" />
+    <StatsCounter class="section-grey" />
+    <CustomerExperience class="section-white" />
+    <FaqSection class="section-grey" />
+    <CtaSection class="section-white" />
+    <Footer class="section-dark" />
   </main>
 </template>
 
@@ -38,6 +38,18 @@ import Footer from '../components/Footer.vue'
 main {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+}
+
+/* Alternating section backgrounds */
+.section-white {
+  background-color: #FFFFFF;
+}
+
+.section-grey {
+  background-color: #F9FAFB;
+}
+
+.section-dark {
+  background-color: #2D3E50;
 }
 </style>

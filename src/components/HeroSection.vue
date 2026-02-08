@@ -41,7 +41,7 @@ import { PlayCircle } from 'lucide-vue-next';
   position: relative;
   padding: 5rem 0;
   overflow: hidden;
-  background: linear-gradient(to bottom, #F3E5F5 0%, #FFFFFF 100%);
+  background: linear-gradient(135deg, rgba(0, 82, 155, 0.03) 0%, rgba(107, 78, 155, 0.06) 100%);
 }
 
 .hero-content {
@@ -115,7 +115,7 @@ import { PlayCircle } from 'lucide-vue-next';
   display: none;
   width: 100%;
   height: 400px;
-  background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+  background: linear-gradient(135deg, var(--color-bg-body) 0%, #F3E8FF 100%);
   border-radius: var(--radius-lg);
   align-items: center;
   justify-content: center;
@@ -139,18 +139,20 @@ import { PlayCircle } from 'lucide-vue-next';
 }
 
 .blob-1 {
-  width: 500px;
-  height: 500px;
-  background-color: rgba(106, 27, 154, 0.08);
-  top: -100px;
+  width: 600px;
+  height: 600px;
+  background-color: rgba(0, 82, 155, 0.08); /* Deep Blue */
+  top: -150px;
   left: -100px;
+  filter: blur(80px);
 }
 
 .blob-2 {
-  width: 400px;
-  height: 400px;
-  background-color: rgba(233, 30, 99, 0.05);
-  bottom: -50px;
+  width: 500px;
+  height: 500px;
+  background-color: rgba(107, 78, 155, 0.08); /* Royal Purple */
+  bottom: -100px;
   right: -50px;
+  filter: blur(80px);
 }
 </style>

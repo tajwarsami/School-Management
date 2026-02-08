@@ -1,19 +1,79 @@
 :root {
-  --color-primary: #6A1B9A;
-  --color-primary-dark: #4A148C;
-  --color-accent: #E91E63;
-  --color-accent-hover: #D81B60;
+  --color-primary: #00529B;
+  --color-primary-light: #0066C0;
+  --color-primary-dark: #003D73;
+  --color-secondary: #6B4E9B;
+  --color-secondary-light: #8765B3;
+  --color-secondary-dark: #563D7C;
+  --color-accent: #E83E8C;
+  --color-accent-dark: #D62A7A;
+  --color-accent-light: #FF5CAA;
 
-  --color-bg-body: #F3E5F5;
-  --color-bg-body: #F3E5F5;
-  --color-bg-light: #FCE4EC;
-  --color-card-dark: #2A0A3B;
+  --gradient-primary: linear-gradient(135deg, #00529B 0%, #0066C0 100%);
+  --gradient-primary-dark: linear-gradient(135deg, #003D73 0%, #00529B 100%);
+  --gradient-secondary: linear-gradient(135deg, #6B4E9B 0%, #E83E8C 100%);
+  --gradient-hero: linear-gradient(135deg, #00529B 0%, #6B4E9B 50%, #E83E8C 100%);
+
+  --color-bg-body: #F9FAFB;
+  --color-bg-section-alt: #F3F4F6;
+  --color-card-light: #FFFFFF;
+  --color-card-dark: #2D3E50;
+
+  --color-text-main: #111827;
+  --color-text-primary: #374151;
+  --color-text-secondary: #6B7280;
+  --color-text-muted: #9CA3AF;
+  --color-text-on-dark: #FFFFFF;
+  --color-text-on-dark-muted: #D1D5DB;
   --color-text-card: #FFFFFF;
-  --color-text-card-muted: #E0E0E0;
-  --color-success: #8BC34A;
+  --color-text-card-muted: #D1D5DB;
+
+  --btn-primary-bg: linear-gradient(135deg, #00529B 0%, #0066C0 100%);
+  --btn-primary-hover: linear-gradient(135deg, #003D73 0%, #00529B 100%);
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-shadow: 0 4px 6px rgba(0, 82, 155, 0.3);
+
+  --btn-secondary-bg: #FFFFFF;
+  --btn-secondary-border: 2px solid #00529B;
+  --btn-secondary-text: #00529B;
+  --btn-secondary-hover-bg: #E6F2FF;
+
+  --btn-success-bg: #10B981;
+  --btn-success-hover: #059669;
+
+  --btn-danger-bg: #EF4444;
+  --btn-danger-hover: #DC2626;
+
+  --input-bg: #FFFFFF;
+  --input-border: #D1D5DB;
+  --input-border-focus: #00529B;
+  --input-text: #111827;
+  --input-placeholder: #9CA3AF;
+
+  --badge-bg: #E6F2FF;
+  --badge-text: #003D73;
+  --badge-secondary-bg: #F3E8FF;
+  --badge-secondary-text: #563D7C;
+  --badge-accent-bg: #FFE6F3;
+  --badge-accent-text: #D62A7A;
+  --badge-success-bg: #D1FAE5;
+  --badge-success-text: #065F46;
+  --badge-warning-bg: #FEF3C7;
+  --badge-warning-text: #92400E;
+  --badge-error-bg: #FEE2E2;
+  --badge-error-text: #991B1B;
+
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
   --color-white: #FFFFFF;
   --color-border: #E5E7EB;
-  --color-text-main: #2D3436;
+  --color-border-dark: rgba(255, 255, 255, 0.1);
+
+  --sidebar-bg: linear-gradient(180deg, #00529B 0%, #003D73 100%);
+  --sidebar-text: #FFFFFF;
+  --sidebar-active: rgba(255, 255, 255, 0.2);
+  --sidebar-hover: rgba(255, 255, 255, 0.1);
 
   --font-family: 'Outfit', sans-serif;
 
@@ -28,7 +88,8 @@
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-soft: 0 20px 40px -10px rgba(106, 27, 154, 0.15);
+  --shadow-soft: 0 20px 40px -10px rgba(139, 92, 246, 0.2);
+  --shadow-card-hover: 0 10px 25px rgba(139, 92, 246, 0.15);
 }
 
 * {
@@ -75,26 +136,26 @@ button {
 }
 
 .btn-primary {
-  background-color: var(--color-accent);
-  color: var(--color-white);
-  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.25);
+  background: var(--gradient-primary);
+  color: var(--btn-primary-text);
+  box-shadow: var(--btn-primary-shadow);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-accent-hover);
+  background: var(--gradient-primary-dark);
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.35);
+  box-shadow: 0 6px 16px rgba(0, 82, 155, 0.4);
 }
 
 .btn-outline {
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
-  background-color: transparent;
+  border: var(--btn-secondary-border);
+  color: var(--btn-secondary-text);
+  background-color: var(--btn-secondary-bg);
 }
 
 .btn-outline:hover {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+  background-color: var(--btn-secondary-hover-bg);
+  color: var(--color-primary);
 }
 
 .text-primary {

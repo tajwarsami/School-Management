@@ -90,7 +90,7 @@ const content = {
 <style scoped>
 .tabs-section {
   padding: 5rem 0;
-  background: linear-gradient(to bottom, #FFFFFF 0%, #F3E5F5 100%);
+  background: linear-gradient(to bottom, var(--color-card-light) 0%, var(--color-bg-section-alt) 100%);
 }
 
 .section-title-wrap {
@@ -130,10 +130,10 @@ const content = {
 }
 
 .tab-btn.active {
-  background-color: var(--color-primary);
+  background: var(--gradient-primary);
   color: var(--color-white);
   border-color: var(--color-primary);
-  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 82, 155, 0.3);
   transform: translateY(-2px);
 }
 
@@ -158,8 +158,8 @@ const content = {
   display: inline-block;
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--color-accent);
-  background: rgba(233, 30, 99, 0.1);
+  color: var(--color-primary);
+  background: var(--badge-bg);
   padding: 4px 12px;
   border-radius: var(--radius-full);
   margin-bottom: 1rem;

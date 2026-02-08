@@ -26,13 +26,13 @@
 }
 
 .cta-card {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  background: var(--gradient-primary);
   padding: 4rem;
   border-radius: var(--radius-lg);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 20px 40px -10px rgba(106, 27, 154, 0.4);
+  box-shadow: 0 20px 40px -10px rgba(0, 82, 155, 0.4);
   color: white;
   position: relative;
   overflow: hidden;

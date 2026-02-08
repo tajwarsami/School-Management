@@ -154,7 +154,7 @@ tbody tr:hover {
 }
 
 .check-icon {
-    color: #6A1B9A;
+    color: var(--color-primary);
 }
 
 .x-icon {

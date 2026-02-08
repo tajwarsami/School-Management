@@ -6,19 +6,19 @@ const values = [
     title: "Streamlined Operations",
     desc: "Automate daily administrative tasks, reduce paperwork, and focus more on education quality. Our intelligent workflows handle the boring stuff for you.",
     icon: Settings,
-    color: "#6A1B9A"
+    color: "#00529B"
   },
   {
     title: "Bank-Grade Security",
     desc: "Your data is protected with enterprise-grade encryption and daily backups. We ensure that sensitive student and financial records never fall into the wrong hands.",
     icon: Shield,
-    color: "#E91E63"
+    color: "#E83E8C"
   },
   {
     title: "Lightning Fast Performance",
     desc: "Built on modern cloud infrastructure, Edufy ensures zero lag even during peak admission seasons. Experience an interface that keeps up with your speed.",
     icon: Zap,
-    color: "#1565C0"
+    color: "#6B4E9B"
   }
 ];
 </script>
@@ -62,7 +62,7 @@ const values = [
 <style scoped>
 .value-section {
   padding: 6rem 0;
-  background: linear-gradient(to bottom, #F3E5F5 0%, #FFFFFF 100%);
+  background: linear-gradient(to bottom, var(--color-bg-section-alt) 0%, var(--color-card-light) 100%);
 }
 
 .section-title {

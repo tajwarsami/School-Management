@@ -131,7 +131,7 @@ const prev = () => {
 }
 
 .quote-icon {
-  color: #E91E63;
+  color: var(--color-primary);
   opacity: 0.1;
   margin-bottom: 1.5rem;
 }
@@ -175,7 +175,7 @@ const prev = () => {
 }
 
 .institution {
-  color: #E91E63;
+  color: var(--color-accent);
   font-weight: 500;
 }
 </style>

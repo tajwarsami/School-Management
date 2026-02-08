@@ -49,7 +49,7 @@ const features = [
 <style scoped>
 .features-section {
   padding: 5rem 0;
-  background: linear-gradient(to bottom, #FCE4EC 0%, #F3E5F5 100%);
+  background: linear-gradient(to bottom, var(--color-bg-section-alt) 0%, var(--color-card-light) 100%);
 }
 
 .section-header {
@@ -99,14 +99,14 @@ const features = [
 
 .feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: #E91E63;
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-primary);
 }
 
 .icon-wrapper {
   width: 56px;
   height: 56px;
-  background-color: rgba(106, 27, 154, 0.05);
+  background-color: var(--badge-bg);
   color: var(--color-primary);
   border-radius: var(--radius-md);
   display: flex;

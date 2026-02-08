@@ -105,7 +105,7 @@ const toggleMobileMenu = () => {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(42, 10, 59, 0.95);
+  background: var(--gradient-primary);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -137,17 +137,13 @@ const toggleMobileMenu = () => {
 
 .logo-text {
   color: #FFFFFF;
-  background: linear-gradient(135deg, #6A1B9A, #AB47BC);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   font-weight: 800;
 }
 
 .logo-dot {
   width: 8px;
   height: 8px;
-  background: linear-gradient(135deg, #AB47BC, #E91E63);
+  background: #FFFFFF;
   border-radius: 50%;
   animation: pulse 2s infinite;
   margin-bottom: 4px;
@@ -193,13 +189,13 @@ const toggleMobileMenu = () => {
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #6A1B9A, #E91E63);
+  background: #FFFFFF;
   transition: width 0.3s ease;
   border-radius: 2px;
 }
 
 .nav-link:hover {
-  color: #E91E63;
+  color: #FFFFFF;
 }
 
 .nav-link:hover::after {
@@ -279,7 +275,7 @@ const toggleMobileMenu = () => {
 
 .dropdown-item:hover {
   background: rgba(255, 255, 255, 0.05);
-  color: #E91E63;
+  color: var(--color-accent);
 }
 
 .nav-actions {
@@ -293,19 +289,20 @@ const toggleMobileMenu = () => {
   padding: 0.625rem 1.5rem;
   font-weight: 600;
   font-size: 0.938rem;
-  background: linear-gradient(135deg, #6A1B9A, #E91E63);
-  color: white;
+  background: #FFFFFF;
+  color: var(--color-primary);
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(106, 27, 154, 0.25);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.25);
   white-space: nowrap;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(106, 27, 154, 0.4);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .btn-primary:active {
@@ -365,7 +362,7 @@ const toggleMobileMenu = () => {
 .mobile-nav-link.active {
   color: white;
   background: rgba(255, 255, 255, 0.05);
-  border-left-color: #E91E63;
+  border-left-color: #FFFFFF;
 }
 
 .mobile-nav-link.active {
@@ -379,7 +376,7 @@ const toggleMobileMenu = () => {
 }
 
 .mobile-nav-link.submenu:hover {
-  background: rgba(106, 27, 154, 0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .mobile-more-section {
@@ -408,7 +405,7 @@ const toggleMobileMenu = () => {
 }
 
 .mobile-more-items {
-  background: #2A0A3B;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .mobile-cta {

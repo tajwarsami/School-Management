@@ -98,8 +98,8 @@ const toggle = (index) => {
 }
 
 .faq-item.open {
-  border-color: #E91E63;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 82, 155, 0.2);
 }
 
 .faq-question {
@@ -126,12 +126,12 @@ const toggle = (index) => {
 }
 
 .faq-item.open .icon-wrap {
-  color: #E91E63;
+  color: var(--color-accent);
 }
 
 .faq-answer {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: rgba(42, 10, 59, 0.95);
+  background-color: var(--color-card-dark);
   animation: slideDown 0.3s ease-out;
 }
 

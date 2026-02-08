@@ -119,37 +119,37 @@ const benefits = [
     icon: '⚡',
     title: 'Lightning Fast Performance',
     description: 'Experience blazing-fast performance with our optimized platform that saves you hours every week.',
-    color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    color: 'linear-gradient(135deg, #00529B 0%, #0066C0 100%)'
   },
   {
     icon: '🔒',
     title: 'Enterprise-Grade Security',
     description: 'Bank-level encryption and compliance with industry standards to keep your data safe and secure.',
-    color: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
+    color: 'linear-gradient(135deg, #6B4E9B 0%, #E83E8C 100%)'
   },
   {
     icon: '📈',
     title: 'Data-Driven Insights',
     description: 'Make informed decisions with powerful analytics and real-time reporting dashboards.',
-    color: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+    color: 'linear-gradient(135deg, #0066C0 0%, #00A0E3 100%)'
   },
   {
     icon: '🤝',
     title: 'Seamless Collaboration',
     description: 'Connect your team with integrated communication tools and shared workspaces.',
-    color: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
+    color: 'linear-gradient(135deg, #10B981 0%, #34D399 100%)'
   },
   {
     icon: '🎯',
     title: 'Easy Integration',
     description: 'Connect with your existing tools and workflows without disrupting your operations.',
-    color: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+    color: 'linear-gradient(135deg, #E83E8C 0%, #FF5CAA 100%)'
   },
   {
     icon: '💰',
     title: 'Cost Effective Solution',
     description: 'Reduce operational costs by up to 40% while increasing productivity and efficiency.',
-    color: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)'
+    color: 'linear-gradient(135deg, #00529B 0%, #6B4E9B 100%)'
   }
 ]
 
@@ -159,7 +159,7 @@ const modules = [
     subtitle: 'Core platform overview',
     description: 'Explore our comprehensive suite of modules designed to streamline every aspect of your organization.',
     icon: '🏠',
-    color: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)',
+    color: 'linear-gradient(135deg, #E83E8C 0%, #FF5CAA 100%)',
     items: [
       {
         icon: '⚙️',
@@ -188,7 +188,7 @@ const modules = [
     subtitle: 'Complete system control',
     description: 'Comprehensive administrative tools to manage your entire organization with precision and ease.',
     icon: '⚙️',
-    color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    color: 'linear-gradient(135deg, #00529B 0%, #0066C0 100%)',
     items: [
       {
         icon: '👥',
@@ -237,7 +237,7 @@ const modules = [
     subtitle: 'Stay connected always',
     description: 'Powerful communication tools to keep your entire team connected and informed in real-time.',
     icon: '💬',
-    color: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    color: 'linear-gradient(135deg, #6B4E9B 0%, #E83E8C 100%)',
     items: [
       {
         icon: '📧',
@@ -291,7 +291,7 @@ const modules = [
     subtitle: 'Organize your data',
     description: 'Advanced data management system to store, organize, and retrieve information effortlessly.',
     icon: '📊',
-    color: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    color: 'linear-gradient(135deg, #0066C0 0%, #00A0E3 100%)',
     items: [
       {
         icon: '📁',
@@ -350,7 +350,7 @@ const modules = [
     subtitle: 'Extend capabilities',
     description: 'Seamlessly connect with your favorite tools and extend functionality with powerful integrations.',
     icon: '🔌',
-    color: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+    color: 'linear-gradient(135deg, #10B981 0%, #34D399 100%)',
     items: [
       {
         icon: '🔗',
@@ -414,12 +414,12 @@ function toggleModule(name) {
 }
 
 .demo-section {
-  background: linear-gradient(135deg, #6A1B9A 0%, #E91E63 100%);
+  background: var(--gradient-primary);
   border-radius: 24px;
   padding: 60px;
   margin-bottom: 80px;
   color: white;
-  box-shadow: 0 20px 60px rgba(106, 27, 154, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 82, 155, 0.3);
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -465,7 +465,7 @@ function toggleModule(name) {
   gap: 10px;
   padding: 16px 32px;
   background: white;
-  color: #6A1B9A;
+  color: #E91E63;
   border: none;
   border-radius: 12px;
   font-size: 16px;

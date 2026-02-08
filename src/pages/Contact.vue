@@ -322,7 +322,7 @@ export default {
 
 .contact-header h1 {
   font-size: 2.5rem;
-  color: #2c3e50;
+  color: var(--color-text-main);
   margin-bottom: 15px;
 }
 
@@ -340,7 +340,7 @@ export default {
 
 .get-in-touch-section h2 {
   font-size: 2rem;
-  color: #2c3e50;
+  color: var(--color-primary);
   text-align: center;
   margin-bottom: 40px;
 }
@@ -376,23 +376,23 @@ export default {
 }
 
 .phone-icon {
-  background: #e8f5e9;
-  color: #27ae60;
+  background: var(--badge-bg);
+  color: var(--color-primary);
 }
 
 .email-icon {
-  background: #e3f2fd;
-  color: #3498db;
+  background: var(--badge-secondary-bg);
+  color: var(--color-secondary);
 }
 
 .clock-icon {
-  background: #fff3e0;
-  color: #f39c12;
+  background: var(--badge-accent-bg);
+  color: var(--color-accent);
 }
 
 .location-icon {
-  background: #fce4ec;
-  color: #e91e63;
+  background: #F3E8FF;
+  color: var(--color-primary);
 }
 
 .whatsapp-icon {
@@ -437,7 +437,7 @@ export default {
 }
 
 .touch-card h3 {
-  color: #2c3e50;
+  color: var(--color-text-main);
   margin-bottom: 15px;
   font-size: 1.4rem;
 }
@@ -449,13 +449,13 @@ export default {
 }
 
 .touch-card a {
-  color: #3498db;
+  color: var(--color-primary);
   text-decoration: none;
   transition: color 0.3s;
 }
 
 .touch-card a:hover {
-  color: #2980b9;
+  color: var(--color-primary-dark);
   text-decoration: underline;
 }
 
@@ -473,7 +473,7 @@ export default {
 
 .location-map-section h2 {
   font-size: 2rem;
-  color: #2c3e50;
+  color: var(--color-primary);
   text-align: center;
   margin-bottom: 40px;
 }
@@ -493,7 +493,7 @@ export default {
 }
 
 .location-info h3 {
-  color: #2c3e50;
+  color: var(--color-primary);
   margin-bottom: 10px;
   margin-top: 15px;
   font-size: 1.3rem;
@@ -518,7 +518,7 @@ export default {
 
 .form-section h2 {
   font-size: 2rem;
-  color: #2c3e50;
+  color: var(--color-primary);
   text-align: center;
   margin-bottom: 40px;
 }
@@ -545,7 +545,7 @@ export default {
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #2c3e50;
+  color: var(--color-text-main);
   font-weight: 600;
 }
 
@@ -569,7 +569,7 @@ export default {
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #3498db;
+  border-color: var(--color-primary);
 }
 
 .form-group select {
@@ -584,19 +584,19 @@ export default {
 .submit-btn {
   width: 100%;
   padding: 15px;
-  background: #3498db;
+  background: var(--gradient-primary);
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition: all 0.3s, transform 0.2s;
 }
 
 .submit-btn:hover {
-  background: #2980b9;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 82, 155, 0.3);
 }
 
 @media (max-width: 1024px) {

@@ -42,7 +42,7 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
       </div>
 
       <div class="footer-col">
-        <h4 class="col-title">Get Out App</h4>
+        <h4 class="col-title">Get Our App</h4>
         <div class="app-buttons">
           <button class="store-btn">
             <Download :size="16" /> App Store
@@ -66,8 +66,8 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
 
 <style scoped>
 .footer {
-  background-color: #1a0524;
-  color: #94A3B8;
+  background-color: var(--color-card-dark);
+  color: var(--color-text-on-dark-muted);
   padding-top: 12rem;
   padding-bottom: 2rem;
 }
@@ -106,7 +106,7 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
 .logo-dot {
   width: 8px;
   height: 8px;
-  background-color: var(--color-accent);
+  background: var(--color-accent);
   border-radius: 50%;
 }
 
@@ -146,7 +146,7 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
 }
 
 .social-link:hover {
-  background: var(--color-primary);
+  background: var(--gradient-primary);
 }
 
 .col-title {
@@ -168,7 +168,7 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
 }
 
 .footer-links a:hover {
-  color: white;
+  color: var(--color-accent);
 }
 
 .app-buttons {
