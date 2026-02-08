@@ -25,7 +25,6 @@ const closeApp = () => {
       </div>
 
       <div class="phones-container">
-        <!-- Admin App Mockup -->
         <div class="phone-mockup admin" @click="openApp('admin')">
           <div class="click-hint">Click to Explore</div>
           <div class="phone-frame">
@@ -63,7 +62,6 @@ const closeApp = () => {
           </p>
         </div>
 
-        <!-- Teacher App Mockup -->
         <div class="phone-mockup teacher" @click="openApp('teacher')">
           <div class="click-hint">Click to Explore</div>
           <div class="phone-frame">
@@ -97,7 +95,6 @@ const closeApp = () => {
           </p>
         </div>
 
-        <!-- Guardian App Mockup -->
         <div class="phone-mockup guardian" @click="openApp('guardian')">
           <div class="click-hint">Click to Explore</div>
           <div class="phone-frame">
@@ -140,7 +137,6 @@ const closeApp = () => {
       </div>
     </div>
 
-    <!-- Modals -->
     <Transition name="modal">
       <div v-if="selectedApp" class="modal-overlay" @click="closeApp">
         <div class="modal-content" @click.stop>
@@ -148,7 +144,6 @@ const closeApp = () => {
             <X :size="24" />
           </button>
 
-          <!-- Admin Detail View -->
           <div v-if="selectedApp === 'admin'" class="app-detail admin-detail">
             <div class="app-phone">
               <div class="phone-frame-large">
@@ -231,7 +226,6 @@ const closeApp = () => {
             </div>
           </div>
 
-          <!-- Teacher Detail View -->
           <div v-if="selectedApp === 'teacher'" class="app-detail teacher-detail">
             <div class="app-phone">
               <div class="phone-frame-large">
@@ -309,7 +303,6 @@ const closeApp = () => {
             </div>
           </div>
 
-          <!-- Guardian Detail View -->
           <div v-if="selectedApp === 'guardian'" class="app-detail guardian-detail">
             <div class="app-phone">
               <div class="phone-frame-large">
