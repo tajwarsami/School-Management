@@ -9,7 +9,9 @@ import About from '../pages/About.vue'
 import Contact from '../pages/Contact.vue'
 import Ticket from '../pages/Ticket.vue'
 import Blog from '../pages/Blog.vue'
-import checkout from '../pages/checkout.vue'
+import Checkout from '../pages/Checkout.vue'
+import DemoRequest from '../pages/DemoRequest.vue'
+import BlogDetail from '../pages/BlogDetail.vue'
 
 const routes = [
   { path: '/', component: Home },
@@ -21,7 +23,9 @@ const routes = [
   { path: '/contact', component: Contact },
   { path: '/ticket', component: Ticket },
   { path: '/blog', component: Blog },
-  { path: '/checkout', component: checkout },
+  { path: '/checkout', component: Checkout },
+  { path: '/request-demo', component: DemoRequest },
+  {path: '/blog/:slug', component: BlogDetail},
 ]
 
 const router = createRouter({
