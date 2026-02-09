@@ -141,7 +141,7 @@ import { PlayCircle } from 'lucide-vue-next';
 .blob-1 {
   width: 600px;
   height: 600px;
-  background-color: rgba(0, 82, 155, 0.08); /* Deep Blue */
+  background-color: rgba(0, 82, 155, 0.08); 
   top: -150px;
   left: -100px;
   filter: blur(80px);
@@ -150,7 +150,7 @@ import { PlayCircle } from 'lucide-vue-next';
 .blob-2 {
   width: 500px;
   height: 500px;
-  background-color: rgba(107, 78, 155, 0.08); /* Royal Purple */
+  background-color: rgba(107, 78, 155, 0.08);
   bottom: -100px;
   right: -50px;
   filter: blur(80px);

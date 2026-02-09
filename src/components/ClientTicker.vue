@@ -60,7 +60,6 @@ onBeforeUnmount(() => {
   text-transform: uppercase;
 }
 
-/* SLIDER */
 .slider-wrap {
   width: 100%;
   height: 90px;
@@ -75,7 +74,6 @@ onBeforeUnmount(() => {
   object-fit: contain;
 }
 
-/* LEFT → CENTER → RIGHT */
 .slide-enter-active,
 .slide-leave-active {
   transition: all 0.8s ease;

@@ -9,6 +9,7 @@ import About from '../pages/About.vue'
 import Contact from '../pages/Contact.vue'
 import Ticket from '../pages/Ticket.vue'
 import Blog from '../pages/Blog.vue'
+import checkout from '../pages/checkout.vue'
 
 const routes = [
   { path: '/', component: Home },
@@ -20,11 +21,19 @@ const routes = [
   { path: '/contact', component: Contact },
   { path: '/ticket', component: Ticket },
   { path: '/blog', component: Blog },
+  { path: '/checkout', component: checkout },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  }
 })
 
 export default router

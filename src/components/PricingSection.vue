@@ -1,10 +1,11 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { Check, Users } from 'lucide-vue-next'
 import { plans as initialPlans, studentRanges } from '../data/pricing'
 
+const router = useRouter()
 const billingType = ref('monthly')
-
 const plans = ref(JSON.parse(JSON.stringify(initialPlans)))
 
 const getPrice = (plan) => {
@@ -14,6 +15,21 @@ const getPrice = (plan) => {
 
 const formatPrice = (price) => {
   return new Intl.NumberFormat('en-BD').format(price)
+}
+
+const handleOrderClick = (plan) => {
+  if (plan.custom) {
+    router.push('/contact')
+  } else {
+    router.push({
+      path: '/checkout',
+      query: {
+        plan: plan.name,
+        range: plan.selectedRange,
+        billing: billingType.value
+      }
+    })
+  }
 }
 </script>
 
@@ -115,8 +131,12 @@ const formatPrice = (price) => {
             </ul>
           </div>
 
-          <button class="cta-button" :class="{ primary: plan.recommended }">
-            {{ plan.custom ? 'Contact Sales' : 'Get Started' }}
+          <button 
+            class="cta-button" 
+            :class="{ primary: plan.recommended }"
+            @click="handleOrderClick(plan)"
+          >
+            {{ plan.custom ? 'Contact Sales' : 'Order Now' }}
             <span class="arrow">→</span>
           </button>
         </div>

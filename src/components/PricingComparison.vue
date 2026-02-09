@@ -2,7 +2,6 @@
 import { Check, X } from 'lucide-vue-next'
 import { plans } from '../data/pricing'
 
-// Filter only the comparison plans (exclude Enterprise/Custom)
 const comparisonPlans = plans.filter(p => !p.custom)
 
 const basicPlan = plans.find(p => p.name === 'Basic')
@@ -13,14 +12,12 @@ const basicFeatures = basicPlan.features
 const standardUniqueFeatures = standardPlan.features.filter(f => !f.startsWith('Everything'))
 const premiumUniqueFeatures = premiumPlan.features.filter(f => !f.startsWith('Everything'))
 
-// Union of all features in order
 const allFeatures = [
     ...basicFeatures,
     ...standardUniqueFeatures,
     ...premiumUniqueFeatures
 ]
 
-// Map of features for each plan
 const featuresMap = {
     'Basic': new Set(basicFeatures),
     'Standard': new Set([...basicFeatures, ...standardUniqueFeatures]),

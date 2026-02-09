@@ -14,7 +14,7 @@
               Education Technology
             </div>
             <h1 class="main-title">
-              About <span class="gradient-text">Edumate</span>
+              About <span class="gradient-text">Academy</span>
             </h1>
             <p class="intro-text">
               Welcome to our comprehensive school management solution designed to streamline

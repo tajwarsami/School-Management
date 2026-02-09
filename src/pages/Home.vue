@@ -40,7 +40,6 @@ main {
   flex-direction: column;
 }
 
-/* Alternating section backgrounds */
 .section-white {
   background-color: #FFFFFF;
 }
