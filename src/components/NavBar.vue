@@ -26,7 +26,7 @@ const toggleMobileMenu = () => {
   <header class="navbar">
     <div class="container navbar-content">
       <div class="logo" @click="goTo('/')">
-        <span class="logo-text">Edufy</span>
+        <span class="logo-text">Academy</span>
         <div class="logo-dot"></div>
       </div>
 

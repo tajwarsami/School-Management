@@ -59,7 +59,7 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
     </div>
     
     <div class="container copyright">
-      <p>&copy; 2026 Edufy. All rights reserved.</p>
+      <p>&copy; 2026 Academy. All rights reserved.</p>
     </div>
   </footer>
 </template>

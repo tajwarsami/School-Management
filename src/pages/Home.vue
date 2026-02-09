@@ -12,7 +12,6 @@ import StatsCounter from '../components/StatsCounter.vue'
 import CustomerExperience from '../components/CustomerExperience.vue'
 import FaqSection from '../components/FaqSection.vue'
 import CtaSection from '../components/CtaSection.vue'
-import Footer from '../components/Footer.vue'
 </script>
 
 <template>
@@ -30,7 +29,6 @@ import Footer from '../components/Footer.vue'
     <CustomerExperience class="section-white" />
     <FaqSection class="section-grey" />
     <CtaSection class="section-white" />
-    <Footer class="section-dark" />
   </main>
 </template>
 
