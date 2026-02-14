@@ -13,8 +13,4 @@ import CtaSection from '../components/CtaSection.vue'
 </template>
 
 <style scoped>
-.pricing-page {
-  display: flex;
-  flex-direction: column;
-}
 </style>

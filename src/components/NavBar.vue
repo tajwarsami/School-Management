@@ -59,7 +59,7 @@ const toggleMobileMenu = () => {
       </nav>
 
       <div class="nav-actions">
-        <button class="btn btn-primary desktop-cta">Request Demo</button>
+        <button class="btn btn-primary desktop-cta" @click="goTo('/request-demo')">Request Demo</button>
         
         <button class="mobile-menu-toggle" @click="toggleMobileMenu" aria-label="Toggle menu">
           <Menu v-if="!mobileMenuOpen" :size="24" />
@@ -93,7 +93,7 @@ const toggleMobileMenu = () => {
             </Transition>
           </div>
 
-          <button class="btn btn-primary mobile-cta" @click="goTo('/demo')">Request Demo</button>
+          <button class="btn btn-primary mobile-cta" @click="goTo('/request-demo')">Request Demo</button>
         </nav>
       </div>
     </Transition>

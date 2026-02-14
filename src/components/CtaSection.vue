@@ -20,7 +20,7 @@
 
 <style scoped>
 .cta-wrapper {
-  transform: translateY(50%);
+  padding: 5rem 0 6rem;
   position: relative;
   z-index: 10;
 }
@@ -62,15 +62,6 @@
   transform: translate(-30%, 30%);
 }
 
-@media (max-width: 768px) {
-  .cta-card {
-    flex-direction: column;
-    text-align: center;
-    gap: 2rem;
-    padding: 3rem 2rem;
-  }
-}
-
 .cta-title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -105,5 +96,14 @@
 .btn-outline-white:hover {
   border-color: white;
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .cta-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    padding: 3rem 2rem;
+  }
 }
 </style>

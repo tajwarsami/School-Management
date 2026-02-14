@@ -6,9 +6,7 @@ import Footer from './components/Footer.vue'
 <template>
   <div class="app-wrapper">
     <NavBar />
-
     <router-view />
-    
     <Footer class="section-dark" />
   </div>
 </template>

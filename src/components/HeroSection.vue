@@ -1,5 +1,10 @@
 <script setup>
 import { PlayCircle } from 'lucide-vue-next';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const goToDemo = () => router.push('/request-demo');
 </script>
 
 <template>
@@ -13,7 +18,7 @@ import { PlayCircle } from 'lucide-vue-next';
           Streamline administrative tasks, enhance learning experiences, and foster collaboration between teachers, students, and parents with Edufy.
         </p>
         <div class="cta-group">
-          <button class="btn btn-primary">Request Demo</button>
+          <button class="btn btn-primary" @click="goToDemo">Request Demo</button>
           <button class="btn btn-outline">
             <PlayCircle :size="20" style="margin-right: 8px;" />
             Watch Video

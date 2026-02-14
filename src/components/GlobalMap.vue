@@ -1,581 +1,591 @@
-<script setup>
-import { ref } from 'vue'
-
-const institutions = [
-  { name: 'Dhaka College', division: 'Dhaka', cx: 520, cy: 360, students: '5000+' },
-  { name: 'Motijheel School', division: 'Dhaka', cx: 530, cy: 370, students: '3000+' },
-  { name: 'Uttara Academy', division: 'Dhaka', cx: 510, cy: 345, students: '2500+' },
-  { name: 'Mirpur Institute', division: 'Dhaka', cx: 500, cy: 358, students: '4000+' },
-  
-
-  { name: 'Chittagong College', division: 'Chittagong', cx: 680, cy: 410, students: '6000+' },
-  { name: 'Cox\'s Bazar School', division: 'Chittagong', cx: 660, cy: 490, students: '2000+' },
-  { name: 'Rangamati Institute', division: 'Chittagong', cx: 640, cy: 440, students: '1500+' },
-  
-  { name: 'Rajshahi University', division: 'Rajshahi', cx: 260, cy: 260, students: '8000+' },
-  { name: 'Pabna College', division: 'Rajshahi', cx: 300, cy: 300, students: '3500+' },
-  
-
-  { name: 'Khulna Academy', division: 'Khulna', cx: 280, cy: 430, students: '4500+' },
-  { name: 'Jessore School', division: 'Khulna', cx: 310, cy: 400, students: '2800+' },
-  
-
-  { name: 'Sylhet College', division: 'Sylhet', cx: 660, cy: 220, students: '5500+' },
-  { name: 'Moulvibazar Institute', division: 'Sylhet', cx: 680, cy: 250, students: '2200+' },
-
-  { name: 'Barisal University', division: 'Barisal', cx: 450, cy: 480, students: '4000+' },
-  { name: 'Patuakhali School', division: 'Barisal', cx: 480, cy: 510, students: '1800+' },
-  
-  { name: 'Rangpur College', division: 'Rangpur', cx: 280, cy: 140, students: '3800+' },
-  { name: 'Dinajpur Academy', division: 'Rangpur', cx: 310, cy: 165, students: '2600+' },
-  
-  { name: 'Mymensingh School', division: 'Mymensingh', cx: 520, cy: 240, students: '3200+' },
-  { name: 'Jamalpur Institute', division: 'Mymensingh', cx: 490, cy: 220, students: '2100+' }
-]
-
-const divisions = [
-  { name: 'Dhaka', color: '#3b82f6', count: 4 },
-  { name: 'Chittagong', color: '#ec4899', count: 3 },
-  { name: 'Rajshahi', color: '#10b981', count: 2 },
-  { name: 'Khulna', color: '#f59e0b', count: 2 },
-  { name: 'Sylhet', color: '#8b5cf6', count: 2 },
-  { name: 'Barisal', color: '#06b6d4', count: 2 },
-  { name: 'Rangpur', color: '#ef4444', count: 2 },
-  { name: 'Mymensingh', color: '#6366f1', count: 2 }
-]
-
-const hoveredInstitution = ref(null)
-
-const handleHover = (institution) => {
-  hoveredInstitution.value = institution
-}
-
-const clearHover = () => {
-  hoveredInstitution.value = null
-}
-</script>
-
 <template>
-  <section class="map-section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Empowering Education Across Bangladesh</h2>
-        <p>Connecting institutions in all 8 divisions with our unified platform</p>
+  <div class="gm-wrapper">
+
+    <div class="gm-header">
+      <div class="gm-header-left">
+        <span class="gm-header-icon">🗺️</span>
+        <div>
+          <h1 class="gm-title">Institution Map</h1>
+          <p class="gm-subtitle">Bangladesh · Educational Infrastructure</p>
+        </div>
       </div>
-      
-      <div class="map-container">
-        <div class="bangladesh-map">
-          <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" class="map-svg" preserveAspectRatio="xMidYMid meet">
-            <defs>
-              <linearGradient id="mapBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:rgba(0,82,155,0.03);stop-opacity:1" />
-                <stop offset="100%" style="stop-color:rgba(236,72,153,0.03);stop-opacity:1" />
-              </linearGradient>
-              
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            
-            <rect width="1000" height="600" fill="transparent" />
-            
-            <path 
-              d="M 200 100 
-                 L 280 90 L 360 95 L 440 105 L 520 120 L 580 140 L 630 165 L 670 195 
-                 L 700 230 L 720 270 L 735 315 L 745 360 L 750 405 L 745 445 
-                 L 730 480 L 705 510 L 670 530 L 625 545 L 575 555 L 520 560 
-                 L 465 558 L 410 550 L 360 535 L 315 515 L 275 490 L 245 460 
-                 L 220 425 L 205 385 L 195 340 L 190 295 L 188 250 L 190 205 
-                 L 195 160 L 205 125 Z" 
-              fill="rgba(15, 23, 42, 0.4)" 
-              stroke="rgba(59, 130, 246, 0.5)" 
-              stroke-width="3"
-              class="country-border"
-            />
-            
-            <g stroke="rgba(148, 163, 184, 0.25)" stroke-width="1.5" fill="none" stroke-dasharray="8,8">
-              <path d="M 200 180 L 720 210" />
-              <path d="M 195 320 L 735 345" />
-              <path d="M 220 450 L 720 470" />
-              <path d="M 350 95 L 325 535" />
-              <path d="M 520 115 L 510 558" />
-              <path d="M 650 175 L 655 535" />
-            </g>
-            
-            <g stroke="rgba(148, 163, 184, 0.05)" stroke-width="1" fill="none">
-              <line x1="0" y1="150" x2="1000" y2="150" />
-              <line x1="0" y1="300" x2="1000" y2="300" />
-              <line x1="0" y1="450" x2="1000" y2="450" />
-              <line x1="250" y1="0" x2="250" y2="600" />
-              <line x1="500" y1="0" x2="500" y2="600" />
-              <line x1="750" y1="0" x2="750" y2="600" />
-            </g>
-            
-            <g>
-              <circle 
-                v-for="(institution, index) in institutions" 
-                :key="index"
-                :cx="institution.cx" 
-                :cy="institution.cy" 
-                r="8"
-                :fill="divisions.find(d => d.name === institution.division)?.color || '#3b82f6'"
-                class="institution-marker"
-                filter="url(#glow)"
-                @mouseenter="handleHover(institution)"
-                @mouseleave="clearHover"
-              />
-            </g>
-            
-            <g class="division-labels" fill="rgba(255,255,255,0.9)" font-size="22" font-weight="700" text-anchor="middle">
-              <text x="280" y="145">RANGPUR</text>
-              <text x="520" y="240">MYMENSINGH</text>
-              <text x="260" y="270">RAJSHAHI</text>
-              <text x="520" y="370">DHAKA</text>
-              <text x="670" y="230">SYLHET</text>
-              <text x="680" y="425">CHITTAGONG</text>
-              <text x="290" y="440">KHULNA</text>
-              <text x="460" y="500">BARISAL</text>
-            </g>
-          </svg>
-          
-          <div 
-            v-for="(institution, index) in institutions" 
-            :key="'pulse-' + index"
-            class="pulse-wrapper" 
-            :style="{ 
-              top: `${(institution.cy / 600) * 100}%`, 
-              left: `${(institution.cx / 1000) * 100}%` 
-            }"
-            @mouseenter="handleHover(institution)"
-            @mouseleave="clearHover"
-          >
-            <div class="pulse-dot" :style="{ backgroundColor: divisions.find(d => d.name === institution.division)?.color }"></div>
-            <div class="pulse-ring" :style="{ borderColor: divisions.find(d => d.name === institution.division)?.color }"></div>
-            <div class="pulse-ring delay-1" :style="{ borderColor: divisions.find(d => d.name === institution.division)?.color }"></div>
-          </div>
-        </div>
-        
-        <div 
-          v-if="hoveredInstitution" 
-          class="institution-tooltip"
-          :style="{ 
-            top: `${(hoveredInstitution.cy / 600) * 100 - 8}%`, 
-            left: `${(hoveredInstitution.cx / 1000) * 100 + 3}%` 
-          }"
+      <div class="gm-header-right">
+        <button
+          v-for="f in filterTypes"
+          :key="f.value"
+          class="gm-filter-btn"
+          :class="{ 'gm-filter-active': activeFilters.includes(f.value) }"
+          @click="toggleFilter(f.value)"
         >
-          <div class="tooltip-title">{{ hoveredInstitution.name }}</div>
-          <div class="tooltip-info">
-            <span class="tooltip-division">{{ hoveredInstitution.division }}</span>
-            <span class="tooltip-students">{{ hoveredInstitution.students }}</span>
+          <span class="gm-filter-dot" :style="{ background: f.color }" />
+          {{ f.label }}
+        </button>
+        <button class="gm-view-btn" @click="toggleView">
+          {{ viewMode === 'division' ? '🏙 Districts' : '🗂 Divisions' }}
+        </button>
+      </div>
+    </div>
+
+    <div class="gm-body">
+
+      <div class="gm-map-wrap" ref="mapWrap">
+        <svg
+          class="gm-svg"
+          viewBox="0 0 600 720"
+          preserveAspectRatio="xMidYMid meet"
+          @mousemove="onSvgMouseMove"
+          @mouseleave="hoveredInst = null"
+        >
+          <defs>
+            <filter id="gmGlow">
+              <feGaussianBlur stdDeviation="2.5" result="blur" />
+              <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+            <filter id="gmShadow">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3" />
+            </filter>
+            <pattern id="gmGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+              <path d="M24 0L0 0 0 24" fill="none" stroke="#1e3a5f" stroke-width="0.4" opacity="0.5" />
+            </pattern>
+            <radialGradient id="gmBg" cx="50%" cy="50%" r="60%">
+              <stop offset="0%"   stop-color="#0d2044" stop-opacity="0.5" />
+              <stop offset="100%" stop-color="#060d1a" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+
+          <rect width="600" height="720" fill="url(#gmGrid)" />
+          <rect width="600" height="720" fill="url(#gmBg)" />
+
+          <g v-if="viewMode === 'division'">
+            <g
+              v-for="div in divisions"
+              :key="'div' + div.id"
+              style="cursor: pointer"
+              @click="onClickDivision(div)"
+            >
+              <circle
+                :cx="px(div.lng)" :cy="py(div.lat)"
+                :r="divRadius(div) + 6"
+                :fill="div.color"
+                fill-opacity="0.04"
+                :stroke="div.color"
+                stroke-width="0.5"
+                stroke-opacity="0.25"
+              />
+              <circle
+                :cx="px(div.lng)" :cy="py(div.lat)"
+                :r="divRadius(div)"
+                :fill="div.color"
+                :fill-opacity="selectedDivision?.id === div.id ? 0.35 : 0.13"
+                :stroke="div.color"
+                :stroke-width="selectedDivision?.id === div.id ? 2 : 1.2"
+                stroke-opacity="0.6"
+                class="gm-div-circle"
+              />
+              <circle
+                :cx="px(div.lng)" :cy="py(div.lat)"
+                r="4"
+                :fill="div.color"
+                filter="url(#gmGlow)"
+              />
+              <text
+                :x="px(div.lng)" :y="py(div.lat) + 4"
+                text-anchor="middle"
+                :fill="div.color"
+                font-size="10"
+                font-family="'JetBrains Mono', monospace"
+                font-weight="600"
+                opacity="0.9"
+              >{{ div.totalInstitutions.toLocaleString() }}</text>
+              <text
+                :x="px(div.lng)" :y="py(div.lat) - divRadius(div) - 7"
+                text-anchor="middle"
+                :fill="div.color"
+                font-size="9"
+                font-family="'Space Grotesk', sans-serif"
+                font-weight="700"
+                letter-spacing="0.6"
+                opacity="0.9"
+              >{{ div.name.toUpperCase() }}</text>
+            </g>
+          </g>
+
+          <g v-if="viewMode === 'district'">
+            <g v-for="dist in districts" :key="'dist' + dist.id">
+              <circle
+                :cx="px(dist.lng)" :cy="py(dist.lat)"
+                :r="Math.max(3.5, Math.min(10, dist.institutions / 30))"
+                :fill="divColor(dist.divisionId)"
+                fill-opacity="0.2"
+                :stroke="divColor(dist.divisionId)"
+                stroke-width="1"
+              />
+              <circle
+                :cx="px(dist.lng)" :cy="py(dist.lat)"
+                r="2.5"
+                :fill="divColor(dist.divisionId)"
+              />
+              <text
+                :x="px(dist.lng) + 6" :y="py(dist.lat) + 3"
+                :fill="divColor(dist.divisionId)"
+                font-size="7.5"
+                font-family="'Space Grotesk', sans-serif"
+                opacity="0.8"
+              >{{ dist.name }}</text>
+            </g>
+          </g>
+
+          <g v-for="inst in visibleInstitutions" :key="'inst' + inst.id">
+            <circle
+              :cx="px(inst.lng)" :cy="py(inst.lat)"
+              r="7"
+              :fill="typeColor(inst.type)"
+              fill-opacity="0.12"
+              class="gm-pulse"
+            />
+            <path
+              :d="pinPath(px(inst.lng), py(inst.lat))"
+              :fill="typeColor(inst.type)"
+              filter="url(#gmShadow)"
+              class="gm-pin"
+              :class="{ 'gm-pin-selected': selectedInst?.id === inst.id }"
+              style="cursor: pointer"
+              @mouseenter="hoveredInst = inst"
+              @click="selectedInst = selectedInst?.id === inst.id ? null : inst"
+            />
+            <circle
+              :cx="px(inst.lng)" :cy="py(inst.lat) - 7"
+              r="2"
+              fill="white"
+              fill-opacity="0.85"
+              style="pointer-events: none"
+            />
+          </g>
+        </svg>
+
+        <div class="gm-legend">
+          <div class="gm-legend-title">Types</div>
+          <div v-for="f in filterTypes" :key="'lg' + f.value" class="gm-legend-row">
+            <span class="gm-legend-dot" :style="{ background: f.color }" />
+            {{ f.label }}
           </div>
         </div>
-        
-        <div class="division-legend">
-          <div class="legend-title">Divisions Coverage</div>
-          <div class="legend-items">
-            <div 
-              v-for="division in divisions" 
-              :key="division.name"
-              class="legend-item"
-            >
-              <div class="legend-color" :style="{ backgroundColor: division.color }"></div>
-              <span class="legend-name">{{ division.name }}</span>
-              <span class="legend-count">{{ division.count }} institutions</span>
+
+        <div v-if="hoveredInst" class="gm-tooltip" :style="tooltipPos">
+          <div class="gm-tt-name">{{ hoveredInst.name }}</div>
+          <div class="gm-tt-row">
+            <span class="gm-tt-badge" :style="{ background: typeColor(hoveredInst.type) }">
+              {{ hoveredInst.type }}
+            </span>
+            <span class="gm-tt-loc">{{ hoveredInst.district }}</span>
+          </div>
+          <div class="gm-tt-stats">
+            <span>👩‍🎓 {{ hoveredInst.students.toLocaleString() }}</span>
+            <span>📅 {{ hoveredInst.established }}</span>
+          </div>
+        </div>
+
+        <div class="gm-zoom">
+          <button class="gm-zoom-btn" @click="zoom = Math.min(zoom + 0.25, 2.5)">+</button>
+          <button class="gm-zoom-btn" @click="zoom = 1">⊙</button>
+          <button class="gm-zoom-btn" @click="zoom = Math.max(zoom - 0.25, 0.6)">−</button>
+        </div>
+      </div>
+
+      <div class="gm-panel">
+
+        <div class="gm-cards">
+          <div class="gm-card gm-card-blue">
+            <div class="gm-card-icon">🏫</div>
+            <div class="gm-card-val">{{ mapSummary.totalInstitutions.toLocaleString() }}</div>
+            <div class="gm-card-lbl">Institutions</div>
+          </div>
+          <div class="gm-card gm-card-green">
+            <div class="gm-card-icon">👩‍🎓</div>
+            <div class="gm-card-val">{{ shortNum(mapSummary.totalStudents) }}</div>
+            <div class="gm-card-lbl">Students</div>
+          </div>
+          <div class="gm-card gm-card-purple">
+            <div class="gm-card-icon">🗺️</div>
+            <div class="gm-card-val">{{ mapSummary.totalDivisions }}</div>
+            <div class="gm-card-lbl">Divisions</div>
+          </div>
+          <div class="gm-card gm-card-orange">
+            <div class="gm-card-icon">📍</div>
+            <div class="gm-card-val">{{ mapSummary.totalDistricts }}</div>
+            <div class="gm-card-lbl">Districts</div>
+          </div>
+        </div>
+
+        <div class="gm-section">
+          <div class="gm-section-title">By Type</div>
+          <div v-for="row in typeBreakdown" :key="row.type" class="gm-brow">
+            <span class="gm-bdot" :style="{ background: typeColor(row.type) }" />
+            <span class="gm-bname">{{ row.label }}</span>
+            <div class="gm-bbar-wrap">
+              <div
+                class="gm-bbar"
+                :style="{ width: (row.count / mapSummary.totalInstitutions * 100) + '%', background: typeColor(row.type) }"
+              />
+            </div>
+            <span class="gm-bcount">{{ row.count.toLocaleString() }}</span>
+          </div>
+        </div>
+
+        <div class="gm-section">
+          <div class="gm-section-title">Divisions Ranking</div>
+          <div
+            v-for="(div, i) in sortedDivisions"
+            :key="'rk' + div.id"
+            class="gm-rank-row"
+            :class="{ 'gm-rank-sel': selectedDivision?.id === div.id }"
+            @click="onClickDivision(div)"
+          >
+            <span class="gm-rank-num">{{ i + 1 }}</span>
+            <span class="gm-rank-dot" :style="{ background: div.color }" />
+            <span class="gm-rank-name">{{ div.name }}</span>
+            <div class="gm-rank-bar-wrap">
+              <div
+                class="gm-rank-bar"
+                :style="{ width: (div.totalInstitutions / sortedDivisions[0].totalInstitutions * 100) + '%', background: div.color }"
+              />
+            </div>
+            <span class="gm-rank-val">{{ div.totalInstitutions.toLocaleString() }}</span>
+          </div>
+        </div>
+
+        <div v-if="selectedInst" class="gm-section gm-detail">
+          <div class="gm-section-title">
+            Selected
+            <button class="gm-detail-close" @click="selectedInst = null">✕</button>
+          </div>
+          <div class="gm-detail-badge" :style="{ background: typeColor(selectedInst.type) }">
+            {{ selectedInst.type }}
+          </div>
+          <div class="gm-detail-name">{{ selectedInst.name }}</div>
+          <div class="gm-detail-loc">📍 {{ selectedInst.district }}, {{ selectedInst.division }}</div>
+          <div class="gm-detail-stats">
+            <div class="gm-dstat">
+              <div class="gm-dstat-val">{{ selectedInst.students.toLocaleString() }}</div>
+              <div class="gm-dstat-key">Students</div>
+            </div>
+            <div class="gm-dstat">
+              <div class="gm-dstat-val">{{ selectedInst.established }}</div>
+              <div class="gm-dstat-key">Founded</div>
+            </div>
+            <div class="gm-dstat">
+              <div class="gm-dstat-val" style="text-transform:capitalize">{{ selectedInst.status }}</div>
+              <div class="gm-dstat-key">Status</div>
             </div>
           </div>
         </div>
-        
-        <div class="stats-overlay">
-          <div class="stat-item">
-            <div class="stat-number">{{ institutions.length }}+</div>
-            <div class="stat-label">Institutions</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">8</div>
-            <div class="stat-label">Divisions</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">65K+</div>
-            <div class="stat-label">Students</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Coverage</div>
-          </div>
-        </div>
+
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
+<script>
+import { divisions, districts, institutions, mapSummary } from '../data/bangladeshData.js'
+
+const BOUNDS = { minLat: 20.4, maxLat: 26.75, minLng: 87.9, maxLng: 92.8 }
+const SVG_W  = 600
+const SVG_H  = 720
+const TYPE_COLORS = { university: '#6366f1', college: '#10b981', school: '#f59e0b' }
+
+export default {
+  name: 'GlobalMap',
+
+  data() {
+    return {
+      divisions,
+      districts,
+      institutions,
+      mapSummary,
+
+      viewMode:        'division',   
+      activeFilters:   ['university', 'college', 'school'],
+      filterTypes: [
+        { value: 'university', label: 'University', color: '#6366f1' },
+        { value: 'college',    label: 'College',    color: '#10b981' },
+        { value: 'school',     label: 'School',     color: '#f59e0b' },
+      ],
+
+      selectedDivision: null,
+      selectedInst:     null,
+      hoveredInst:      null,
+
+      tooltipX: 0,
+      tooltipY: 0,
+      zoom:     1,
+    }
+  },
+
+  computed: {
+    visibleInstitutions() {
+      return this.institutions.filter(i => this.activeFilters.includes(i.type))
+    },
+    sortedDivisions() {
+      return [...this.divisions].sort((a, b) => b.totalInstitutions - a.totalInstitutions)
+    },
+    typeBreakdown() {
+      return [
+        { type: 'university', label: 'Universities', count: this.mapSummary.breakdown.universities },
+        { type: 'college',    label: 'Colleges',     count: this.mapSummary.breakdown.colleges    },
+        { type: 'school',     label: 'Schools',      count: this.mapSummary.breakdown.schools     },
+      ]
+    },
+    tooltipPos() {
+      return { left: this.tooltipX + 'px', top: this.tooltipY + 'px' }
+    },
+  },
+
+  methods: {
+    px(lng) {
+      return ((lng - BOUNDS.minLng) / (BOUNDS.maxLng - BOUNDS.minLng)) * SVG_W
+    },
+    py(lat) {
+      return ((BOUNDS.maxLat - lat) / (BOUNDS.maxLat - BOUNDS.minLat)) * SVG_H
+    },
+
+    divRadius(div) {
+      return 28 + (div.totalInstitutions / 1240) * 52
+    },
+
+    divColor(divisionId) {
+      return this.divisions.find(d => d.id === divisionId)?.color ?? '#64748b'
+    },
+    typeColor(type) {
+      return TYPE_COLORS[type] ?? '#64748b'
+    },
+
+    pinPath(x, y) {
+      return `M${x} ${y} C${x-6} ${y-6},${x-7} ${y-11},${x} ${y-15} C${x+7} ${y-11},${x+6} ${y-6},${x} ${y} Z`
+    },
+
+    toggleFilter(val) {
+      const idx = this.activeFilters.indexOf(val)
+      if (idx >= 0) {
+        if (this.activeFilters.length > 1) this.activeFilters.splice(idx, 1)
+      } else {
+        this.activeFilters.push(val)
+      }
+    },
+    toggleView() {
+      this.viewMode = this.viewMode === 'division' ? 'district' : 'division'
+    },
+    onClickDivision(div) {
+      this.selectedDivision = this.selectedDivision?.id === div.id ? null : div
+    },
+    onSvgMouseMove(e) {
+      const rect = e.currentTarget.getBoundingClientRect()
+      this.tooltipX = e.clientX - rect.left + 14
+      this.tooltipY = e.clientY - rect.top  - 50
+    },
+
+    shortNum(n) {
+      if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M'
+      if (n >= 1_000)     return (n / 1_000).toFixed(0)     + 'K'
+      return n
+    },
+  },
+}
+</script>
+
 <style scoped>
-.map-section {
-  padding: 6rem 0;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  color: white;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+.gm-wrapper {
+  font-family: 'Space Grotesk', sans-serif;
+  background: #060d1a;
+  color: #e2e8f0;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
 }
 
-.map-section::before {
-  content: '';
-  position: absolute;
-  top: -30%;
-  right: -15%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: float 20s ease-in-out infinite;
-}
-
-.map-section::after {
-  content: '';
-  position: absolute;
-  bottom: -30%;
-  left: -15%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: float 15s ease-in-out infinite reverse;
-}
-
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(30px, -30px) scale(1.05); }
-}
-
-.container {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  position: relative;
-  z-index: 1;
-}
-
-.section-title {
-  margin-bottom: 4rem;
-}
-
-.section-title h2 {
-  font-size: 2.8rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.8) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.5px;
-}
-
-.section-title p {
-  color: #94a3b8;
-  font-size: 1.15rem;
-}
-
-.map-container {
-  position: relative;
-  max-width: 100%;
-  margin: 0 auto;
-  background: rgba(15, 23, 42, 0.4);
-  border-radius: 24px;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  padding: 3rem;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.bangladesh-map {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 5/3;
+.gm-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 3rem;
-}
-
-.map-svg {
-  width: 100%;
-  height: 100%;
-}
-
-.country-border {
-  transition: all 0.3s ease;
-}
-
-.country-border:hover {
-  fill: rgba(15, 23, 42, 0.6);
-  stroke: rgba(59, 130, 246, 0.8);
-  stroke-width: 4;
-}
-
-.institution-marker {
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.institution-marker:hover {
-  r: 12;
-  opacity: 1;
-}
-
-.pulse-wrapper {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-}
-
-.pulse-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
-  animation: pulse-dot 2s ease-in-out infinite;
-  cursor: pointer;
-}
-
-.pulse-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
-  border: 3px solid;
-  border-radius: 50%;
-  opacity: 1;
-  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-}
-
-.pulse-ring.delay-1 {
-  animation-delay: 0.7s;
-}
-
-@keyframes pulse-dot {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.3);
-    opacity: 0.9;
-  }
-}
-
-@keyframes pulse-ring {
-  0% {
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(3.5);
-    opacity: 0;
-  }
-}
-
-.institution-tooltip {
-  position: absolute;
-  background: rgba(15, 23, 42, 0.98);
-  border: 2px solid rgba(59, 130, 246, 0.5);
-  border-radius: 12px;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  z-index: 100;
-  pointer-events: none;
-  min-width: 220px;
-  backdrop-filter: blur(10px);
-  animation: tooltipFadeIn 0.2s ease;
-}
-
-@keyframes tooltipFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.tooltip-title {
-  font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  color: white;
-}
-
-.tooltip-info {
-  display: flex;
   justify-content: space-between;
-  gap: 1.5rem;
-  font-size: 0.9rem;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: linear-gradient(135deg, #0f1e35, #0d1a2e);
+  border: 1px solid #1e3a5f;
+  border-radius: 14px;
+  padding: 14px 20px;
 }
+.gm-header-left  { display: flex; align-items: center; gap: 14px; }
+.gm-header-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.gm-header-icon  { font-size: 28px; filter: drop-shadow(0 0 8px #3b82f6); }
+.gm-title   { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -.3px; }
+.gm-subtitle { margin: 2px 0 0; font-size: 12px; color: #64748b; letter-spacing: .4px; }
 
-.tooltip-division {
-  color: #94a3b8;
+.gm-filter-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 12px; border-radius: 20px;
+  border: 1px solid #1e3a5f; background: #0d1a2e;
+  color: #94a3b8; font-size: 12px; font-family: inherit;
+  cursor: pointer; transition: all .2s;
 }
+.gm-filter-btn:hover    { border-color: #3b82f6; color: #e2e8f0; }
+.gm-filter-active       { background: #1e3a5f; color: #e2e8f0; border-color: #3b82f6; }
+.gm-filter-dot          { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
-.tooltip-students {
-  color: #3b82f6;
-  font-weight: 700;
+.gm-view-btn {
+  padding: 5px 14px; border-radius: 20px;
+  border: 1px solid #3b82f6; background: #1e3a5f;
+  color: #93c5fd; font-size: 12px; font-family: inherit;
+  cursor: pointer; transition: all .2s;
 }
+.gm-view-btn:hover { background: #2563eb; color: #fff; }
 
-.division-legend {
-  background: rgba(15, 23, 42, 0.5);
-  border-radius: 20px;
-  padding: 2rem;
-  margin-bottom: 3rem;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-}
-
-.legend-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: white;
-}
-
-.legend-items {
+.gm-body {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
-  background: rgba(15, 23, 42, 0.4);
-  border-radius: 12px;
-  border: 1px solid rgba(148, 163, 184, 0.1);
-  transition: all 0.3s ease;
-}
-
-.legend-item:hover {
-  background: rgba(15, 23, 42, 0.7);
-  transform: translateX(6px);
-  border-color: rgba(148, 163, 184, 0.3);
-}
-
-.legend-color {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  box-shadow: 0 0 15px currentColor;
-}
-
-.legend-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: white;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
   flex: 1;
 }
 
-.legend-count {
-  font-size: 0.85rem;
-  color: #94a3b8;
-  font-weight: 500;
+.gm-map-wrap {
+  position: relative;
+  background: linear-gradient(160deg, #060d1a, #0a1628 50%, #060f1e);
+  border: 1px solid #1e3a5f;
+  border-radius: 14px;
+  overflow: hidden;
+  min-height: 540px;
+}
+.gm-svg {
+  width: 100%;
+  height: 100%;
+  min-height: 540px;
+  display: block;
+  transition: transform .2s ease;
 }
 
-.stats-overlay {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  padding-top: 2.5rem;
-  border-top: 2px solid rgba(148, 163, 184, 0.2);
+.gm-pin {
+  transition: transform .15s, filter .15s;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+.gm-pin:hover,
+.gm-pin-selected {
+  transform: scale(1.45);
+  filter: brightness(1.4) drop-shadow(0 0 6px rgba(255,255,255,.35));
+}
+@keyframes gmPulse {
+  0%   { r: 5;  opacity: .4; }
+  70%  { r: 13; opacity: 0; }
+  100% { r: 13; opacity: 0; }
+}
+.gm-pulse { animation: gmPulse 2.6s ease-out infinite; }
+.gm-div-circle { transition: fill-opacity .2s; }
+
+.gm-legend {
+  position: absolute; bottom: 60px; left: 16px;
+  background: rgba(6,13,26,.92); border: 1px solid #1e3a5f;
+  border-radius: 10px; padding: 10px 14px;
+  backdrop-filter: blur(8px);
+}
+.gm-legend-title { font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+.gm-legend-row   { display: flex; align-items: center; gap: 7px; font-size: 11px; color: #94a3b8; margin-bottom: 4px; }
+.gm-legend-dot   { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+.gm-tooltip {
+  position: absolute; pointer-events: none; z-index: 50;
+  background: rgba(6,13,26,.96); border: 1px solid #2563eb;
+  border-radius: 10px; padding: 10px 14px; min-width: 180px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 24px rgba(37,99,235,.2);
+}
+.gm-tt-name  { font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+.gm-tt-row   { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+.gm-tt-badge { font-size: 10px; color: #fff; padding: 2px 8px; border-radius: 10px; font-weight: 600; text-transform: capitalize; }
+.gm-tt-loc   { font-size: 11px; color: #64748b; }
+.gm-tt-stats { display: flex; gap: 10px; font-size: 11px; color: #94a3b8; font-family: 'JetBrains Mono', monospace; }
+
+.gm-zoom { position: absolute; bottom: 16px; right: 16px; display: flex; flex-direction: column; gap: 4px; }
+.gm-zoom-btn {
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid #1e3a5f; background: rgba(6,13,26,.9);
+  color: #64748b; font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.gm-zoom-btn:hover { background: #1e3a5f; color: #e2e8f0; }
+
+.gm-panel { display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+
+.gm-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.gm-card {
+  background: linear-gradient(135deg, #0f1e35, #0a1628);
+  border: 1px solid #1e3a5f; border-radius: 12px;
+  padding: 14px; text-align: center; transition: transform .2s;
+}
+.gm-card:hover { transform: translateY(-2px); }
+.gm-card-icon { font-size: 20px; margin-bottom: 6px; }
+.gm-card-val  { font-size: 20px; font-weight: 700; font-family: 'JetBrains Mono', monospace; line-height: 1; margin-bottom: 4px; }
+.gm-card-lbl  { font-size: 11px; color: #64748b; font-weight: 500; text-transform: uppercase; letter-spacing: .5px; }
+.gm-card-blue   { border-color: rgba(59,130,246,.3); }  .gm-card-blue   .gm-card-val { color: #3b82f6; }
+.gm-card-green  { border-color: rgba(16,185,129,.3); }  .gm-card-green  .gm-card-val { color: #10b981; }
+.gm-card-purple { border-color: rgba(139,92,246,.3); }  .gm-card-purple .gm-card-val { color: #8b5cf6; }
+.gm-card-orange { border-color: rgba(245,158,11,.3); }  .gm-card-orange .gm-card-val { color: #f59e0b; }
+
+.gm-section {
+  background: linear-gradient(135deg, #0f1e35, #0a1628);
+  border: 1px solid #1e3a5f; border-radius: 12px; padding: 14px;
+}
+.gm-section-title {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 11px; font-weight: 700; color: #64748b;
+  text-transform: uppercase; letter-spacing: .8px; margin-bottom: 12px;
 }
 
-.stat-item {
-  text-align: center;
-  padding: 1.5rem 1rem;
-  background: rgba(15, 23, 42, 0.4);
-  border-radius: 16px;
-  border: 1px solid rgba(148, 163, 184, 0.1);
-  transition: all 0.3s ease;
+.gm-brow   { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.gm-bdot   { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.gm-bname  { font-size: 11px; color: #94a3b8; width: 80px; flex-shrink: 0; }
+.gm-bbar-wrap { flex: 1; height: 6px; background: #0a1628; border-radius: 3px; overflow: hidden; }
+.gm-bbar   { height: 100%; border-radius: 3px; opacity: .85; transition: width .8s ease; }
+.gm-bcount { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: #64748b; width: 42px; text-align: right; flex-shrink: 0; }
+
+.gm-rank-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 8px; border-radius: 8px; border: 1px solid transparent;
+  cursor: pointer; transition: background .15s; margin-bottom: 2px;
 }
+.gm-rank-row:hover { background: rgba(30,58,95,.4); }
+.gm-rank-sel { background: rgba(37,99,235,.12) !important; border-color: rgba(37,99,235,.3); }
+.gm-rank-num      { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: #475569; width: 14px; flex-shrink: 0; }
+.gm-rank-dot      { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.gm-rank-name     { font-size: 12px; color: #94a3b8; width: 70px; flex-shrink: 0; white-space: nowrap; }
+.gm-rank-bar-wrap { flex: 1; height: 5px; background: #0a1628; border-radius: 3px; overflow: hidden; }
+.gm-rank-bar      { height: 100%; border-radius: 3px; opacity: .7; transition: width .8s ease; }
+.gm-rank-val      { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: #64748b; width: 36px; text-align: right; flex-shrink: 0; }
 
-.stat-item:hover {
-  background: rgba(15, 23, 42, 0.6);
-  transform: translateY(-6px);
-  border-color: rgba(148, 163, 184, 0.3);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+.gm-detail { position: relative; }
+.gm-detail-close {
+  background: #1e3a5f; border: none; color: #94a3b8;
+  width: 20px; height: 20px; border-radius: 50%;
+  font-size: 10px; cursor: pointer;
 }
+.gm-detail-close:hover { color: #ef4444; }
+.gm-detail-badge  { display: inline-block; font-size: 10px; font-weight: 700; color: #fff; padding: 2px 10px; border-radius: 10px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+.gm-detail-name   { font-size: 15px; font-weight: 700; color: #e2e8f0; margin-bottom: 4px; line-height: 1.3; }
+.gm-detail-loc    { font-size: 12px; color: #64748b; margin-bottom: 12px; }
+.gm-detail-stats  { display: flex; gap: 10px; }
+.gm-dstat         { flex: 1; text-align: center; background: #060d1a; border-radius: 8px; padding: 8px 4px; }
+.gm-dstat-val     { font-size: 13px; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: #3b82f6; }
+.gm-dstat-key     { font-size: 10px; color: #475569; margin-top: 2px; }
 
-.stat-number {
-  font-size: 3rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 0.5rem;
-  line-height: 1;
+@media (max-width: 900px) {
+  .gm-body { grid-template-columns: 1fr; }
 }
-
-.stat-label {
-  color: #94a3b8;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-weight: 600;
-}
-
-@media (max-width: 1024px) {
-  .legend-items {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .stats-overlay {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .map-section {
-    padding: 4rem 0;
-  }
-
-  .section-title h2 {
-    font-size: 2rem;
-  }
-
-  .map-container {
-    padding: 2rem 1rem;
-  }
-
-  .bangladesh-map {
-    margin-bottom: 2rem;
-  }
-
-  .legend-items {
-    grid-template-columns: 1fr;
-  }
-
-  .stats-overlay {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .stat-number {
-    font-size: 2.5rem;
-  }
-  
-  .division-labels text {
-    font-size: 16px;
-  }
+@media (max-width: 600px) {
+  .gm-wrapper  { padding: 12px; }
+  .gm-header   { flex-direction: column; }
+  .gm-cards    { grid-template-columns: 1fr 1fr; }
 }
 </style>

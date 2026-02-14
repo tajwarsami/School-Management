@@ -57,7 +57,7 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
         </div>
       </div>
     </div>
-    
+
     <div class="container copyright">
       <p>&copy; 2026 Academy. All rights reserved.</p>
     </div>
@@ -68,7 +68,8 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
 .footer {
   background-color: var(--color-card-dark);
   color: var(--color-text-on-dark-muted);
-  padding-top: 12rem;
+  margin-top: -80px;
+  padding-top: 10rem;
   padding-bottom: 2rem;
 }
 
@@ -90,6 +91,11 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
   .footer-content {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+
+  .footer {
+    margin-top: -60px;
+    padding-top: 8rem;
   }
 }
 
@@ -136,7 +142,7 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
 .social-link {
   width: 36px;
   height: 36px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -183,8 +189,8 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
   padding: 0.75rem 1rem;
   border-radius: var(--radius-sm);
@@ -193,7 +199,7 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
 }
 
 .store-btn:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-color: white;
 }
 
@@ -202,7 +208,7 @@ import { Facebook, Linkedin, Twitter, Download } from 'lucide-vue-next';
 }
 
 .copyright {
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 2rem;
   text-align: center;
   font-size: 0.875rem;
