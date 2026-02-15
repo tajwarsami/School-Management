@@ -26,8 +26,7 @@ const toggleMobileMenu = () => {
   <header class="navbar">
     <div class="container navbar-content">
       <div class="logo" @click="goTo('/')">
-        <span class="logo-text">Academy</span>
-        <div class="logo-dot"></div>
+        <img src="/logo.png" alt="Academy" class="logo-image" />
       </div>
 
       <nav class="nav-links desktop-nav">
@@ -121,10 +120,8 @@ const toggleMobileMenu = () => {
 
 .logo {
   display: flex;
-  align-items: baseline;
-  gap: 4px;
-  font-size: 1.75rem;
-  font-weight: 700;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: transform 0.2s;
   user-select: none;
@@ -135,29 +132,10 @@ const toggleMobileMenu = () => {
   transform: scale(1.02);
 }
 
-.logo-text {
-  color: #FFFFFF;
-  font-weight: 800;
-}
-
-.logo-dot {
-  width: 8px;
-  height: 8px;
-  background: #FFFFFF;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-  margin-bottom: 4px;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.1);
-  }
+.logo-image {
+  height: 40px;
+  width: auto;
+  display: block;
 }
 
 .desktop-nav {
@@ -465,10 +443,6 @@ const toggleMobileMenu = () => {
     padding: 0.875rem 0;
   }
 
-  .logo {
-    font-size: 1.5rem;
-  }
-
   .desktop-nav {
     display: none;
   }
@@ -501,19 +475,12 @@ const toggleMobileMenu = () => {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .logo {
-    font-size: 1.6rem;
-  }
+  /* Mobile adjustments */
 }
 
 @media (max-width: 374px) {
-  .logo {
-    font-size: 1.25rem;
-  }
-  
-  .logo-dot {
-    width: 6px;
-    height: 6px;
+  .logo-image {
+    height: 32px;
   }
 }
 </style>
