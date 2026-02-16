@@ -1,57 +1,38 @@
 <script setup>
-import { Settings, Shield, Zap } from 'lucide-vue-next';
-
-const values = [
-  {
-    title: "Streamlined Operations",
-    desc: "Automate daily administrative tasks, reduce paperwork, and focus more on education quality. Our intelligent workflows handle the boring stuff for you.",
-    icon: Settings,
-    color: "#00529B"
-  },
-  {
-    title: "Bank-Grade Security",
-    desc: "Your data is protected with enterprise-grade encryption and daily backups. We ensure that sensitive student and financial records never fall into the wrong hands.",
-    icon: Shield,
-    color: "#E83E8C"
-  },
-  {
-    title: "Lightning Fast Performance",
-    desc: "Built on modern cloud infrastructure, Edufy ensures zero lag even during peak admission seasons. Experience an interface that keeps up with your speed.",
-    icon: Zap,
-    color: "#6B4E9B"
-  }
-];
+import { whyChooseUsData } from '../data/whyChooseUsData.js';
 </script>
 
 <template>
-  <section class="value-section">
+  <section class="why-choose-section">
+    <div class="background-pattern"></div>
+    
     <div class="container">
-      <div class="section-title">
-        <h2>Why Edufy Is the Smartest Choice</h2>
-        <p>We solve the real problems educational institutions face every day.</p>
+      <div class="section-header">
+        <div class="header-decoration"></div>
+        <h2 class="section-title">Why Choose Us</h2>
+        <p class="section-subtitle">Your Partner in Intelligent Automation</p>
       </div>
 
-      <div class="values-list">
+      <div class="benefits-grid">
         <div 
-          v-for="(value, index) in values" 
+          v-for="(item, index) in whyChooseUsData" 
           :key="index" 
-          class="value-item"
-          :class="{ reversed: index % 2 !== 0 }"
+          class="benefit-card"
+          :style="{ '--card-delay': index * 0.1 + 's' }"
         >
-          <div class="text-content">
-            <div class="icon-box" :style="{ backgroundColor: value.color + '20', color: value.color }">
-              <component :is="value.icon" :size="32" />
+          <div class="card-inner">
+            <div class="icon-wrapper" :style="{ '--theme-color': item.color }">
+              <div class="icon-bg"></div>
+              <component :is="item.icon" :size="28" class="icon" />
+              <div class="icon-glow"></div>
             </div>
-            <h3>{{ value.title }}</h3>
-            <p>{{ value.desc }}</p>
-          </div>
-          
-          <div class="visual-content">
-            <div class="abstract-visual">
-              <div class="layer layer-1" :style="{ backgroundColor: value.color }"></div>
-              <div class="layer layer-2" :style="{ borderColor: value.color }"></div>
-              <div class="layer layer-3"></div>
+            
+            <div class="content">
+              <h3 class="benefit-title">{{ item.title }}</h3>
+              <p class="benefit-desc">{{ item.desc }}</p>
             </div>
+
+            <div class="card-accent" :style="{ backgroundColor: item.color }"></div>
           </div>
         </div>
       </div>
@@ -60,140 +41,283 @@ const values = [
 </template>
 
 <style scoped>
-.value-section {
-  padding: 6rem 0;
-  background: linear-gradient(to bottom, var(--color-bg-section-alt) 0%, var(--color-card-light) 100%);
-}
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Inter:wght@400;500&display=swap');
 
-.section-title {
-  text-align: center;
-  margin-bottom: 5rem;
-}
-
-.section-title h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.values-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6rem;
-}
-
-.value-item {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  background-color: var(--color-card-dark);
-  padding: 3rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: var(--color-card-dark);
-  padding: 3rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-@media (max-width: 968px) {
-  .value-item {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 3rem;
-  }
-}
-
-.value-item.reversed {
-  direction: rtl;
-}
-
-.value-item.reversed .text-content {
-  direction: ltr;
-}
-
-.text-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  max-width: 500px;
-}
-
-@media (max-width: 968px) {
-  .text-content {
-    align-items: center;
-    margin: 0 auto;
-  }
-}
-
-.icon-box {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-.text-content h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--color-text-card);
-  color: var(--color-text-card);
-}
-
-.text-content p {
-  color: var(--color-text-card-muted);
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.visual-content {
-  display: flex;
-  justify-content: center;
-}
-
-.abstract-visual {
-  width: 100%;
-  max-width: 400px;
-  height: 300px;
+.why-choose-section {
   position: relative;
+  padding: 8rem 0;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
+  overflow: hidden;
 }
 
-.layer {
+.background-pattern {
   position: absolute;
-  border-radius: var(--radius-lg);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.03;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.05) 2px, rgba(255,255,255,0.05) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.05) 2px, rgba(255,255,255,0.05) 4px);
+  background-size: 60px 60px;
+  pointer-events: none;
 }
 
-.layer-1 {
-  width: 80%;
-  height: 80%;
-  top: 10%;
-  left: 10%;
-  opacity: 0.1;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
   z-index: 1;
 }
 
-.layer-2 {
-  width: 60%;
-  height: 60%;
-  top: 20%;
-  left: 20%;
-  border: 2px solid;
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+  position: relative;
+}
+
+.header-decoration {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #FF6B35, #F77F00, #06A77D);
+  margin: 0 auto 2rem;
+  border-radius: 2px;
+  animation: slideIn 0.8s ease-out;
+}
+
+.section-title {
+  font-family: 'Archivo', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.section-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  color: #8892b0;
+  font-weight: 400;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.benefit-card {
+  animation: cardFadeIn 0.6s ease-out var(--card-delay) both;
+}
+
+.card-inner {
+  position: relative;
+  background: rgba(20, 25, 45, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2.5rem;
+  height: 100%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.card-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.benefit-card:hover .card-inner {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.benefit-card:hover .card-inner::before {
+  opacity: 1;
+}
+
+.icon-wrapper {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--theme-color);
+  opacity: 0.15;
+  border-radius: 12px;
+  transform: rotate(5deg);
+  transition: all 0.4s ease;
+}
+
+.benefit-card:hover .icon-bg {
+  opacity: 0.25;
+  transform: rotate(10deg) scale(1.1);
+}
+
+.icon {
+  position: relative;
   z-index: 2;
+  color: var(--theme-color);
+  filter: drop-shadow(0 4px 12px var(--theme-color));
+  transition: transform 0.4s ease;
+}
+
+.benefit-card:hover .icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.icon-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--theme-color), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 50%;
+}
+
+.benefit-card:hover .icon-glow {
   opacity: 0.3;
 }
 
-.layer-3 {
-  width: 40%;
-  height: 40%;
-  top: 30%;
-  left: 30%;
-  background: white;
-  box-shadow: var(--shadow-lg);
-  z-index: 3;
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+.benefit-title {
+  font-family: 'Archivo', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e6e9f0;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.benefit-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #8892b0;
+  font-weight: 400;
+}
+
+.card-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.benefit-card:hover .card-accent {
+  opacity: 1;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 80px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 968px) {
+  .why-choose-section {
+    padding: 5rem 0;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .card-inner {
+    padding: 2rem;
+  }
+
+  .benefit-title {
+    font-size: 1.3rem;
+  }
+
+  .benefit-desc {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .benefits-grid {
+    gap: 1.5rem;
+  }
 }
 </style>
