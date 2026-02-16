@@ -4,7 +4,7 @@ import Home from '../pages/Home.vue'
 import Features from '../pages/Features.vue'
 import Pricing from '../pages/Pricing.vue'
 import Templates from '../pages/Templates.vue'
-import Plugins from '../pages/Plugins.vue'
+import Services from '../pages/Services.vue'
 import About from '../pages/About.vue'
 import Contact from '../pages/Contact.vue'
 import Ticket from '../pages/Ticket.vue'
@@ -18,7 +18,7 @@ const routes = [
   { path: '/features', component: Features },
   { path: '/pricing', component: Pricing },
   { path: '/templates', component: Templates },
-  { path: '/plugins', component: Plugins },
+  { path: '/services', component: Services },
   { path: '/about', component: About },
   { path: '/contact', component: Contact },
   { path: '/ticket', component: Ticket },

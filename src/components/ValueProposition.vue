@@ -1,9 +1,17 @@
 <script setup>
 import { whyChooseUsData } from '../data/whyChooseUsData.js';
+
+const props = defineProps({
+  theme: {
+    type: String,
+    default: 'dark',
+    validator: (value) => ['dark', 'light'].includes(value)
+  }
+});
 </script>
 
 <template>
-  <section class="why-choose-section">
+  <section class="why-choose-section" :class="`theme-${theme}`">
     <div class="background-pattern"></div>
     
     <div class="container">
@@ -46,8 +54,101 @@ import { whyChooseUsData } from '../data/whyChooseUsData.js';
 .why-choose-section {
   position: relative;
   padding: 8rem 0;
-  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
   overflow: hidden;
+}
+
+.why-choose-section.theme-dark {
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
+}
+
+.why-choose-section.theme-dark .section-title {
+  color: #ffffff;
+}
+
+.why-choose-section.theme-dark .section-subtitle {
+  color: #8892b0;
+}
+
+.why-choose-section.theme-dark .card-inner {
+  background: rgba(20, 25, 45, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.why-choose-section.theme-dark .benefit-card:hover .card-inner {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.why-choose-section.theme-dark .card-inner::before {
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 60%);
+}
+
+.why-choose-section.theme-dark .benefit-title {
+  color: #e6e9f0;
+}
+
+.why-choose-section.theme-dark .benefit-desc {
+  color: #8892b0;
+}
+
+.why-choose-section.theme-dark .background-pattern {
+  opacity: 0.03;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.05) 2px, rgba(255,255,255,0.05) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.05) 2px, rgba(255,255,255,0.05) 4px);
+}
+
+.why-choose-section.theme-dark .header-decoration {
+  background: linear-gradient(90deg, #FF6B35, #F77F00, #06A77D);
+}
+
+.why-choose-section.theme-light {
+  background: #f9fafb;
+}
+
+.why-choose-section.theme-light .section-title {
+  color: #1f2937;
+}
+
+.why-choose-section.theme-light .section-subtitle {
+  color: #6b7280;
+}
+
+.why-choose-section.theme-light .card-inner {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.why-choose-section.theme-light .benefit-card:hover .card-inner {
+  border-color: #E91E63;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.why-choose-section.theme-light .card-inner::before {
+  background: radial-gradient(circle at top right, rgba(102, 126, 234, 0.03), transparent 60%);
+}
+
+.why-choose-section.theme-light .benefit-title {
+  color: #1f2937;
+}
+
+.why-choose-section.theme-light .benefit-desc {
+  color: #6b7280;
+}
+
+.why-choose-section.theme-light .background-pattern {
+  opacity: 0.015;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);
+}
+
+.why-choose-section.theme-light .header-decoration {
+  background: linear-gradient(90deg, #00529B, #6B4E9B, #E91E63);
 }
 
 .background-pattern {
@@ -56,10 +157,6 @@ import { whyChooseUsData } from '../data/whyChooseUsData.js';
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 0.03;
-  background-image: 
-    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.05) 2px, rgba(255,255,255,0.05) 4px),
-    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.05) 2px, rgba(255,255,255,0.05) 4px);
   background-size: 60px 60px;
   pointer-events: none;
 }
@@ -81,7 +178,6 @@ import { whyChooseUsData } from '../data/whyChooseUsData.js';
 .header-decoration {
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #FF6B35, #F77F00, #06A77D);
   margin: 0 auto 2rem;
   border-radius: 2px;
   animation: slideIn 0.8s ease-out;
@@ -91,7 +187,6 @@ import { whyChooseUsData } from '../data/whyChooseUsData.js';
   font-family: 'Archivo', sans-serif;
   font-size: 3.5rem;
   font-weight: 800;
-  color: #ffffff;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -101,7 +196,6 @@ import { whyChooseUsData } from '../data/whyChooseUsData.js';
 .section-subtitle {
   font-family: 'Inter', sans-serif;
   font-size: 1.25rem;
-  color: #8892b0;
   font-weight: 400;
   animation: fadeInUp 0.8s ease-out 0.4s both;
 }
@@ -125,9 +219,7 @@ import { whyChooseUsData } from '../data/whyChooseUsData.js';
 
 .card-inner {
   position: relative;
-  background: rgba(20, 25, 45, 0.6);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 2.5rem;
   height: 100%;
@@ -142,17 +234,12 @@ import { whyChooseUsData } from '../data/whyChooseUsData.js';
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 60%);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
 
 .benefit-card:hover .card-inner {
   transform: translateY(-8px);
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 }
 
 .benefit-card:hover .card-inner::before {
@@ -220,7 +307,6 @@ import { whyChooseUsData } from '../data/whyChooseUsData.js';
   font-family: 'Archivo', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #e6e9f0;
   margin-bottom: 1rem;
   letter-spacing: -0.01em;
   line-height: 1.3;
@@ -230,7 +316,6 @@ import { whyChooseUsData } from '../data/whyChooseUsData.js';
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   line-height: 1.7;
-  color: #8892b0;
   font-weight: 400;
 }
 

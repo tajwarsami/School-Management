@@ -34,7 +34,7 @@ const toggleMobileMenu = () => {
         <a @click.prevent="goTo('/features')" :class="['nav-link', isActive('/features') && 'active']">Features</a>
         <a @click.prevent="goTo('/pricing')" :class="['nav-link', isActive('/pricing') && 'active']">Pricing</a>
         <a @click.prevent="goTo('/templates')" :class="['nav-link', isActive('/templates') && 'active']">Templates</a>
-        <a @click.prevent="goTo('/plugins')" :class="['nav-link', isActive('/plugins') && 'active']">Plugins</a>
+        <a @click.prevent="goTo('/services')" :class="['nav-link', isActive('/services') && 'active']">Services</a>
         <a @click.prevent="goTo('/about')" :class="['nav-link', isActive('/about') && 'active']">About</a>
         <a @click.prevent="goTo('/contact')" :class="['nav-link', isActive('/contact') && 'active']">Contact</a>
 
