@@ -1,109 +1,165 @@
-<script setup>
-</script>
-
 <template>
-  <section class="cta-wrapper">
+  <section class="cta-section">
     <div class="container">
-      <div class="cta-card">
-        <div class="cta-content">
-          <h2 class="cta-title">Ready to Transform Your School?</h2>
-          <p class="cta-desc">Join 600+ institutions already using Edufy to streamline their operations.</p>
+      <div class="cta-content" data-aos="zoom-in">
+        <div class="cta-text">
+          <h2 class="cta-title">Ready to Transform Your Institution?</h2>
+          <p class="cta-description">
+            Discover our comprehensive range of services designed to streamline your operations and enhance educational excellence.
+          </p>
         </div>
-        <div class="cta-actions">
-          <button class="btn btn-white">Get Started</button>
-          <button class="btn btn-outline-white">Contact Us</button>
-        </div>
+        <button @click="goToServices" class="cta-button">
+          <span>Explore Our Services</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
       </div>
     </div>
   </section>
 </template>
 
+<script>
+export default {
+  name: 'CtaSection',
+  methods: {
+    goToServices() {
+      this.$router.push('/services');
+    }
+  }
+}
+</script>
+
 <style scoped>
-.cta-wrapper {
-  padding: 5rem 0 6rem;
-  position: relative;
-  z-index: 10;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-.cta-card {
-  background: var(--gradient-primary);
-  padding: 4rem;
-  border-radius: var(--radius-lg);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 20px 40px -10px rgba(0, 82, 155, 0.4);
-  color: white;
+.cta-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
   position: relative;
   overflow: hidden;
 }
 
-.cta-card::before {
+.cta-section::before {
   content: '';
   position: absolute;
   top: 0;
+  left: 0;
   right: 0;
-  width: 300px;
-  height: 300px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  transform: translate(30%, -30%);
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="80" fill="none"/><circle cx="40" cy="40" r="2" fill="rgba(255,107,107,0.15)"/></svg>');
+  opacity: 0.5;
 }
 
-.cta-card::after {
+.cta-section::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 200px;
-  height: 200px;
-  background: rgba(255, 255, 255, 0.05);
+  top: -40%;
+  left: -20%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(255, 107, 107, 0.2), transparent 70%);
   border-radius: 50%;
-  transform: translate(-30%, 30%);
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(78, 205, 196, 0.15));
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 70px;
+  border-radius: 32px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+}
+
+.cta-text {
+  flex: 1;
 }
 
 .cta-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.cta-desc {
-  font-size: 1.2rem;
-  opacity: 0.9;
-}
-
-.cta-actions {
-  display: flex;
-  gap: 1rem;
-  z-index: 2;
-}
-
-.btn-white {
-  background-color: white;
-  color: var(--color-primary);
-}
-
-.btn-white:hover {
-  background-color: #f0f0f0;
-}
-
-.btn-outline-white {
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-size: 2.75rem;
+  font-weight: 900;
   color: white;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  font-family: 'Playfair Display', serif;
 }
 
-.btn-outline-white:hover {
-  border-color: white;
-  background-color: rgba(255, 255, 255, 0.1);
+.cta-description {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.8;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%);
+  color: white;
+  padding: 22px 44px;
+  border-radius: 50px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 12px 36px rgba(255, 107, 107, 0.4);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 20px 50px rgba(255, 107, 107, 0.6);
+  gap: 20px;
+}
+
+.cta-button svg {
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.cta-button:hover svg {
+  transform: translateX(6px);
+}
+
+@media (max-width: 1024px) {
+  .cta-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 50px;
+  }
 }
 
 @media (max-width: 768px) {
-  .cta-card {
-    flex-direction: column;
-    text-align: center;
-    gap: 2rem;
-    padding: 3rem 2rem;
+  .cta-title {
+    font-size: 2.25rem;
+  }
+
+  .cta-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .cta-content {
+    padding: 40px 28px;
+  }
+
+  .cta-title {
+    font-size: 2rem;
   }
 }
 </style>

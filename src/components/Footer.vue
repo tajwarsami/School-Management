@@ -90,7 +90,6 @@ const props = defineProps({
   background-color: var(--color-card-dark);
   color: var(--color-text-on-dark-muted);
   padding: 4rem 0 2rem;
-  margin-top: 4rem;
 }
 
 .footer-home {
