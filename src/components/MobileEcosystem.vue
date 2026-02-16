@@ -47,7 +47,6 @@ const prevImage = () => {
   <section class="mobile-section">
     <div class="container">
       <div class="header">
-        <h2>Complete Mobile Ecosystem</h2>
         <p>Stay connected on the go with dedicated apps for everyone. Click any app to explore.</p>
       </div>
 

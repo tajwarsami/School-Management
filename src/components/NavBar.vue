@@ -475,7 +475,6 @@ const toggleMobileMenu = () => {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  /* Mobile adjustments */
 }
 
 @media (max-width: 374px) {
