@@ -1,20 +1,238 @@
-const clients = [
-  {
-    name: "St. Xavier's College",
-    logo: "/logos/st-xaviers.png"
-  },
-  {
-    name: "Dhaka City School",
-    logo: "/logos/dhaka-city.png"
-  },
-  {
-    name: "Little Gems Kindergarten",
-    logo: "/logos/little-gems.png"
-  },
-  {
-    name: "Oxford International",
-    logo: "/logos/oxford.png"
-  }
-]
+export const divisions = [
+  { id: 1, name: "Dhaka",      lat: 23.8103, lng: 90.4125, color: "#3B82F6", totalInstitutions: 1240, students: 485000 },
+  { id: 2, name: "Chittagong", lat: 22.3569, lng: 91.7832, color: "#10B981", totalInstitutions: 980,  students: 392000 },
+  { id: 3, name: "Rajshahi",   lat: 24.3745, lng: 88.6042, color: "#F59E0B", totalInstitutions: 760,  students: 298000 },
+  { id: 4, name: "Khulna",     lat: 22.8456, lng: 89.5403, color: "#8B5CF6", totalInstitutions: 620,  students: 241000 },
+  { id: 5, name: "Barishal",   lat: 22.7010, lng: 90.3535, color: "#EF4444", totalInstitutions: 480,  students: 189000 },
+  { id: 6, name: "Sylhet",     lat: 24.8949, lng: 91.8687, color: "#EC4899", totalInstitutions: 520,  students: 205000 },
+  { id: 7, name: "Rangpur",    lat: 25.7439, lng: 89.2752, color: "#14B8A6", totalInstitutions: 690,  students: 275000 },
+  { id: 8, name: "Mymensingh", lat: 24.7471, lng: 90.4203, color: "#F97316", totalInstitutions: 540,  students: 213000 },
+];
 
-export default clients
+
+export const districts = [
+  { id: 101, name: "Dhaka",        divisionId: 1, lat: 23.8103, lng: 90.4125, institutions: 340 },
+  { id: 102, name: "Gazipur",      divisionId: 1, lat: 23.9999, lng: 90.4203, institutions: 180 },
+  { id: 103, name: "Narayanganj",  divisionId: 1, lat: 23.6238, lng: 90.4997, institutions: 160 },
+  { id: 104, name: "Manikganj",    divisionId: 1, lat: 23.8622, lng: 90.0029, institutions: 95  },
+  { id: 105, name: "Munshiganj",   divisionId: 1, lat: 23.5422, lng: 90.5301, institutions: 88  },
+  { id: 106, name: "Narsingdi",    divisionId: 1, lat: 23.9234, lng: 90.7152, institutions: 102 },
+  { id: 107, name: "Faridpur",     divisionId: 1, lat: 23.6066, lng: 89.8429, institutions: 115 },
+  { id: 108, name: "Madaripur",    divisionId: 1, lat: 23.1641, lng: 90.2016, institutions: 78  },
+  { id: 109, name: "Tangail",      divisionId: 1, lat: 24.2513, lng: 89.9167, institutions: 130 },
+  { id: 110, name: "Kishoreganj",  divisionId: 1, lat: 24.4449, lng: 90.7766, institutions: 100 },
+
+  { id: 201, name: "Chittagong",   divisionId: 2, lat: 22.3569, lng: 91.7832, institutions: 290 },
+  { id: 202, name: "Cox's Bazar",  divisionId: 2, lat: 21.4272, lng: 92.0058, institutions: 135 },
+  { id: 203, name: "Comilla",      divisionId: 2, lat: 23.4607, lng: 91.1809, institutions: 185 },
+  { id: 204, name: "Noakhali",     divisionId: 2, lat: 22.8724, lng: 91.0996, institutions: 142 },
+  { id: 205, name: "Feni",         divisionId: 2, lat: 23.0159, lng: 91.3976, institutions: 98  },
+  { id: 206, name: "Brahmanbaria", divisionId: 2, lat: 23.9608, lng: 91.1115, institutions: 130 },
+  { id: 207, name: "Chandpur",     divisionId: 2, lat: 23.2332, lng: 90.6517, institutions: 110 },
+
+  { id: 301, name: "Rajshahi",        divisionId: 3, lat: 24.3745, lng: 88.6042, institutions: 220 },
+  { id: 302, name: "Bogura",          divisionId: 3, lat: 24.8510, lng: 89.3697, institutions: 175 },
+  { id: 303, name: "Pabna",           divisionId: 3, lat: 24.0064, lng: 89.2372, institutions: 148 },
+  { id: 304, name: "Natore",          divisionId: 3, lat: 24.4204, lng: 88.9873, institutions: 110 },
+  { id: 305, name: "Sirajganj",       divisionId: 3, lat: 24.4534, lng: 89.7059, institutions: 107 },
+  { id: 306, name: "Naogaon",         divisionId: 3, lat: 24.7936, lng: 88.9312, institutions: 96  },
+  { id: 307, name: "Chapainawabganj", divisionId: 3, lat: 24.5965, lng: 88.2775, institutions: 74  },
+
+  { id: 401, name: "Khulna",   divisionId: 4, lat: 22.8456, lng: 89.5403, institutions: 195 },
+  { id: 402, name: "Jessore",  divisionId: 4, lat: 23.1664, lng: 89.2082, institutions: 165 },
+  { id: 403, name: "Satkhira", divisionId: 4, lat: 22.7185, lng: 89.0705, institutions: 118 },
+  { id: 404, name: "Bagerhat", divisionId: 4, lat: 22.6602, lng: 89.7854, institutions: 88  },
+  { id: 405, name: "Narail",   divisionId: 4, lat: 23.1724, lng: 89.5122, institutions: 54  },
+  { id: 406, name: "Magura",   divisionId: 4, lat: 23.4871, lng: 89.4192, institutions: 62  },
+
+  { id: 501, name: "Barishal",   divisionId: 5, lat: 22.7010, lng: 90.3535, institutions: 152 },
+  { id: 502, name: "Bhola",      divisionId: 5, lat: 22.3541, lng: 90.8237, institutions: 98  },
+  { id: 503, name: "Patuakhali", divisionId: 5, lat: 22.3632, lng: 90.3297, institutions: 88  },
+  { id: 504, name: "Pirojpur",   divisionId: 5, lat: 22.5835, lng: 89.9748, institutions: 72  },
+  { id: 505, name: "Jhalokati",  divisionId: 5, lat: 22.6406, lng: 90.1973, institutions: 70  },
+  { id: 506, name: "Barguna",    divisionId: 5, lat: 22.0952, lng: 90.1120, institutions: 60  },
+
+  { id: 601, name: "Sylhet",       divisionId: 6, lat: 24.8949, lng: 91.8687, institutions: 198 },
+  { id: 602, name: "Moulvibazar",  divisionId: 6, lat: 24.4829, lng: 91.7774, institutions: 112 },
+  { id: 603, name: "Habiganj",     divisionId: 6, lat: 24.3745, lng: 91.4153, institutions: 108 },
+  { id: 604, name: "Sunamganj",    divisionId: 6, lat: 25.0658, lng: 91.3951, institutions: 102 },
+
+  { id: 701, name: "Rangpur",     divisionId: 7, lat: 25.7439, lng: 89.2752, institutions: 210 },
+  { id: 702, name: "Dinajpur",    divisionId: 7, lat: 25.6279, lng: 88.6331, institutions: 165 },
+  { id: 703, name: "Gaibandha",   divisionId: 7, lat: 25.3288, lng: 89.5444, institutions: 120 },
+  { id: 704, name: "Kurigram",    divisionId: 7, lat: 25.8054, lng: 89.6363, institutions: 98  },
+  { id: 705, name: "Lalmonirhat", divisionId: 7, lat: 25.9923, lng: 89.2853, institutions: 97  },
+  { id: 706, name: "Nilphamari",  divisionId: 7, lat: 25.9313, lng: 88.8562, institutions: 85  },
+  { id: 707, name: "Panchagarh",  divisionId: 7, lat: 26.3408, lng: 88.5553, institutions: 62  },
+  { id: 708, name: "Thakurgaon",  divisionId: 7, lat: 26.0336, lng: 88.4616, institutions: 75  },
+
+  { id: 801, name: "Mymensingh", divisionId: 8, lat: 24.7471, lng: 90.4203, institutions: 198 },
+  { id: 802, name: "Jamalpur",   divisionId: 8, lat: 24.8987, lng: 89.9468, institutions: 148 },
+  { id: 803, name: "Netrokona",  divisionId: 8, lat: 24.8703, lng: 90.7254, institutions: 115 },
+  { id: 804, name: "Sherpur",    divisionId: 8, lat: 25.0183, lng: 90.0152, institutions: 79  },
+];
+
+
+export const clients = [
+  {
+    id: 1,
+    name: "Chittagong City Corporation",
+    logo: "/src/assets/logos/chittagong-city-corporation.png",
+    type: "government",
+    district: "Chittagong",
+    division: "Chittagong",
+    lat: 22.3569,
+    lng: 91.7832,
+    status: "active",
+  },
+  {
+    id: 2,
+    name: "Bay Development",
+    logo: "/src/assets/logos/bay-development.png",
+    type: "private",
+    district: "Dhaka",
+    division: "Dhaka",
+    lat: 23.8103,
+    lng: 90.4125,
+    status: "active",
+  },
+  {
+    id: 3,
+    name: "Cadre Officer's Co-operative Society Limited",
+    logo: "/src/assets/logos/cadre-officers-cooperative.png",
+    type: "cooperative",
+    district: "Dhaka",
+    division: "Dhaka",
+    lat: 23.7500,
+    lng: 90.4000,
+    status: "active",
+  },
+  {
+    id: 4,
+    name: "Eastern Refinery Model High School",
+    logo: "/src/assets/logos/eastern-refinery-model-high-school.png",
+    type: "school",
+    district: "Chittagong",
+    division: "Chittagong",
+    lat: 22.3200,
+    lng: 91.8100,
+    status: "active",
+  },
+  {
+    id: 5,
+    name: "Dr. Khastagir Govt. Girls High School",
+    logo: "/src/assets/logos/dr-khastagir-govt-girls-high-school.png",
+    type: "school",
+    district: "Chittagong",
+    division: "Chittagong",
+    lat: 22.3400,
+    lng: 91.8300,
+    status: "active",
+  },
+  {
+    id: 6,
+    name: "Chittagong Collegiate School",
+    logo: "/src/assets/logos/ctgcs.jpg",
+    type: "school",
+    district: "Chittagong",
+    division: "Chittagong",
+    lat: 22.3350,
+    lng: 91.8350,
+    status: "active",
+  },
+  {
+    id: 7,
+    name: "Cox's Bazar DC College",
+    logo: "/src/assets/logos/coxs-bazar-dc-college.png",
+    type: "college",
+    district: "Cox's Bazar",
+    division: "Chittagong",
+    lat: 21.4272,
+    lng: 92.0058,
+    status: "active",
+  },
+  {
+    id: 8,
+    name: "Adarsha Mohila College, Chuadanga",
+    logo: "/src/assets/logos/adarsha-mohila-college-chuadanga.png",
+    type: "college",
+    district: "Chuadanga",
+    division: "Khulna",
+    lat: 23.6401,
+    lng: 88.8416,
+    status: "active",
+  },
+  {
+    id: 9,
+    name: "Collegiate School & College, Kushtia",
+    logo: "/src/assets/logos/collegiate-school-college-kushtia.png",
+    type: "school",
+    district: "Kushtia",
+    division: "Khulna",
+    lat: 23.9014,
+    lng: 89.1225,
+    status: "active",
+  },
+  {
+    id: 10,
+    name: "Rangpur Technical School & College",
+    logo: "/src/assets/logos/rangpur-technical-school-college.png",
+    type: "college",
+    district: "Rangpur",
+    division: "Rangpur",
+    lat: 25.7439,
+    lng: 89.2752,
+    status: "active",
+  },
+  {
+    id: 11,
+    name: "Rangpur Technical School & College",
+    logo: "/src/assets/logos/rangpur-technical-school-college.png",
+    type: "college",
+    district: "Rangpur",
+    division: "Rangpur",
+    lat: 25.7439,
+    lng: 89.2752,
+    status: "active",
+  },
+];
+
+export const partners = [
+  {
+    name: "Sonali Bank PLC",
+    logo: "/src/assets/logos/sonali-bank.png",
+  },
+  {
+    name: "Shurjomukhi Limited",
+    logo: "/src/assets/logos/shurjomukhi-limited.png",
+  },
+  {
+    name: "MetroNet Bangladesh Limited",
+    logo: "/src/assets/logos/metronet-bangladesh.png",
+  },
+  {
+    name: "MobiShastra Bangladesh",
+    logo: "/src/assets/logos/mobishastra-bangladesh.png",
+  },
+];
+
+
+export const mapSummary = {
+  totalInstitutions: 6830,
+  totalStudents: 2297000,
+  totalDivisions: 8,
+  totalDistricts: 64,
+  breakdown: {
+    universities: 49,
+    colleges: 2850,
+    schools: 3931,
+  },
+};
+
+export default {
+  divisions,
+  districts,
+  clients,
+  partners,
+  mapSummary,
+};

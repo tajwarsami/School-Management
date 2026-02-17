@@ -34,7 +34,7 @@
           viewBox="0 0 600 720"
           preserveAspectRatio="xMidYMid meet"
           @mousemove="onSvgMouseMove"
-          @mouseleave="hoveredInst = null"
+          @mouseleave="hoveredClient = null"
         >
           <defs>
             <filter id="gmGlow">
@@ -135,26 +135,26 @@
             </g>
           </g>
 
-          <g v-for="inst in visibleInstitutions" :key="'inst' + inst.id">
+          <g v-for="client in visibleClients" :key="'client' + client.id">
             <circle
-              :cx="px(inst.lng)" :cy="py(inst.lat)"
+              :cx="px(client.lng)" :cy="py(client.lat)"
               r="7"
-              :fill="typeColor(inst.type)"
+              :fill="typeColor(client.type)"
               fill-opacity="0.12"
               class="gm-pulse"
             />
             <path
-              :d="pinPath(px(inst.lng), py(inst.lat))"
-              :fill="typeColor(inst.type)"
+              :d="pinPath(px(client.lng), py(client.lat))"
+              :fill="typeColor(client.type)"
               filter="url(#gmShadow)"
               class="gm-pin"
-              :class="{ 'gm-pin-selected': selectedInst?.id === inst.id }"
+              :class="{ 'gm-pin-selected': selectedClient?.id === client.id }"
               style="cursor: pointer"
-              @mouseenter="hoveredInst = inst"
-              @click="selectedInst = selectedInst?.id === inst.id ? null : inst"
+              @mouseenter="hoveredClient = client"
+              @click="selectedClient = selectedClient?.id === client.id ? null : client"
             />
             <circle
-              :cx="px(inst.lng)" :cy="py(inst.lat) - 7"
+              :cx="px(client.lng)" :cy="py(client.lat) - 7"
               r="2"
               fill="white"
               fill-opacity="0.85"
@@ -171,17 +171,17 @@
           </div>
         </div>
 
-        <div v-if="hoveredInst" class="gm-tooltip" :style="tooltipPos">
-          <div class="gm-tt-name">{{ hoveredInst.name }}</div>
+        <div v-if="hoveredClient" class="gm-tooltip" :style="tooltipPos">
+          <div class="gm-tt-name">{{ hoveredClient.name }}</div>
           <div class="gm-tt-row">
-            <span class="gm-tt-badge" :style="{ background: typeColor(hoveredInst.type) }">
-              {{ hoveredInst.type }}
+            <span class="gm-tt-badge" :style="{ background: typeColor(hoveredClient.type) }">
+              {{ hoveredClient.type }}
             </span>
-            <span class="gm-tt-loc">{{ hoveredInst.district }}</span>
+            <span class="gm-tt-loc">{{ hoveredClient.district }}</span>
           </div>
           <div class="gm-tt-stats">
-            <span>👩‍🎓 {{ hoveredInst.students.toLocaleString() }}</span>
-            <span>📅 {{ hoveredInst.established }}</span>
+            <span>📍 {{ hoveredClient.division }}</span>
+            <span>✅ {{ hoveredClient.status }}</span>
           </div>
         </div>
 
@@ -206,14 +206,14 @@
             <div class="gm-card-lbl">Students</div>
           </div>
           <div class="gm-card gm-card-purple">
-            <div class="gm-card-icon">🗺️</div>
-            <div class="gm-card-val">{{ mapSummary.totalDivisions }}</div>
-            <div class="gm-card-lbl">Divisions</div>
+            <div class="gm-card-icon">🤝</div>
+            <div class="gm-card-val">{{ clients.length }}</div>
+            <div class="gm-card-lbl">Clients</div>
           </div>
           <div class="gm-card gm-card-orange">
-            <div class="gm-card-icon">📍</div>
-            <div class="gm-card-val">{{ mapSummary.totalDistricts }}</div>
-            <div class="gm-card-lbl">Districts</div>
+            <div class="gm-card-icon">🌐</div>
+            <div class="gm-card-val">{{ partners.length }}</div>
+            <div class="gm-card-lbl">Partners</div>
           </div>
         </div>
 
@@ -254,28 +254,48 @@
           </div>
         </div>
 
-        <div v-if="selectedInst" class="gm-section gm-detail">
+        <div class="gm-section">
+          <div class="gm-section-title">Partners</div>
+          <div class="gm-partners-grid">
+            <div
+              v-for="partner in partners"
+              :key="partner.name"
+              class="gm-partner-card"
+              :title="partner.name"
+            >
+              <img
+                :src="partner.logo"
+                :alt="partner.name"
+                class="gm-partner-logo"
+                @error="e => e.target.style.display='none'"
+              />
+              <div class="gm-partner-name">{{ partner.name }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="selectedClient" class="gm-section gm-detail">
           <div class="gm-section-title">
             Selected
-            <button class="gm-detail-close" @click="selectedInst = null">✕</button>
+            <button class="gm-detail-close" @click="selectedClient = null">✕</button>
           </div>
-          <div class="gm-detail-badge" :style="{ background: typeColor(selectedInst.type) }">
-            {{ selectedInst.type }}
+          <div class="gm-detail-badge" :style="{ background: typeColor(selectedClient.type) }">
+            {{ selectedClient.type }}
           </div>
-          <div class="gm-detail-name">{{ selectedInst.name }}</div>
-          <div class="gm-detail-loc">📍 {{ selectedInst.district }}, {{ selectedInst.division }}</div>
+          <div class="gm-detail-name">{{ selectedClient.name }}</div>
+          <div class="gm-detail-loc">📍 {{ selectedClient.district }}, {{ selectedClient.division }}</div>
           <div class="gm-detail-stats">
             <div class="gm-dstat">
-              <div class="gm-dstat-val">{{ selectedInst.students.toLocaleString() }}</div>
-              <div class="gm-dstat-key">Students</div>
-            </div>
-            <div class="gm-dstat">
-              <div class="gm-dstat-val">{{ selectedInst.established }}</div>
-              <div class="gm-dstat-key">Founded</div>
-            </div>
-            <div class="gm-dstat">
-              <div class="gm-dstat-val" style="text-transform:capitalize">{{ selectedInst.status }}</div>
+              <div class="gm-dstat-val" style="text-transform:capitalize">{{ selectedClient.status }}</div>
               <div class="gm-dstat-key">Status</div>
+            </div>
+            <div class="gm-dstat">
+              <div class="gm-dstat-val" style="text-transform:capitalize">{{ selectedClient.type }}</div>
+              <div class="gm-dstat-key">Type</div>
+            </div>
+            <div class="gm-dstat">
+              <div class="gm-dstat-val">{{ selectedClient.division }}</div>
+              <div class="gm-dstat-key">Division</div>
             </div>
           </div>
         </div>
@@ -286,12 +306,20 @@
 </template>
 
 <script>
-import { divisions, districts, institutions, mapSummary } from '../data/bangladeshData.js'
+import { divisions, districts, clients, partners, mapSummary } from '../data/clients.js'
 
 const BOUNDS = { minLat: 20.4, maxLat: 26.75, minLng: 87.9, maxLng: 92.8 }
 const SVG_W  = 600
 const SVG_H  = 720
-const TYPE_COLORS = { university: '#6366f1', college: '#10b981', school: '#f59e0b' }
+
+const TYPE_COLORS = {
+  university:  '#6366f1',
+  college:     '#10b981',
+  school:      '#f59e0b',
+  government:  '#3b82f6',
+  private:     '#ec4899',
+  cooperative: '#14b8a6',
+}
 
 export default {
   name: 'GlobalMap',
@@ -300,20 +328,24 @@ export default {
     return {
       divisions,
       districts,
-      institutions,
+      clients,
+      partners,
       mapSummary,
 
-      viewMode:        'division',   
-      activeFilters:   ['university', 'college', 'school'],
+      viewMode:      'division',
+      activeFilters: ['university', 'college', 'school', 'government', 'private', 'cooperative'],
       filterTypes: [
-        { value: 'university', label: 'University', color: '#6366f1' },
-        { value: 'college',    label: 'College',    color: '#10b981' },
-        { value: 'school',     label: 'School',     color: '#f59e0b' },
+        { value: 'university',  label: 'University',  color: '#6366f1' },
+        { value: 'college',     label: 'College',     color: '#10b981' },
+        { value: 'school',      label: 'School',      color: '#f59e0b' },
+        { value: 'government',  label: 'Government',  color: '#3b82f6' },
+        { value: 'private',     label: 'Private',     color: '#ec4899' },
+        { value: 'cooperative', label: 'Cooperative', color: '#14b8a6' },
       ],
 
       selectedDivision: null,
-      selectedInst:     null,
-      hoveredInst:      null,
+      selectedClient:   null,
+      hoveredClient:    null,
 
       tooltipX: 0,
       tooltipY: 0,
@@ -322,8 +354,8 @@ export default {
   },
 
   computed: {
-    visibleInstitutions() {
-      return this.institutions.filter(i => this.activeFilters.includes(i.type))
+    visibleClients() {
+      return this.clients.filter(c => this.activeFilters.includes(c.type))
     },
     sortedDivisions() {
       return [...this.divisions].sort((a, b) => b.totalInstitutions - a.totalInstitutions)
@@ -347,22 +379,18 @@ export default {
     py(lat) {
       return ((BOUNDS.maxLat - lat) / (BOUNDS.maxLat - BOUNDS.minLat)) * SVG_H
     },
-
     divRadius(div) {
       return 28 + (div.totalInstitutions / 1240) * 52
     },
-
     divColor(divisionId) {
       return this.divisions.find(d => d.id === divisionId)?.color ?? '#64748b'
     },
     typeColor(type) {
       return TYPE_COLORS[type] ?? '#64748b'
     },
-
     pinPath(x, y) {
       return `M${x} ${y} C${x-6} ${y-6},${x-7} ${y-11},${x} ${y-15} C${x+7} ${y-11},${x+6} ${y-6},${x} ${y} Z`
     },
-
     toggleFilter(val) {
       const idx = this.activeFilters.indexOf(val)
       if (idx >= 0) {
@@ -382,7 +410,6 @@ export default {
       this.tooltipX = e.clientX - rect.left + 14
       this.tooltipY = e.clientY - rect.top  - 50
     },
-
     shortNum(n) {
       if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M'
       if (n >= 1_000)     return (n / 1_000).toFixed(0)     + 'K'
@@ -400,10 +427,10 @@ export default {
   background: #060d1a;
   color: #e2e8f0;
   min-height: 100vh;
-  padding: 20px;
+  padding: 12px 20px 8px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   box-sizing: border-box;
 }
 
@@ -416,7 +443,7 @@ export default {
   background: linear-gradient(135deg, #0f1e35, #0d1a2e);
   border: 1px solid #1e3a5f;
   border-radius: 14px;
-  padding: 14px 20px;
+  padding: 10px 20px;
 }
 .gm-header-left  { display: flex; align-items: center; gap: 14px; }
 .gm-header-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -431,9 +458,9 @@ export default {
   color: #94a3b8; font-size: 12px; font-family: inherit;
   cursor: pointer; transition: all .2s;
 }
-.gm-filter-btn:hover    { border-color: #3b82f6; color: #e2e8f0; }
-.gm-filter-active       { background: #1e3a5f; color: #e2e8f0; border-color: #3b82f6; }
-.gm-filter-dot          { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.gm-filter-btn:hover { border-color: #3b82f6; color: #e2e8f0; }
+.gm-filter-active    { background: #1e3a5f; color: #e2e8f0; border-color: #3b82f6; }
+.gm-filter-dot       { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
 .gm-view-btn {
   padding: 5px 14px; border-radius: 20px;
@@ -459,10 +486,8 @@ export default {
   min-height: 540px;
 }
 .gm-svg {
-  width: 100%;
-  height: 100%;
-  min-height: 540px;
-  display: block;
+  width: 100%; height: 100%;
+  min-height: 540px; display: block;
   transition: transform .2s ease;
 }
 
@@ -481,7 +506,7 @@ export default {
   70%  { r: 13; opacity: 0; }
   100% { r: 13; opacity: 0; }
 }
-.gm-pulse { animation: gmPulse 2.6s ease-out infinite; }
+.gm-pulse      { animation: gmPulse 2.6s ease-out infinite; }
 .gm-div-circle { transition: fill-opacity .2s; }
 
 .gm-legend {
@@ -517,18 +542,18 @@ export default {
 }
 .gm-zoom-btn:hover { background: #1e3a5f; color: #e2e8f0; }
 
-.gm-panel { display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+.gm-panel { display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
 
 .gm-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .gm-card {
   background: linear-gradient(135deg, #0f1e35, #0a1628);
   border: 1px solid #1e3a5f; border-radius: 12px;
-  padding: 14px; text-align: center; transition: transform .2s;
+  padding: 10px; text-align: center; transition: transform .2s;
 }
 .gm-card:hover { transform: translateY(-2px); }
-.gm-card-icon { font-size: 20px; margin-bottom: 6px; }
-.gm-card-val  { font-size: 20px; font-weight: 700; font-family: 'JetBrains Mono', monospace; line-height: 1; margin-bottom: 4px; }
-.gm-card-lbl  { font-size: 11px; color: #64748b; font-weight: 500; text-transform: uppercase; letter-spacing: .5px; }
+.gm-card-icon { font-size: 18px; margin-bottom: 4px; }
+.gm-card-val  { font-size: 18px; font-weight: 700; font-family: 'JetBrains Mono', monospace; line-height: 1; margin-bottom: 3px; }
+.gm-card-lbl  { font-size: 10px; color: #64748b; font-weight: 500; text-transform: uppercase; letter-spacing: .5px; }
 .gm-card-blue   { border-color: rgba(59,130,246,.3); }  .gm-card-blue   .gm-card-val { color: #3b82f6; }
 .gm-card-green  { border-color: rgba(16,185,129,.3); }  .gm-card-green  .gm-card-val { color: #10b981; }
 .gm-card-purple { border-color: rgba(139,92,246,.3); }  .gm-card-purple .gm-card-val { color: #8b5cf6; }
@@ -536,12 +561,12 @@ export default {
 
 .gm-section {
   background: linear-gradient(135deg, #0f1e35, #0a1628);
-  border: 1px solid #1e3a5f; border-radius: 12px; padding: 14px;
+  border: 1px solid #1e3a5f; border-radius: 12px; padding: 12px;
 }
 .gm-section-title {
   display: flex; align-items: center; justify-content: space-between;
   font-size: 11px; font-weight: 700; color: #64748b;
-  text-transform: uppercase; letter-spacing: .8px; margin-bottom: 12px;
+  text-transform: uppercase; letter-spacing: .8px; margin-bottom: 10px;
 }
 
 .gm-brow   { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
@@ -553,7 +578,7 @@ export default {
 
 .gm-rank-row {
   display: flex; align-items: center; gap: 8px;
-  padding: 5px 8px; border-radius: 8px; border: 1px solid transparent;
+  padding: 4px 8px; border-radius: 8px; border: 1px solid transparent;
   cursor: pointer; transition: background .15s; margin-bottom: 2px;
 }
 .gm-rank-row:hover { background: rgba(30,58,95,.4); }
@@ -565,6 +590,27 @@ export default {
 .gm-rank-bar      { height: 100%; border-radius: 3px; opacity: .7; transition: width .8s ease; }
 .gm-rank-val      { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: #64748b; width: 36px; text-align: right; flex-shrink: 0; }
 
+.gm-partners-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.gm-partner-card {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 10px 6px; border-radius: 8px;
+  background: #060d1a; border: 1px solid #1e3a5f;
+  transition: border-color .2s;
+  text-align: center;
+}
+.gm-partner-card:hover { border-color: #3b82f6; }
+.gm-partner-logo {
+  width: 48px; height: 28px; object-fit: contain;
+}
+.gm-partner-name {
+  font-size: 9px; color: #64748b; font-weight: 600;
+  line-height: 1.2; text-align: center;
+}
+
 .gm-detail { position: relative; }
 .gm-detail-close {
   background: #1e3a5f; border: none; color: #94a3b8;
@@ -572,19 +618,19 @@ export default {
   font-size: 10px; cursor: pointer;
 }
 .gm-detail-close:hover { color: #ef4444; }
-.gm-detail-badge  { display: inline-block; font-size: 10px; font-weight: 700; color: #fff; padding: 2px 10px; border-radius: 10px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
-.gm-detail-name   { font-size: 15px; font-weight: 700; color: #e2e8f0; margin-bottom: 4px; line-height: 1.3; }
-.gm-detail-loc    { font-size: 12px; color: #64748b; margin-bottom: 12px; }
-.gm-detail-stats  { display: flex; gap: 10px; }
-.gm-dstat         { flex: 1; text-align: center; background: #060d1a; border-radius: 8px; padding: 8px 4px; }
-.gm-dstat-val     { font-size: 13px; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: #3b82f6; }
-.gm-dstat-key     { font-size: 10px; color: #475569; margin-top: 2px; }
+.gm-detail-badge { display: inline-block; font-size: 10px; font-weight: 700; color: #fff; padding: 2px 10px; border-radius: 10px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+.gm-detail-name  { font-size: 15px; font-weight: 700; color: #e2e8f0; margin-bottom: 4px; line-height: 1.3; }
+.gm-detail-loc   { font-size: 12px; color: #64748b; margin-bottom: 12px; }
+.gm-detail-stats { display: flex; gap: 10px; }
+.gm-dstat        { flex: 1; text-align: center; background: #060d1a; border-radius: 8px; padding: 8px 4px; }
+.gm-dstat-val    { font-size: 13px; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: #3b82f6; }
+.gm-dstat-key    { font-size: 10px; color: #475569; margin-top: 2px; }
 
 @media (max-width: 900px) {
   .gm-body { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
-  .gm-wrapper  { padding: 12px; }
+  .gm-wrapper  { padding: 8px 12px 6px; }
   .gm-header   { flex-direction: column; }
   .gm-cards    { grid-template-columns: 1fr 1fr; }
 }
