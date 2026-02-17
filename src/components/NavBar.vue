@@ -46,8 +46,11 @@ const toggleMobileMenu = () => {
 
           <Transition name="dropdown-fade">
             <div v-if="showMore" class="dropdown">
-              <a @click.prevent="goTo('/ticket')" class="dropdown-item">
-                Ticket
+              <a @click.prevent="goTo('/ourteam')" class="dropdown-item">
+                Our Team
+              </a>
+              <a @click.prevent="goTo('/clients')" class="dropdown-item">
+                Client
               </a>
               <a @click.prevent="goTo('/blog')" class="dropdown-item">
                 Blog
