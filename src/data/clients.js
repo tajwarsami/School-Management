@@ -77,7 +77,7 @@ export const clients = [
   {
     id: 1,
     name: "Chittagong City Corporation",
-    logo: "/src/assets/logos/chittagong-city-corporation.png",
+    logo: "/src/assets/chittagong-city-corporation.png",
     type: "government",
     district: "Chittagong",
     division: "Chittagong",
@@ -88,7 +88,7 @@ export const clients = [
   {
     id: 2,
     name: "Bay Development",
-    logo: "/src/assets/logos/bay-development.png",
+    logo: "/src/assets/bay-development.png",
     type: "private",
     district: "Dhaka",
     division: "Dhaka",
@@ -99,7 +99,7 @@ export const clients = [
   {
     id: 3,
     name: "Cadre Officer's Co-operative Society Limited",
-    logo: "/src/assets/logos/cadre-officers-cooperative.png",
+    logo: "/src/assets/cadre-officers-cooperative.png",
     type: "cooperative",
     district: "Dhaka",
     division: "Dhaka",
@@ -110,7 +110,7 @@ export const clients = [
   {
     id: 4,
     name: "Eastern Refinery Model High School",
-    logo: "/src/assets/logos/eastern-refinery-model-high-school.png",
+    logo: "/src/assets/eastern-refinery-model-high-school.png",
     type: "school",
     district: "Chittagong",
     division: "Chittagong",
@@ -121,7 +121,7 @@ export const clients = [
   {
     id: 5,
     name: "Dr. Khastagir Govt. Girls High School",
-    logo: "/src/assets/logos/dr-khastagir-govt-girls-high-school.png",
+    logo: "/src/assets/dr-khastagir-govt-girls-high-school.png",
     type: "school",
     district: "Chittagong",
     division: "Chittagong",
@@ -132,7 +132,7 @@ export const clients = [
   {
     id: 6,
     name: "Chittagong Collegiate School",
-    logo: "/src/assets/logos/ctgcs.jpg",
+    logo: "/src/assets/ctgcs.jpg",
     type: "school",
     district: "Chittagong",
     division: "Chittagong",
@@ -143,7 +143,7 @@ export const clients = [
   {
     id: 7,
     name: "Cox's Bazar DC College",
-    logo: "/src/assets/logos/coxs-bazar-dc-college.png",
+    logo: "/src/assets/coxs-bazar-dc-college.png",
     type: "college",
     district: "Cox's Bazar",
     division: "Chittagong",
@@ -154,7 +154,7 @@ export const clients = [
   {
     id: 8,
     name: "Adarsha Mohila College, Chuadanga",
-    logo: "/src/assets/logos/adarsha-mohila-college-chuadanga.png",
+    logo: "/src/assets/adarsha-mohila-college-chuadanga.png",
     type: "college",
     district: "Chuadanga",
     division: "Khulna",
@@ -165,7 +165,7 @@ export const clients = [
   {
     id: 9,
     name: "Collegiate School & College, Kushtia",
-    logo: "/src/assets/logos/collegiate-school-college-kushtia.png",
+    logo: "/src/assets/collegiate-school-college-kushtia.png",
     type: "school",
     district: "Kushtia",
     division: "Khulna",
@@ -176,7 +176,7 @@ export const clients = [
   {
     id: 10,
     name: "Rangpur Technical School & College",
-    logo: "/src/assets/logos/rangpur-technical-school-college.png",
+    logo: "/src/assets/rangpur-technical-school-college.png",
     type: "college",
     district: "Rangpur",
     division: "Rangpur",
@@ -187,7 +187,7 @@ export const clients = [
   {
     id: 11,
     name: "Rangpur Technical School & College",
-    logo: "/src/assets/logos/rangpur-technical-school-college.png",
+    logo: "/src/assets/rangpur-technical-school-college.png",
     type: "college",
     district: "Rangpur",
     division: "Rangpur",
@@ -200,19 +200,19 @@ export const clients = [
 export const partners = [
   {
     name: "Sonali Bank PLC",
-    logo: "/src/assets/logos/sonali-bank.png",
+    logo: "/src/assets/sonali-bank.png",
   },
   {
     name: "Shurjomukhi Limited",
-    logo: "/src/assets/logos/shurjomukhi-limited.png",
+    logo: "/src/assets/shurjomukhi-limited.png",
   },
   {
     name: "MetroNet Bangladesh Limited",
-    logo: "/src/assets/logos/metronet-bangladesh.png",
+    logo: "/src/assets/metronet-bangladesh.png",
   },
   {
     name: "MobiShastra Bangladesh",
-    logo: "/src/assets/logos/mobishastra-bangladesh.png",
+    logo: "/src/assets/mobishastra-bangladesh.png",
   },
 ];
 

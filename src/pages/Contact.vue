@@ -140,8 +140,7 @@
             </svg>
           </div>
           <h3>Phone Number</h3>
-          <p><a href="tel:+8801712345678">+880 1712-345678</a></p>
-          <p><a href="tel:+8801812345678">+880 1812-345678</a></p>
+          <p><a href="tel:+8801236547895">+880 1236547895</a></p>
         </div>
 
         <div class="touch-card">
@@ -152,8 +151,7 @@
             </svg>
           </div>
           <h3>Email Address</h3>
-          <p><a href="mailto:info@edufy.com">info@edufy.com</a></p>
-          <p><a href="mailto:support@edufy.com">support@edufy.com</a></p>
+          <p><a href="mailto:support.automation@gmail.com">support.automation@gmail.com</a></p>
         </div>
 
         <div class="touch-card">
