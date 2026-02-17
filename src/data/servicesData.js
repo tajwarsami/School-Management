@@ -1,80 +1,54 @@
 export const servicesData = [
   {
     id: 1,
-    icon: '💻',
-    title: 'Custom Software Development',
-    description: 'Tailored software solutions designed to meet your unique business requirements and workflows.',
+    icon: '🏫',
+    title: 'Academy-Institute Management System',
+    description: 'A comprehensive platform to manage academic institutions efficiently, covering admissions, academics, administration, and communication.',
     features: [
-      'Requirements Analysis',
-      'Custom Application Development',
-      'Legacy System Modernization',
-      'API Development & Integration',
-      'Quality Assurance & Testing'
+      'Student Enrollment & Records',
+      'Attendance & Examination Management',
+      'Fee & Finance Tracking',
+      'Staff & Payroll Management',
+      'Parent-Student Communication Portal'
     ]
   },
   {
     id: 2,
-    icon: '☁️',
-    title: 'Cloud Solutions',
-    description: 'Scalable cloud-based applications with high availability and security for modern businesses.',
+    icon: '🌐',
+    title: 'AutoCMS - Customised Dynamic Website',
+    description: 'A powerful content management system that enables institutions and businesses to manage and update their websites dynamically without technical expertise.',
     features: [
-      'Cloud Migration Services',
-      'AWS, Azure, Google Cloud',
-      'Serverless Architecture',
-      'Cloud Security & Compliance',
-      'Performance Optimization'
+      'Drag & Drop Content Management',
+      'Responsive Website Design',
+      'SEO Optimization Tools',
+      'News & Event Publishing',
+      'Secure Hosting & Maintenance'
     ]
   },
   {
     id: 3,
-    icon: '📱',
-    title: 'Mobile App Development',
-    description: 'Native and cross-platform mobile applications for iOS and Android devices.',
+    icon: '🕒',
+    title: 'AutoAttend - Attendance Solutions',
+    description: 'Smart and automated attendance tracking system designed to improve accuracy, transparency, and efficiency.',
     features: [
-      'iOS & Android Development',
-      'React Native & Flutter',
-      'Mobile UI/UX Design',
-      'App Store Deployment',
-      'Maintenance & Support'
+      'Biometric & RFID Integration',
+      'Real-time Attendance Reports',
+      'SMS & Email Notifications',
+      'Late & Absence Tracking',
+      'Cloud-based Data Storage'
     ]
   },
   {
     id: 4,
-    icon: '🔧',
-    title: 'System Integration',
-    description: 'Seamless integration of disparate systems to create unified, efficient workflows.',
+    icon: '🎒',
+    title: 'SmartKit - School Accessories for Smarter Students',
+    description: 'Innovative school accessory solutions designed to enhance student safety, organization, and smart learning experiences.',
     features: [
-      'Enterprise System Integration',
-      'API Gateway Solutions',
-      'Data Migration Services',
-      'Third-party Integrations',
-      'Workflow Automation'
-    ]
-  },
-  {
-    id: 5,
-    icon: '🎓',
-    title: 'Educational Technology',
-    description: 'Specialized solutions for schools and educational institutions to enhance learning outcomes.',
-    features: [
-      'Learning Management Systems',
-      'Student Information Systems',
-      'Virtual Classroom Solutions',
-      'Assessment & Grading Tools',
-      'Parent-Teacher Portals'
-    ]
-  },
-  {
-    id: 6,
-    icon: '🛡️',
-    title: 'IT Consulting',
-    description: 'Expert guidance on technology strategy, digital transformation, and IT infrastructure.',
-    features: [
-      'Technology Strategy',
-      'Digital Transformation',
-      'IT Infrastructure Planning',
-      'Security Audits',
-      'Process Optimization'
+      'Smart ID Cards',
+      'RFID-enabled Accessories',
+      'Branded School Kits',
+      'Safety & Tracking Solutions',
+      'Custom School Merchandise'
     ]
   }
 ];

@@ -37,7 +37,7 @@ const hasFeature = (plan, feature) => {
             <p class="section-subtitle">Find the perfect fit for your institution's needs</p>
         </div>
 
-        <div class="table-wrapper">
+        <div class="table-wrapper desktop-view">
             <table class="comparison-table">
                 <thead>
                     <tr>
@@ -59,6 +59,23 @@ const hasFeature = (plan, feature) => {
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="mobile-view">
+            <div v-for="plan in comparisonPlans" :key="plan.name" class="plan-card">
+                <div class="plan-card-header">
+                    <h3 class="plan-card-title">{{ plan.name }}</h3>
+                </div>
+                <div class="plan-card-body">
+                    <div v-for="feature in allFeatures" :key="feature" class="feature-item">
+                        <span class="feature-item-name">{{ feature }}</span>
+                        <div class="feature-item-status">
+                            <Check v-if="hasFeature(plan, feature)" class="check-icon" :size="18" />
+                            <X v-else class="x-icon" :size="18" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
   </section>
@@ -85,6 +102,14 @@ const hasFeature = (plan, feature) => {
 .section-subtitle {
     font-size: 1rem;
     color: #64748b;
+}
+
+.desktop-view {
+    display: block;
+}
+
+.mobile-view {
+    display: none;
 }
 
 .table-wrapper {
@@ -158,7 +183,83 @@ tbody tr:hover {
     color: #cbd5e1;
 }
 
+.plan-card {
+    background: var(--color-card-dark);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.plan-card-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.plan-card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-text-card);
+    margin: 0;
+}
+
+.plan-card-body {
+    padding: 0.5rem 0;
+}
+
+.feature-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.875rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.feature-item:last-child {
+    border-bottom: none;
+}
+
+.feature-item-name {
+    color: var(--color-text-card-muted);
+    font-weight: 500;
+    font-size: 0.9rem;
+    flex: 1;
+    padding-right: 1rem;
+}
+
+.feature-item-status {
+    flex-shrink: 0;
+}
+
 @media (max-width: 768px) {
+    .comparison-section {
+        padding: 4rem 1rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    .desktop-view {
+        display: none;
+    }
+
+    .mobile-view {
+        display: block;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 900px) {
     .feature-name {
         padding: 0.75rem 1rem;
         font-size: 0.85rem;
@@ -166,6 +267,40 @@ tbody tr:hover {
     
     .feature-col, .plan-header {
         padding: 1rem;
+    }
+
+    .plan-name {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .comparison-section {
+        padding: 3rem 0.75rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .plan-card {
+        margin-bottom: 1.25rem;
+    }
+
+    .plan-card-header {
+        padding: 1rem 1.25rem;
+    }
+
+    .plan-card-title {
+        font-size: 1.15rem;
+    }
+
+    .feature-item {
+        padding: 0.75rem 1.25rem;
+    }
+
+    .feature-item-name {
+        font-size: 0.85rem;
     }
 }
 </style>

@@ -174,7 +174,7 @@ onMounted(() => {
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@400;500;600;700&display=swap');
 
 .experience-section {
-  padding: 8rem 0;
+  padding: 2rem 0;
   background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%);
   position: relative;
   overflow: hidden;
