@@ -214,6 +214,10 @@ export const partners = [
     name: "MobiShastra Bangladesh",
     logo: "/src/assets/mobishastra-bangladesh.png",
   },
+  {
+    name: "Digimark",
+    logo: "/src/assets/digimark.png",
+  },
 ];
 
 
