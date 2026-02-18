@@ -1,12 +1,13 @@
 <script setup>
 import { ArrowLeft, ArrowRight } from 'lucide-vue-next';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const templates = [
-  { name: "Modern High School", color: "#4CC9F0" },
-  { name: "Global University", color: "#4361EE" },
-  { name: "Kids Kindergarten", color: "#F72585" },
-  { name: "Islamic Madrasah", color: "#06D6A0" }
+  { name: "Horizon Academy", color: "#2E86AB" },
+  { name: "Greenleaf Campus", color: "#52B788" }
 ];
 
 const scrollContainer = ref(null);
@@ -20,13 +21,17 @@ const scroll = (direction) => {
     });
   }
 };
+
+const goToTemplates = () => {
+  router.push('/templates');
+};
 </script>
 
 <template>
   <section class="showcase-section">
     <div class="container">
       <div class="header-group">
-        <h2 class="headline">Get a Free School Website with <span class="text-accent">Edufy Premium</span></h2>
+        <h2 class="headline">Get a Free School Website with <span class="text-accent">Academy Premium</span></h2>
         <div class="nav-buttons">
           <button @click="scroll('left')" class="nav-btn">
             <ArrowLeft :size="20" />
@@ -38,7 +43,12 @@ const scroll = (direction) => {
       </div>
 
       <div class="carousel-container" ref="scrollContainer">
-        <div class="template-card" v-for="(template, index) in templates" :key="index">
+        <div
+          class="template-card"
+          v-for="(template, index) in templates"
+          :key="index"
+          @click="goToTemplates"
+        >
           <div class="mockup-frame">
             <div class="mockup-screen" :style="{ backgroundColor: template.color + '15' }">
               <div class="mockup-header">
@@ -60,6 +70,7 @@ const scroll = (direction) => {
             <div class="mockup-base"></div>
           </div>
           <p class="template-name">{{ template.name }}</p>
+          <p class="template-cta">Click to explore →</p>
         </div>
       </div>
     </div>
@@ -88,8 +99,7 @@ const scroll = (direction) => {
 }
 
 .nav-buttons {
-  display: flex;
-  gap: 1rem;
+  display: none;
 }
 
 .nav-btn {
@@ -125,8 +135,18 @@ const scroll = (direction) => {
 }
 
 .template-card {
-  flex: 0 0 450px;
+  flex: 1 1 0;
+  min-width: 280px;
   scroll-snap-align: start;
+  cursor: pointer;
+}
+
+.template-card:hover .mockup-frame {
+  transform: translateY(-5px);
+}
+
+.template-card:hover .template-cta {
+  color: var(--color-primary);
 }
 
 @media (max-width: 768px) {
@@ -138,10 +158,6 @@ const scroll = (direction) => {
 .mockup-frame {
   margin-bottom: 1.5rem;
   transition: transform 0.3s;
-}
-
-.template-card:hover .mockup-frame {
-  transform: translateY(-5px);
 }
 
 .mockup-screen {
@@ -218,5 +234,15 @@ const scroll = (direction) => {
   font-size: 1.1rem;
   text-align: center;
   color: var(--color-text-main);
+  margin-bottom: 0.25rem;
+}
+
+.template-cta {
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #9CA3AF);
+  transition: color 0.2s ease;
+  margin: 0;
 }
 </style>

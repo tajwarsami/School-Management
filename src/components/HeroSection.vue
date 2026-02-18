@@ -15,7 +15,7 @@ const goToDemo = () => router.push('/request-demo');
           The All-in-One <span class="text-primary">Education Management</span> Software for Any Institution
         </h1>
         <p class="subheadline">
-          Streamline administrative tasks, enhance learning experiences, and foster collaboration between teachers, students, and parents with Edufy.
+          Streamline administrative tasks, enhance learning experiences, and foster collaboration between teachers, students, and parents with Academy.
         </p>
         <div class="cta-group">
           <button class="btn btn-primary" @click="goToDemo">Request Demo</button>
@@ -28,7 +28,7 @@ const goToDemo = () => router.push('/request-demo');
       
       <div class="hero-image">
         <div class="image-placeholder">
-           <img src="/hero_dashboard.png" alt="Edufy Dashboard" class="dashboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+           <img src="/hero_dashboard.png" alt="Academy Dashboard" class="dashboard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
            <div class="fallback-box">
              <span>Dashboard Illustration</span>
            </div>

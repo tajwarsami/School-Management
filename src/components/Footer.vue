@@ -67,7 +67,7 @@ const props = defineProps({
           </a>
         </div>
         <div class="contact-info">
-          <a href="mailto:hello@edufy.com" class="contact-item">
+          <a href="mailto:hello@Academy.com" class="contact-item">
             <Mail :size="16" />
             <span>hello@academy.com</span>
           </a>

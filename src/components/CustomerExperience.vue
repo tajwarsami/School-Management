@@ -105,7 +105,7 @@ onUnmounted(() => stopAutoPlay());
                   <Calendar :size="18" />
                   <div>
                     <div class="stat-value">{{ currentCustomer.yearsUsing }}+ Years</div>
-                    <div class="stat-label">Using Edufy</div>
+                    <div class="stat-label">Using Academy</div>
                   </div>
                 </div>
               </div>
@@ -273,6 +273,7 @@ onUnmounted(() => stopAutoPlay());
 }
 
 .card-grid {
+  padding: 1rem;
   display: grid;
   grid-template-columns: 340px 1fr;
   gap: 3rem;
@@ -564,7 +565,7 @@ onUnmounted(() => stopAutoPlay());
 
 @media (max-width: 640px) {
   .experience-section {
-    padding: 0.75rem 0.85rem;
+    padding: 2rem 0.85rem 0.75rem;
   }
 
   .section-header {
@@ -610,7 +611,7 @@ onUnmounted(() => stopAutoPlay());
 
 @media (max-width: 400px) {
   .experience-section {
-    padding: 0.5rem 0.65rem;
+    padding: 2rem 0.65rem 0.5rem;
   }
 
   .section-header {

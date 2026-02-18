@@ -6,7 +6,7 @@ export const customers = [
     institution: "Oxford International School",
     location: "Dhaka, Bangladesh",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
-    experience: "Edufy has completely transformed how we manage our administrative tasks. The parent communication features are a game-changer. We've reduced our administrative workload by 60% and parent satisfaction scores have increased dramatically. The real-time notifications keep everyone in the loop effortlessly.",
+    experience: "Academy has completely transformed how we manage our administrative tasks. The parent communication features are a game-changer. We've reduced our administrative workload by 60% and parent satisfaction scores have increased dramatically. The real-time notifications keep everyone in the loop effortlessly.",
     rating: 5,
     yearsUsing: 3,
     studentCount: 1200
@@ -42,7 +42,7 @@ export const customers = [
     institution: "Sunshine Academy",
     location: "Chittagong, Bangladesh",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
-    experience: "Edufy's analytics dashboard gives us insights we never had before. We can track student performance, identify at-risk students early, and make data-driven decisions. The exam management module has eliminated 90% of our grading errors.",
+    experience: "Academy's analytics dashboard gives us insights we never had before. We can track student performance, identify at-risk students early, and make data-driven decisions. The exam management module has eliminated 90% of our grading errors.",
     rating: 5,
     yearsUsing: 2.5,
     studentCount: 1800
@@ -66,7 +66,7 @@ export const customers = [
     institution: "International School of Excellence",
     location: "Kuala Lumpur, Malaysia",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
-    experience: "From a technical perspective, Edufy is brilliant. The API integrations are smooth, security is top-notch, and the cloud infrastructure is reliable. We've had 99.9% uptime. The white-label options allowed us to brand it perfectly for our institution.",
+    experience: "From a technical perspective, Academy is brilliant. The API integrations are smooth, security is top-notch, and the cloud infrastructure is reliable. We've had 99.9% uptime. The white-label options allowed us to brand it perfectly for our institution.",
     rating: 5,
     yearsUsing: 3,
     studentCount: 3200
@@ -114,7 +114,7 @@ export const customers = [
     institution: "Barcelona International School",
     location: "Barcelona, Spain",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
-    experience: "Implementing Edufy was the best decision we made. The attendance system with biometric integration works flawlessly. The library management and digital resource sharing have modernized our entire learning environment.",
+    experience: "Implementing Academy was the best decision we made. The attendance system with biometric integration works flawlessly. The library management and digital resource sharing have modernized our entire learning environment.",
     rating: 5,
     yearsUsing: 1.5,
     studentCount: 1100
@@ -162,7 +162,7 @@ export const customers = [
     institution: "Lagos International College",
     location: "Lagos, Nigeria",
     image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=400&fit=crop",
-    experience: "Edufy's hostel management and canteen modules are incredibly comprehensive. Student health records, meal planning, and dormitory allocation are all centralized. The mobile app accessibility means we're never out of touch.",
+    experience: "Academy's hostel management and canteen modules are incredibly comprehensive. Student health records, meal planning, and dormitory allocation are all centralized. The mobile app accessibility means we're never out of touch.",
     rating: 5,
     yearsUsing: 2.5,
     studentCount: 2700

@@ -62,21 +62,31 @@ const hasFeature = (plan, feature) => {
         </div>
 
         <div class="mobile-view">
-            <div v-for="plan in comparisonPlans" :key="plan.name" class="plan-card">
-                <div class="plan-card-header">
-                    <h3 class="plan-card-title">{{ plan.name }}</h3>
-                </div>
-                <div class="plan-card-body">
-                    <div v-for="feature in allFeatures" :key="feature" class="feature-item">
-                        <span class="feature-item-name">{{ feature }}</span>
-                        <div class="feature-item-status">
-                            <Check v-if="hasFeature(plan, feature)" class="check-icon" :size="18" />
-                            <X v-else class="x-icon" :size="18" />
-                        </div>
-                    </div>
-                </div>
+            <div class="table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th class="feature-col">Features</th>
+                            <th v-for="plan in comparisonPlans" :key="plan.name" class="plan-header">
+                                <span class="plan-name">{{ plan.name }}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="feature in allFeatures" :key="feature">
+                            <td class="feature-name">{{ feature }}</td>
+                            <td v-for="plan in comparisonPlans" :key="plan.name" class="feature-status">
+                                <div class="status-icon">
+                                    <Check v-if="hasFeature(plan, feature)" class="check-icon" :size="16" />
+                                    <X v-else class="x-icon" :size="16" />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+
     </div>
   </section>
 </template>
@@ -183,55 +193,6 @@ tbody tr:hover {
     color: #cbd5e1;
 }
 
-.plan-card {
-    background: var(--color-card-dark);
-    border-radius: 16px;
-    box-shadow: var(--shadow-md);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 1.5rem;
-    overflow: hidden;
-}
-
-.plan-card-header {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1.25rem 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.plan-card-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--color-text-card);
-    margin: 0;
-}
-
-.plan-card-body {
-    padding: 0.5rem 0;
-}
-
-.feature-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.875rem 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.feature-item:last-child {
-    border-bottom: none;
-}
-
-.feature-item-name {
-    color: var(--color-text-card-muted);
-    font-weight: 500;
-    font-size: 0.9rem;
-    flex: 1;
-    padding-right: 1rem;
-}
-
-.feature-item-status {
-    flex-shrink: 0;
-}
 
 @media (max-width: 768px) {
     .comparison-section {
@@ -257,6 +218,35 @@ tbody tr:hover {
     .mobile-view {
         display: block;
     }
+
+    .mobile-view .table-wrapper {
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
+    .mobile-view .comparison-table {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .mobile-view .feature-col,
+    .mobile-view .plan-header {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .mobile-view .plan-name {
+        font-size: 0.82rem;
+        font-weight: 700;
+    }
+
+    .mobile-view .feature-name {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.78rem;
+    }
+
+    .mobile-view .feature-status {
+        padding: 0.75rem 0.25rem;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 900px) {
@@ -264,7 +254,7 @@ tbody tr:hover {
         padding: 0.75rem 1rem;
         font-size: 0.85rem;
     }
-    
+
     .feature-col, .plan-header {
         padding: 1rem;
     }
@@ -283,24 +273,17 @@ tbody tr:hover {
         font-size: 1.5rem;
     }
 
-    .plan-card {
-        margin-bottom: 1.25rem;
+    .mobile-view .plan-name {
+        font-size: 0.72rem;
     }
 
-    .plan-card-header {
-        padding: 1rem 1.25rem;
+    .mobile-view .feature-name {
+        font-size: 0.72rem;
+        padding: 0.65rem 0.4rem;
     }
 
-    .plan-card-title {
-        font-size: 1.15rem;
-    }
-
-    .feature-item {
-        padding: 0.75rem 1.25rem;
-    }
-
-    .feature-item-name {
-        font-size: 0.85rem;
+    .mobile-view .feature-status {
+        padding: 0.65rem 0.2rem;
     }
 }
 </style>

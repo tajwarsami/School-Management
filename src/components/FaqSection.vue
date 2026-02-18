@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     question: "Can I migrate student data from excel?",
-    answer: "Absolutely. Edufy comes with a powerful import tool that lets you bulk upload students, teachers, and staff from Excel or CSV files."
+    answer: "Absolutely. Academy comes with a powerful import tool that lets you bulk upload students, teachers, and staff from Excel or CSV files."
   },
   {
     question: "Is my data secure?",
@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     question: "What hardware do I need?",
-    answer: "Edufy is cloud-based, so you don't need any special hardware. It works on any computer, tablet, or smartphone with an internet connection."
+    answer: "Academy is cloud-based, so you don't need any special hardware. It works on any computer, tablet, or smartphone with an internet connection."
   },
   {
     question: "Do you provide training?",

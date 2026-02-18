@@ -299,7 +299,7 @@ export default {
       window.open('https://wa.me/8801712345678', '_blank');
     },
     openMessenger() {
-      window.open('https://m.me/edufybd', '_blank');
+      window.open('https://m.me/Academybd', '_blank');
     }
   }
 }
