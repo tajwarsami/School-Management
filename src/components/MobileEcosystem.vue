@@ -1,10 +1,17 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { X, ChevronLeft, ChevronRight } from 'lucide-vue-next';
 import { mobileApps } from '../data/mobileApps';
 
 const selectedApp = ref(null);
 const currentImageIndex = ref(0);
+const headerVisible = ref(false);
+
+onMounted(() => {
+  setTimeout(() => {
+    headerVisible.value = true;
+  }, 100);
+});
 
 const appsList = computed(() => {
   return Object.entries(mobileApps).map(([key, value]) => ({
@@ -46,16 +53,35 @@ const prevImage = () => {
 <template>
   <section class="mobile-section">
     <div class="container">
-      <div class="header">
-        <p>Stay connected on the go with dedicated apps for everyone. Click any app to explore.</p>
+      <div class="header" :class="{ visible: headerVisible }">
+        <h2 class="header-title">
+          <span class="title-line line-1">Mobile Apps for</span>
+          <span class="title-line line-2">
+            <span class="highlight-word">Administrators</span>,
+            <span class="highlight-word">Teachers</span>,
+          </span>
+          <span class="title-line line-3">and <span class="highlight-word">Guardians</span></span>
+        </h2>
+        <p class="header-desc">
+          Our academy’s mobile app empowers teachers, administrators, and parents with seamless access to daily school operations. Monitor attendance, receive instant notifications, manage fee records, and track academic progress — all in real time.
+
+           Whether you're on campus or on the move, everything you need is just a tap away   </p>
+        <div class="header-badges">
+          <span class="badge">📋 Attendance</span>
+          <span class="badge">📢 Notices</span>
+          <span class="badge">💳 Fees</span>
+          <span class="badge">📊 Academic Updates</span>
+        </div>
+        <div class="header-hint">Click any app to explore →</div>
       </div>
 
       <div class="cards-grid">
         <div
-          v-for="app in appsList"
+          v-for="(app, index) in appsList"
           :key="app.id"
           class="card"
           :class="`color-${app.colorName || 'purple'}`"
+          :style="`--card-index: ${index}`"
           @click="openApp(app.id)"
         >
           <div class="card-header">
@@ -90,7 +116,7 @@ const prevImage = () => {
       <div v-if="selectedApp" class="overlay" @click="closeApp">
         <div class="modal" @click.stop>
           <button class="close" @click="closeApp">
-            <X :size="24" />
+            <X :size="20" />
           </button>
 
           <div v-if="getSelectedApp()" class="modal-body" :class="`color-${getSelectedApp().colorName || 'purple'}`">
@@ -101,7 +127,7 @@ const prevImage = () => {
                   @click="prevImage"
                   :disabled="getSelectedApp().images.length <= 1"
                 >
-                  <ChevronLeft :size="24" />
+                  <ChevronLeft :size="18" />
                 </button>
 
                 <div class="carousel">
@@ -121,7 +147,7 @@ const prevImage = () => {
                   @click="nextImage"
                   :disabled="getSelectedApp().images.length <= 1"
                 >
-                  <ChevronRight :size="24" />
+                  <ChevronRight :size="18" />
                 </button>
               </div>
 
@@ -168,6 +194,7 @@ const prevImage = () => {
   background: linear-gradient(135deg, #f8f9fa 0%, #f0f1f3 100%);
   min-height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
 .mobile-section::before {
@@ -180,6 +207,26 @@ const prevImage = () => {
   background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 70%);
   pointer-events: none;
   border-radius: 50%;
+  animation: floatOrb 8s ease-in-out infinite;
+}
+
+.mobile-section::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.05), transparent 70%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: floatOrb 10s ease-in-out infinite reverse;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -20px) scale(1.05); }
+  66% { transform: translate(-10px, 15px) scale(0.97); }
 }
 
 .container {
@@ -191,27 +238,145 @@ const prevImage = () => {
 
 .header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.header h2 {
-  font-size: 2.5rem;
+.header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-label {
+  display: inline-block;
+  background: rgba(139, 92, 246, 0.1);
+  color: #7c3aed;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  animation: pulseBadge 3s ease-in-out infinite;
+}
+
+@keyframes pulseBadge {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.2); }
+  50% { box-shadow: 0 0 0 6px rgba(139, 92, 246, 0); }
+}
+
+.header-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 800;
-  background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 1rem 0;
+  color: #111827;
+  margin: 0 0 1.25rem 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
-.header p {
-  font-size: 1.1rem;
+.title-line {
+  display: block;
+}
+
+.line-1 {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+.line-2 {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+}
+
+.line-3 {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+}
+
+@keyframes slideUpFade {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.highlight-word {
+  position: relative;
+  color: #7c3aed;
+  display: inline-block;
+}
+
+.highlight-word::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #8B5CF6, #a78bfa);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underlineReveal 0.5s ease 1s forwards;
+}
+
+@keyframes underlineReveal {
+  to { transform: scaleX(1); }
+}
+
+.header-desc {
+  font-size: 1.05rem;
   color: #6b7280;
-  margin: 0;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
+  max-width: 680px;
+  margin: 0 auto 1.75rem;
+  line-height: 1.75;
+  opacity: 0;
+  animation: slideUpFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.75s forwards;
+}
+
+.header-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  animation: slideUpFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
+}
+
+.badge {
+  background: white;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.badge:hover {
+  background: #8B5CF6;
+  border-color: #8B5CF6;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3);
+}
+
+.header-hint {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  animation: slideUpFade 0.7s ease 1.05s forwards;
 }
 
 .cards-grid {
@@ -226,15 +391,18 @@ const prevImage = () => {
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUpFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) calc(0.2s + var(--card-index, 0) * 0.1s) forwards;
 }
 
 .card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.14);
 }
 
 .card.color-purple { --color: #8B5CF6; }
@@ -246,11 +414,29 @@ const prevImage = () => {
   display: flex;
   align-items: center;
   gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 100px;
+  height: 100px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
 }
 
 .card-header .emoji {
   font-size: 2rem;
   line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-header .emoji {
+  transform: scale(1.2) rotate(-5deg);
 }
 
 .card-header h3 {
@@ -270,11 +456,11 @@ const prevImage = () => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .card:hover .card-image .img {
-  transform: scale(1.05);
+  transform: scale(1.07);
 }
 
 .card-content {
@@ -311,12 +497,18 @@ const prevImage = () => {
   color: var(--color);
   border-top: 1px solid #e5e7eb;
   font-size: 0.95rem;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.card:hover .card-footer {
+  background: var(--color);
+  color: white;
 }
 
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -338,61 +530,61 @@ const prevImage = () => {
 }
 
 .close {
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
   background: white;
   border: none;
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  z-index: 1010;
+  z-index: 10;
   color: #374151;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
 }
 
 .close:hover {
   transform: rotate(90deg);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 .modal-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  padding: 2rem;
-  align-items: stretch;
-  max-height: 85vh;
+  gap: 2rem;
+  padding: 3rem 2rem 2rem;
+  align-items: start;
+  max-height: 90vh;
   overflow-y: auto;
 }
 
 .gallery-section {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
-  min-height: 500px;
 }
 
 .gallery {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.75rem;
   width: 100%;
 }
 
 .nav-btn {
   background: white;
   border: 1px solid #e5e7eb;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -417,7 +609,7 @@ const prevImage = () => {
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 360px;
+  max-width: 260px;
   aspect-ratio: 9 / 16;
   border-radius: 16px;
   overflow: hidden;
@@ -439,26 +631,26 @@ const prevImage = () => {
 
 .counter {
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 0.75rem;
+  right: 0.75rem;
   background: rgba(0, 0, 0, 0.6);
   color: white;
-  padding: 0.5rem 0.75rem;
-  border-radius: 16px;
-  font-size: 0.75rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
   font-weight: 600;
 }
 
 .dots {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   border: none;
   background: #e5e7eb;
@@ -467,7 +659,7 @@ const prevImage = () => {
 }
 
 .dot.active {
-  width: 28px;
+  width: 24px;
   border-radius: 4px;
   background: var(--color);
 }
@@ -475,60 +667,40 @@ const prevImage = () => {
 .info-section {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
   overflow-y: auto;
-  padding-right: 1rem;
-}
-
-.info-section::-webkit-scrollbar {
-  width: 4px;
-}
-
-.info-section::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.info-section::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 2px;
 }
 
 .info-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  flex-shrink: 0;
+  gap: 0.75rem;
 }
 
 .info-emoji {
-  font-size: 2.5rem;
+  font-size: 2rem;
   line-height: 1;
 }
 
 .info-header h2 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 800;
   color: #111827;
   margin: 0;
 }
 
 .info-desc {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #6b7280;
   line-height: 1.7;
   margin: 0;
-  flex-shrink: 0;
-}
-
-.features {
-  flex-shrink: 0;
 }
 
 .features h3 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #111827;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.75rem 0;
 }
 
 .features ul {
@@ -537,14 +709,14 @@ const prevImage = () => {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .features li {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
-  font-size: 0.95rem;
+  gap: 0.6rem;
+  font-size: 0.9rem;
   color: #374151;
   line-height: 1.5;
 }
@@ -558,7 +730,7 @@ const prevImage = () => {
 
 .modal-enter-active,
 .modal-leave-active {
-  transition: opacity 0.2s ease;
+  transition: opacity 0.25s ease;
 }
 
 .modal-enter-from,
@@ -566,26 +738,24 @@ const prevImage = () => {
   opacity: 0;
 }
 
-.modal-enter-active .modal,
+.modal-enter-active .modal {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+}
+
 .modal-leave-active .modal {
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .modal-enter-from .modal,
 .modal-leave-to .modal {
-  transform: scale(0.95);
+  transform: scale(0.92) translateY(16px);
 }
 
 @media (max-width: 1024px) {
   .modal-body {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
     max-height: 90vh;
-  }
-
-  .gallery-section {
-    min-height: auto;
-    order: -1;
   }
 }
 
@@ -593,289 +763,168 @@ const prevImage = () => {
   .mobile-section {
     padding: 2rem 1rem;
   }
-
-  .header h2 {
-    font-size: 2rem;
+  .header-title {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
   }
-
-  .header p {
-    font-size: 1rem;
+  .header-desc {
+    font-size: 0.95rem;
   }
-
   .cards-grid {
     gap: 1.5rem;
   }
-
-  .card-header {
-    padding: 1.2rem;
-  }
-
-  .card-header .emoji {
-    font-size: 1.75rem;
-  }
-
-  .card-header h3 {
-    font-size: 1.1rem;
-  }
-
   .card-image {
     height: 200px;
   }
-
-  .card-content {
-    padding: 1.2rem;
-    gap: 0.8rem;
-  }
-
-  .card-content .desc {
-    font-size: 0.9rem;
-  }
-
-  .highlight {
-    font-size: 0.8rem;
-  }
-
-  .card-footer {
-    padding: 0.9rem 1.2rem;
-    font-size: 0.9rem;
-  }
-
-  .modal {
-    border-radius: 20px;
-    max-width: 95%;
-  }
-
-  .modal-body {
-    padding: 1.5rem;
-    gap: 1.5rem;
-  }
-
-  .close {
-    width: 40px;
-    height: 40px;
-    top: 1rem;
-    right: 1rem;
-  }
-
-  .gallery-section {
-    gap: 1rem;
-  }
-
-  .info-header h2 {
-    font-size: 1.5rem;
-  }
-
-  .info-emoji {
-    font-size: 2rem;
-  }
-
-  .info-desc {
-    font-size: 0.9rem;
-  }
-
-  .features h3 {
-    font-size: 1rem;
-  }
-
-  .features li {
-    font-size: 0.9rem;
-  }
-
-  .nav-btn {
-    width: 36px;
-    height: 36px;
-  }
-
-  .nav-btn svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .carousel {
-    max-width: 300px;
-  }
-
-  .dots {
-    gap: 0.4rem;
-  }
-
-  .dot {
-    width: 7px;
-    height: 7px;
-  }
-
-  .dot.active {
-    width: 24px;
-  }
-}
-
-@media (max-width: 540px) {
-  .mobile-section {
-    padding: 1.5rem 0.75rem;
-  }
-
-  .header {
-    margin-bottom: 2rem;
-  }
-
-  .header h2 {
-    font-size: 1.5rem;
-  }
-
-  .header p {
-    font-size: 0.9rem;
-  }
-
-  .cards-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-
-  .card {
-    border-radius: 16px;
-  }
-
-  .card-header {
-    padding: 1rem;
-    gap: 0.75rem;
-  }
-
-  .card-header .emoji {
-    font-size: 1.5rem;
-  }
-
-  .card-header h3 {
-    font-size: 1rem;
-  }
-
-  .card-image {
-    height: 180px;
-  }
-
-  .card-content {
-    padding: 1rem;
-    gap: 0.75rem;
-  }
-
-  .card-content .desc {
-    font-size: 0.8rem;
-  }
-
-  .highlight {
-    font-size: 0.75rem;
-  }
-
-  .card-footer {
-    padding: 0.75rem 1rem;
-    font-size: 0.85rem;
-  }
-
   .overlay {
-    padding: 0.5rem;
+    padding: 0;
+    align-items: flex-end;
   }
-
   .modal {
-    border-radius: 16px;
-    max-width: 98%;
-  }
-
-  .modal-body {
-    padding: 1rem;
-    gap: 1rem;
-    grid-template-columns: 1fr;
+    border-radius: 20px 20px 0 0;
+    max-width: 100%;
+    width: 100%;
     max-height: 92vh;
   }
-
+  .modal-body {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 1rem 1.5rem;
+    gap: 1.25rem;
+    max-height: 92vh;
+    overflow-y: auto;
+  }
   .close {
-    width: 36px;
-    height: 36px;
-    top: 0.75rem;
-    right: 0.75rem;
+    top: 0.6rem;
+    right: 0.6rem;
+    width: 34px;
+    height: 34px;
   }
-
-  .close svg {
-    width: 20px;
-    height: 20px;
+  .carousel {
+    max-width: 200px;
   }
-
   .gallery {
     gap: 0.5rem;
   }
-
   .nav-btn {
     width: 32px;
     height: 32px;
   }
-
-  .nav-btn svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .carousel {
-    max-width: 100%;
-    aspect-ratio: 10 / 16;
-  }
-
-  .counter {
-    bottom: 0.75rem;
-    right: 0.75rem;
-    font-size: 0.7rem;
-    padding: 0.4rem 0.6rem;
-  }
-
-  .gallery-section {
-    min-height: auto;
-  }
-
-  .dots {
-    gap: 0.35rem;
-    margin-top: 0.5rem;
-  }
-
-  .dot {
-    width: 6px;
-    height: 6px;
-  }
-
-  .dot.active {
-    width: 20px;
-  }
-
-  .info-section {
-    gap: 1.2rem;
-    padding-right: 0.5rem;
-  }
-
-  .info-header {
-    gap: 0.75rem;
-  }
-
-  .info-emoji {
-    font-size: 2rem;
-  }
-
   .info-header h2 {
     font-size: 1.3rem;
   }
-
-  .info-desc {
-    font-size: 0.85rem;
-    line-height: 1.6;
+  .info-emoji {
+    font-size: 1.75rem; 
   }
+}
 
-  .features h3 {
-    font-size: 0.95rem;
-    margin-bottom: 0.75rem;
+@media (max-width: 480px) {
+  .mobile-section { 
+    padding: 1.5rem 0.75rem; 
   }
-
-  .features ul {
-    gap: 0.6rem;
+  .header { 
+    margin-bottom: 1.5rem; 
   }
-
-  .features li {
-    font-size: 0.8rem;
-    gap: 0.5rem;
+  .header-title { 
+    font-size: 1.5rem; 
+  }
+  .header-desc { 
+    font-size: 0.85rem; 
+  }
+  .cards-grid { 
+    grid-template-columns: 1fr; 
+    gap: 1rem; 
+  }
+  .card { 
+    border-radius: 16px; 
+  }
+  .card-image { 
+    height: 170px; 
+  }
+  .card-content { 
+    padding: 1rem; 
+  }
+  .card-content .desc { 
+    font-size: 0.85rem; 
+  }
+  .highlight { 
+    font-size: 0.78rem; 
+  }
+  .card-footer { 
+    padding: 0.75rem 1rem; 
+    font-size: 0.85rem; 
+  }
+  .overlay { 
+    padding: 0; 
+    align-items: flex-start; 
+  }
+  .modal { 
+    border-radius: 0; 
+    max-height: 100dvh; 
+    height: 100dvh; 
+    display: flex; 
+    flex-direction: column; 
+  }
+  .modal-body { 
+    flex: 1; 
+    padding: 2.8rem 0.85rem 1rem; 
+    gap: 1rem; 
+    overflow-y: auto; 
+    -webkit-overflow-scrolling: touch; 
+  }
+  .close {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 32px;
+    height: 32px;
+  }
+  .gallery-section {
+    gap: 0.75rem;
+  }
+  .carousel {
+    max-width: 160px;
+    border-radius: 12px;
+  }
+  .nav-btn {
+    width: 28px;
+    height: 28px;
+  }
+  .nav-btn svg { 
+    width: 16px;
+    height: 16px;
+  }
+  .counter { 
+    font-size: 0.65rem; 
+    padding: 0.25rem 0.5rem; 
+    bottom: 0.5rem; 
+    right: 0.5rem; 
+  }
+  .dot { 
+    width: 6px; 
+    height: 6px; 
+  }
+  .dot.active { 
+    width: 18px;
+  }
+  .info-header { 
+    gap: 0.6rem; 
+  }
+  .info-emoji { 
+    font-size: 1.5rem; 
+  }
+  .info-header h2 { 
+    font-size: 1.15rem; 
+  }
+  .info-desc { 
+    font-size: 0.82rem; 
+    line-height: 1.6; 
+  }
+  .features h3 { 
+    font-size: 0.9rem; 
+  }
+  .features li { 
+    font-size: 0.82rem; 
+  }
+  .features ul { 
+    gap: 0.5rem; 
   }
 }
 </style>

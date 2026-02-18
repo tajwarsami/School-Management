@@ -611,27 +611,77 @@ export default {
   line-height: 1.2; text-align: center;
 }
 
-.gm-detail { position: relative; }
+.gm-detail { 
+  position: relative; 
+}
 .gm-detail-close {
   background: #1e3a5f; border: none; color: #94a3b8;
   width: 20px; height: 20px; border-radius: 50%;
   font-size: 10px; cursor: pointer;
 }
-.gm-detail-close:hover { color: #ef4444; }
-.gm-detail-badge { display: inline-block; font-size: 10px; font-weight: 700; color: #fff; padding: 2px 10px; border-radius: 10px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
-.gm-detail-name  { font-size: 15px; font-weight: 700; color: #e2e8f0; margin-bottom: 4px; line-height: 1.3; }
-.gm-detail-loc   { font-size: 12px; color: #64748b; margin-bottom: 12px; }
-.gm-detail-stats { display: flex; gap: 10px; }
-.gm-dstat        { flex: 1; text-align: center; background: #060d1a; border-radius: 8px; padding: 8px 4px; }
-.gm-dstat-val    { font-size: 13px; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: #3b82f6; }
-.gm-dstat-key    { font-size: 10px; color: #475569; margin-top: 2px; }
+.gm-detail-close:hover { 
+  color: #ef4444; 
+}
+.gm-detail-badge { 
+  display: inline-block; 
+  font-size: 10px; 
+  font-weight: 700; 
+  color: #fff; 
+  padding: 2px 10px; 
+  border-radius: 10px; 
+  text-transform: uppercase; 
+  letter-spacing: .5px; 
+  margin-bottom: 8px; 
+}
+.gm-detail-name  { 
+  font-size: 15px; 
+  font-weight: 700; 
+  color: #e2e8f0; 
+  margin-bottom: 4px; 
+  line-height: 1.3; 
+}
+.gm-detail-loc   { 
+  font-size: 12px; 
+  color: #64748b;
+   margin-bottom: 12px; 
+  }
+.gm-detail-stats { 
+  display: flex; 
+  gap: 10px; 
+}
+.gm-dstat        { 
+  flex: 1; 
+  text-align: center; 
+  background: #060d1a; 
+  border-radius: 8px; 
+  padding: 8px 4px; 
+}
+.gm-dstat-val    { 
+  font-size: 13px; 
+  font-weight: 700; 
+  font-family: 'JetBrains Mono', monospace; 
+  color: #3b82f6; 
+}
+.gm-dstat-key    { 
+  font-size: 10px; 
+  color: #475569;
+   margin-top: 2px; 
+  }
 
 @media (max-width: 900px) {
   .gm-body { grid-template-columns: 1fr; }
 }
+
 @media (max-width: 600px) {
-  .gm-wrapper  { padding: 8px 12px 6px; }
-  .gm-header   { flex-direction: column; }
-  .gm-cards    { grid-template-columns: 1fr 1fr; }
+  .gm-wrapper {
+    padding: 8px 12px 0;
+    gap: 8px;
+  }
+  .gm-header { 
+    flex-direction: column; 
+  }
+  .gm-cards  { 
+    grid-template-columns: 1fr 1fr; 
+  }
 }
 </style>
