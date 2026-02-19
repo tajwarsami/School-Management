@@ -3,7 +3,6 @@
     <div class="container">
 
       <div class="section-header">
-        <span class="section-badge">Website Templates</span>
         <h2 class="title">
           Choose Your School's
           <span class="title-accent">Perfect Look</span>
@@ -31,37 +30,31 @@
               <div class="browser-url">www.{{ template.name.toLowerCase().replace(/\s+/g, '') }}.edu</div>
             </div>
 
-            <div class="mock-site" :style="{ background: template.preview.bg }">
-              <div class="mock-nav">
-                <div class="mock-logo" :style="{ background: template.preview.accent, opacity: 0.9 }"></div>
+            <div
+              class="mock-site"
+              :style="{
+                backgroundImage: template.preview.previewImage
+                  ? `url('${template.preview.previewImage}')`
+                  : template.preview.bg,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center top',
+                backgroundRepeat: 'no-repeat',
+              }"
+            >
+              <div class="mock-scrim"></div>
+
+              <div class="mock-nav mock-nav-overlay">
+                <div class="mock-logo" style="background: rgba(255,255,255,0.85); opacity: 1;"></div>
                 <div class="mock-nav-links">
-                  <span v-for="i in 3" :key="i" :style="{ background: template.preview.accent, opacity: 0.5 }"></span>
+                  <span v-for="i in 3" :key="i" style="background: rgba(255,255,255,0.7); opacity: 1;"></span>
                 </div>
               </div>
 
               <div class="mock-hero">
                 <div class="mock-hero-text">
-                  <div class="mock-h1" :style="{ background: template.preview.accent }"></div>
-                  <div class="mock-h2" :style="{ background: template.preview.accent, opacity: 0.6 }"></div>
+                  <div class="mock-h1" style="background: rgba(255,255,255,0.95);"></div>
+                  <div class="mock-h2" style="background: rgba(255,255,255,0.65);"></div>
                   <div class="mock-btn" :style="{ background: template.preview.accent }"></div>
-                </div>
-                <div class="mock-hero-img" :style="{ background: `${template.preview.accent}22` }">
-                  <div class="mock-img-inner" :style="{ background: `${template.preview.accent}44` }"></div>
-                </div>
-              </div>
-
-              <div class="mock-cards">
-                <div
-                  v-for="i in 3"
-                  :key="i"
-                  class="mock-card"
-                  :style="{ background: `${template.preview.accent}18` }"
-                >
-                  <div class="mock-card-icon" :style="{ background: template.preview.accent, opacity: 0.7 }"></div>
-                  <div class="mock-card-lines">
-                    <span :style="{ background: template.preview.accent, opacity: 0.5 }"></span>
-                    <span :style="{ background: template.preview.accent, opacity: 0.3 }"></span>
-                  </div>
                 </div>
               </div>
 
@@ -89,13 +82,16 @@
                 <h3 class="template-name">{{ template.name }}</h3>
                 <p class="template-tag">{{ template.tag }}</p>
               </div>
-              <div class="palette-dots">
-                <span
-                  v-for="color in template.palette"
-                  :key="color"
-                  class="palette-dot"
-                  :style="{ background: color }"
-                ></span>
+
+              <div class="preview-thumbs">
+                <img
+                  v-for="(imgSrc, i) in template.images"
+                  :key="i"
+                  :src="imgSrc"
+                  :alt="`${template.name} preview ${i + 1}`"
+                  class="preview-thumb"
+                  @error="onImgError"
+                />
               </div>
             </div>
 
@@ -106,10 +102,17 @@
             </div>
 
             <div class="card-actions">
-              <button class="btn-preview" @click.stop="openPreview(template)">
+              <a
+                class="btn-preview"
+                :href="template.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                @click.stop
+              >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                 Preview
-              </button>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
               <button
                 class="btn-select"
                 :class="{ selected: selectedId === template.id }"
@@ -121,11 +124,23 @@
           </div>
         </div>
       </div>
-
       <transition name="slide-up">
         <div class="cta-bar" v-if="selectedTemplate">
           <div class="cta-bar-left">
-            <div class="cta-preview-dot" :style="{ background: selectedTemplate.preview.bg }"></div>
+            <div class="cta-preview-img-wrap">
+              <img
+                v-if="selectedTemplate.images && selectedTemplate.images[0]"
+                :src="selectedTemplate.images[0]"
+                :alt="selectedTemplate.name"
+                class="cta-preview-img"
+                @error="onImgError"
+              />
+              <div
+                v-else
+                class="cta-preview-dot"
+                :style="{ background: selectedTemplate.preview.bg }"
+              ></div>
+            </div>
             <div>
               <p class="cta-label">Selected Template</p>
               <p class="cta-name">{{ selectedTemplate.name }}</p>
@@ -148,38 +163,86 @@
               <h3>{{ previewTemplate.name }}</h3>
               <p>{{ previewTemplate.tag }}</p>
             </div>
-            <button class="modal-close" @click="previewTemplate = null">✕</button>
+            <div class="modal-header-actions">
+              <a
+                v-if="previewTemplate.link"
+                :href="previewTemplate.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-live-preview"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Open Live Preview
+              </a>
+              <button class="modal-close" @click="previewTemplate = null">✕</button>
+            </div>
           </div>
-          <div class="modal-preview" :style="{ background: previewTemplate.preview.bg }">
+
+          <div
+            class="modal-preview"
+            :style="{
+              backgroundImage: previewTemplate.preview.previewImage
+                ? `url('${previewTemplate.preview.previewImage}')`
+                : previewTemplate.preview.bg,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center top',
+              backgroundRepeat: 'no-repeat',
+            }"
+          >
+            <div class="modal-scrim"></div>
+
             <div class="modal-mock-nav">
-              <div class="modal-mock-logo" :style="{ color: previewTemplate.preview.accent }">
+              <div class="modal-mock-logo" style="color: #fff;">
                 🎓 {{ previewTemplate.name }}
               </div>
               <div class="modal-mock-links">
-                <span v-for="link in ['About', 'Academics', 'Admissions', 'Contact']" :key="link" :style="{ color: previewTemplate.preview.accent, opacity: 0.8 }">
+                <span v-for="link in ['About', 'Academics', 'Admissions', 'Contact']" :key="link" style="color: rgba(255,255,255,0.85);">
                   {{ link }}
                 </span>
               </div>
             </div>
+
             <div class="modal-mock-hero">
-              <h2 :style="{ color: previewTemplate.preview.accent }">{{ previewTemplate.preview.heroText }}</h2>
-              <p :style="{ color: previewTemplate.preview.accent, opacity: 0.75 }">{{ previewTemplate.preview.subText }}</p>
+              <h2 style="color: #fff; text-shadow: 0 2px 16px rgba(0,0,0,0.45);">{{ previewTemplate.preview.heroText }}</h2>
+              <p style="color: rgba(255,255,255,0.85); text-shadow: 0 1px 8px rgba(0,0,0,0.35);">{{ previewTemplate.preview.subText }}</p>
               <button class="modal-mock-btn" :style="{ background: previewTemplate.preview.accent }">Apply Now</button>
             </div>
+
+            <div class="modal-img-gallery" v-if="previewTemplate.images && previewTemplate.images.length">
+              <img
+                v-for="(src, i) in previewTemplate.images"
+                :key="i"
+                :src="src"
+                :alt="`${previewTemplate.name} screenshot ${i + 1}`"
+                class="modal-gallery-img"
+                @error="onImgError"
+              />
+            </div>
+
             <div class="modal-mock-features">
               <div
                 v-for="feat in previewTemplate.features"
                 :key="feat"
                 class="modal-feat-card"
-                :style="{ background: `${previewTemplate.preview.accent}20`, borderColor: `${previewTemplate.preview.accent}40` }"
               >
-                <span :style="{ color: previewTemplate.preview.accent }">✦</span>
-                <p :style="{ color: previewTemplate.preview.accent }">{{ feat }}</p>
+                <span style="color: #fff;">✦</span>
+                <p style="color: #fff;">{{ feat }}</p>
               </div>
             </div>
           </div>
+
           <div class="modal-footer">
             <button class="btn-ghost" @click="previewTemplate = null">Close</button>
+            <a
+              v-if="previewTemplate.link"
+              :href="previewTemplate.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-ghost btn-open-link"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open in New Tab
+            </a>
             <button class="btn-cta" @click="selectTemplate(previewTemplate); previewTemplate = null">Choose This Template</button>
           </div>
         </div>
@@ -210,6 +273,10 @@ const selectTemplate = (template) => {
 const openPreview = (template) => {
   previewTemplate.value = template;
 };
+
+const onImgError = (e) => {
+  e.target.style.display = 'none';
+};
 </script>
 
 <style scoped>
@@ -220,7 +287,7 @@ const openPreview = (template) => {
 .templates-section {
   font-family: 'Lato', sans-serif;
   background: var(--color-bg-body, #F9FAFB);
-  padding: 5rem 1.5rem 8rem;
+  padding: 2rem 1.5rem 8rem;
 }
 
 .container {
@@ -231,19 +298,6 @@ const openPreview = (template) => {
 .section-header {
   text-align: center;
   margin-bottom: 3rem;
-}
-
-.section-badge {
-  display: inline-block;
-  padding: 0.35rem 1rem;
-  border-radius: var(--radius-full, 9999px);
-  background: var(--badge-bg, #E6F2FF);
-  color: var(--badge-text, #003D73);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
 }
 
 .title {
@@ -319,19 +373,12 @@ const openPreview = (template) => {
   background: #F3F4F6;
   border-bottom: 1px solid #E5E7EB;
   height: 32px;
+  position: relative;
+  z-index: 2;
 }
 
-.browser-dots {
-  display: flex;
-  gap: 4px;
-}
-
-.browser-dots span {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-}
-
+.browser-dots { display: flex; gap: 4px; }
+.browser-dots span { width: 9px; height: 9px; border-radius: 50%; }
 .browser-dots span:nth-child(1) { background: #FC635D; }
 .browser-dots span:nth-child(2) { background: #FDBC40; }
 .browser-dots span:nth-child(3) { background: #35CD4B; }
@@ -357,85 +404,51 @@ const openPreview = (template) => {
   overflow: hidden;
 }
 
+.mock-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.35) 0%,
+    rgba(0,0,0,0.15) 40%,
+    rgba(0,0,0,0.5) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
 .mock-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
 }
 
-.mock-logo {
-  width: 50px;
-  height: 10px;
-  border-radius: 3px;
-}
-
-.mock-nav-links {
-  display: flex;
-  gap: 6px;
-}
-
-.mock-nav-links span {
-  width: 28px;
-  height: 7px;
-  border-radius: 2px;
-  display: block;
-}
+.mock-logo { width: 50px; height: 10px; border-radius: 3px; }
+.mock-nav-links { display: flex; gap: 6px; }
+.mock-nav-links span { width: 28px; height: 7px; border-radius: 2px; display: block; }
 
 .mock-hero {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 10px;
   margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
 }
 
-.mock-hero-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.mock-h1 { height: 12px; border-radius: 3px; width: 85%; }
-.mock-h2 { height: 8px; border-radius: 2px; width: 70%; }
+.mock-hero-text { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.mock-h1 { height: 12px; border-radius: 3px; width: 80%; }
+.mock-h2 { height: 8px; border-radius: 2px; width: 60%; }
 .mock-btn { width: 55px; height: 14px; border-radius: 4px; margin-top: 4px; }
-
-.mock-hero-img {
-  width: 70px;
-  height: 55px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.mock-img-inner { width: 40px; height: 32px; border-radius: 4px; }
-
-.mock-cards { display: flex; gap: 6px; }
-
-.mock-card {
-  flex: 1;
-  border-radius: 5px;
-  padding: 8px 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.mock-card-icon { width: 16px; height: 16px; border-radius: 3px; }
-
-.mock-card-lines { display: flex; flex-direction: column; gap: 3px; }
-
-.mock-card-lines span { display: block; height: 5px; border-radius: 2px; }
-.mock-card-lines span:first-child { width: 80%; }
-.mock-card-lines span:last-child { width: 55%; }
 
 .preview-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.52);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -445,6 +458,7 @@ const openPreview = (template) => {
   transition: opacity 0.3s ease;
   text-align: center;
   gap: 0.4rem;
+  z-index: 2;
 }
 
 .template-card:hover .preview-overlay { opacity: 1; }
@@ -458,11 +472,7 @@ const openPreview = (template) => {
   line-height: 1.2;
 }
 
-.overlay-sub {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.8);
-  margin: 0;
-}
+.overlay-sub { font-size: 0.78rem; color: rgba(255,255,255,0.8); margin: 0; }
 
 .template-badge {
   position: absolute;
@@ -477,6 +487,7 @@ const openPreview = (template) => {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   backdrop-filter: blur(4px);
+  z-index: 3;
 }
 
 .selected-overlay {
@@ -491,6 +502,7 @@ const openPreview = (template) => {
   color: white;
   font-weight: 700;
   font-size: 0.9rem;
+  z-index: 4;
 }
 
 .check-circle {
@@ -515,6 +527,7 @@ const openPreview = (template) => {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 1rem;
 }
 
 .template-name {
@@ -532,14 +545,28 @@ const openPreview = (template) => {
   margin: 0;
 }
 
-.palette-dots { display: flex; gap: 4px; align-items: center; }
+.preview-thumbs {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex-shrink: 0;
+}
 
-.palette-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
+.preview-thumb {
+  width: 38px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 5px;
   border: 2px solid white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: block;
+}
+
+.preview-thumb:hover {
+  transform: scale(1.12);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  z-index: 1;
 }
 
 .template-desc {
@@ -565,7 +592,7 @@ const openPreview = (template) => {
 .btn-preview {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   padding: 0.55rem 1rem;
   border-radius: var(--radius-sm, 8px);
   font-size: 0.82rem;
@@ -576,6 +603,8 @@ const openPreview = (template) => {
   background: white;
   color: var(--color-text-secondary, #6B7280);
   transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .btn-preview:hover {
@@ -629,12 +658,17 @@ const openPreview = (template) => {
 
 .cta-bar-left { display: flex; align-items: center; gap: 0.85rem; }
 
-.cta-preview-dot {
-  width: 40px;
+.cta-preview-img-wrap {
+  width: 52px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 8px;
+  overflow: hidden;
   flex-shrink: 0;
+  background: #E5E7EB;
 }
+
+.cta-preview-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cta-preview-dot { width: 100%; height: 100%; border-radius: 8px; }
 
 .cta-label {
   font-size: 0.7rem;
@@ -666,6 +700,10 @@ const openPreview = (template) => {
   background: transparent;
   color: var(--color-text-secondary, #6B7280);
   transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .btn-ghost:hover {
@@ -741,10 +779,29 @@ const openPreview = (template) => {
   color: var(--color-text-main, #111827);
 }
 
-.modal-header p {
+.modal-header p { font-size: 0.8rem; color: var(--color-text-secondary, #6B7280); margin: 0; }
+.modal-header-actions { display: flex; align-items: center; gap: 0.6rem; }
+
+.btn-live-preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
   font-size: 0.8rem;
-  color: var(--color-text-secondary, #6B7280);
-  margin: 0;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  border: 2px solid var(--color-primary, #00529B);
+  color: var(--color-primary, #00529B);
+  background: transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-live-preview:hover {
+  background: var(--color-primary, #00529B);
+  color: white;
 }
 
 .modal-close {
@@ -774,6 +831,28 @@ const openPreview = (template) => {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  position: relative;
+}
+
+.modal-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.45) 0%,
+    rgba(0,0,0,0.2) 35%,
+    rgba(0,0,0,0.65) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.modal-mock-nav,
+.modal-mock-hero,
+.modal-img-gallery,
+.modal-mock-features {
+  position: relative;
+  z-index: 1;
 }
 
 .modal-mock-nav {
@@ -816,9 +895,30 @@ const openPreview = (template) => {
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0,0,0,0.75);
   margin-top: 0.5rem;
 }
+
+.modal-img-gallery {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scrollbar-width: thin;
+}
+
+.modal-gallery-img {
+  width: 200px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  border: 2px solid rgba(255,255,255,0.5);
+  transition: transform 0.2s ease;
+}
+
+.modal-gallery-img:hover { transform: scale(1.03); }
 
 .modal-mock-features {
   display: grid;
@@ -828,7 +928,9 @@ const openPreview = (template) => {
 
 .modal-feat-card {
   border-radius: 10px;
-  border: 1px solid;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(6px);
   padding: 0.85rem;
   display: flex;
   flex-direction: column;
@@ -856,5 +958,7 @@ const openPreview = (template) => {
   .cta-bar-right { width: 100%; }
   .btn-cta { flex: 1; text-align: center; }
   .modal-mock-links { display: none; }
+  .btn-live-preview span { display: none; }
+  .preview-thumb { width: 30px; height: 22px; }
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup>
-import { ArrowLeft, ArrowRight } from 'lucide-vue-next';
+import { ArrowLeft, ArrowRight, LayoutTemplate } from 'lucide-vue-next';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -31,13 +31,13 @@ const goToTemplates = () => {
   <section class="showcase-section">
     <div class="container">
       <div class="header-group">
-        <h2 class="headline">Get a Free School Website with <span class="text-accent">Academy Premium</span></h2>
-        <div class="nav-buttons">
-          <button @click="scroll('left')" class="nav-btn">
-            <ArrowLeft :size="20" />
-          </button>
-          <button @click="scroll('right')" class="nav-btn">
-            <ArrowRight :size="20" />
+        <h2 class="headline">
+          Choose School Website with <span class="text-accent">Academy</span>
+        </h2>
+        <div class="header-right">
+          <button class="btn-view-all" @click="goToTemplates">
+            <LayoutTemplate :size="16" />
+            View All Templates
           </button>
         </div>
       </div>
@@ -89,6 +89,7 @@ const goToTemplates = () => {
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 3rem;
+  gap: 1.5rem;
 }
 
 .headline {
@@ -98,8 +99,16 @@ const goToTemplates = () => {
   line-height: 1.2;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
 .nav-buttons {
-  display: none;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .nav-btn {
@@ -112,12 +121,51 @@ const goToTemplates = () => {
   justify-content: center;
   transition: all 0.2s;
   color: var(--color-text-main);
+  cursor: pointer;
+  background: transparent;
 }
 
 .nav-btn:hover {
   border-color: var(--color-primary);
   background-color: var(--color-primary);
   color: var(--color-white);
+}
+
+.btn-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  border: 2px solid var(--color-primary, #00529B);
+  color: var(--color-primary, #00529B);
+  background: transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-view-all:hover {
+  background: var(--color-primary, #00529B);
+  color: white;
+}
+
+.btn-view-all.secondary {
+  border: none;
+  background: var(--gradient-primary, linear-gradient(135deg, #00529B, #0066C0));
+  color: white;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 14px rgba(0, 82, 155, 0.25);
+}
+
+.btn-view-all.secondary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 82, 155, 0.35);
 }
 
 .carousel-container {
@@ -149,12 +197,6 @@ const goToTemplates = () => {
   color: var(--color-primary);
 }
 
-@media (max-width: 768px) {
-  .template-card {
-    flex: 0 0 85vw;
-  }
-}
-
 .mockup-frame {
   margin-bottom: 1.5rem;
   transition: transform 0.3s;
@@ -176,11 +218,7 @@ const goToTemplates = () => {
   margin-bottom: 1rem;
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
+.dot { width: 8px; height: 8px; border-radius: 50%; }
 .red { background: #FF5F56; }
 .yellow { background: #FFBD2E; }
 .green { background: #27C93F; }
@@ -205,9 +243,7 @@ const goToTemplates = () => {
   opacity: 0.5;
 }
 
-.skeleton-row.short {
-  width: 60%;
-}
+.skeleton-row.short { width: 60%; }
 
 .skeleton-grid {
   display: grid;
@@ -244,5 +280,30 @@ const goToTemplates = () => {
   color: var(--color-text-muted, #9CA3AF);
   transition: color 0.2s ease;
   margin: 0;
+}
+
+.bottom-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: var(--color-bg-body, #F9FAFB);
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: 12px;
+  margin-top: 0.5rem;
+}
+
+.bottom-cta-text {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary, #6B7280);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .template-card { flex: 0 0 85vw; }
+  .header-group { flex-direction: column; align-items: flex-start; }
+  .header-right { width: 100%; justify-content: space-between; }
+  .bottom-cta { flex-direction: column; gap: 1rem; text-align: center; }
+  .btn-view-all.secondary { width: 100%; justify-content: center; }
 }
 </style>
