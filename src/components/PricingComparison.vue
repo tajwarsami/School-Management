@@ -93,7 +93,6 @@ const hasFeature = (plan, feature) => {
 
 <style scoped>
 .comparison-section {
-    padding: 6rem 1.5rem;
     background-color: var(--color-bg-body);
 }
 

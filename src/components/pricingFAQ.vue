@@ -78,7 +78,6 @@ const toggleFAQ = (id) => {
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Frequently Asked Questions</h2>
-        <p class="section-subtitle">Everything you need to know about our pricing</p>
       </div>
 
       <div class="faq-container">
@@ -108,18 +107,13 @@ const toggleFAQ = (id) => {
           </transition>
         </div>
       </div>
-
-      <div class="faq-footer">
-        <p class="footer-text">Still have questions?</p>
-        <a href="#contact" class="contact-link">Contact our sales team</a>
-      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
 .faq-section {
-  padding: 6rem 1.5rem;
+  padding: 3rem 1.5rem;
   background-color: var(--color-bg-body);
 }
 
@@ -245,28 +239,9 @@ const toggleFAQ = (id) => {
   margin-bottom: 0.75rem;
 }
 
-.contact-link {
-  display: inline-block;
-  color: var(--color-primary);
-  font-weight: 600;
-  font-size: 1.05rem;
-  text-decoration: none;
-  padding: 0.75rem 1.5rem;
-  border: 2px solid var(--color-primary);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.contact-link:hover {
-  background-color: var(--color-primary);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
 @media (max-width: 768px) {
   .faq-section {
-    padding: 4rem 1rem;
+    padding: 1.5rem 1rem;
   }
 
   .section-title {
@@ -300,7 +275,7 @@ const toggleFAQ = (id) => {
 
 @media (max-width: 480px) {
   .faq-section {
-    padding: 3rem 0.75rem;
+    padding: 1.5rem 0.75rem;
   }
 
   .section-title {
@@ -326,11 +301,6 @@ const toggleFAQ = (id) => {
 
   .faq-answer {
     padding: 0 1rem 1rem;
-  }
-
-  .contact-link {
-    font-size: 1rem;
-    padding: 0.625rem 1.25rem;
   }
 }
 </style>
