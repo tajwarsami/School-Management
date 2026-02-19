@@ -77,7 +77,7 @@ const toggleMobileMenu = () => {
           <a @click.prevent="goTo('/features')" :class="['mobile-nav-link', isActive('/features') && 'active']">Features</a>
           <a @click.prevent="goTo('/pricing')" :class="['mobile-nav-link', isActive('/pricing') && 'active']">Pricing</a>
           <a @click.prevent="goTo('/templates')" :class="['mobile-nav-link', isActive('/templates') && 'active']">Templates</a>
-          <a @click.prevent="goTo('/plugins')" :class="['mobile-nav-link', isActive('/plugins') && 'active']">Plugins</a>
+          <a @click.prevent="goTo('/templates')" :class="['mobile-nav-link', isActive('/templates') && 'active']">Templates</a>
           <a @click.prevent="goTo('/about')" :class="['mobile-nav-link', isActive('/about') && 'active']">About</a>
           <a @click.prevent="goTo('/contact')" :class="['mobile-nav-link', isActive('/contact') && 'active']">Contact</a>
           
@@ -89,8 +89,15 @@ const toggleMobileMenu = () => {
             
             <Transition name="slide-down">
               <div v-if="showMore" class="mobile-more-items">
-                <a @click.prevent="goTo('/ticket')" class="mobile-nav-link submenu">Ticket</a>
-                <a @click.prevent="goTo('/blog')" class="mobile-nav-link submenu">Blog</a>
+                <a @click.prevent="goTo('/ourteam')" class="dropdown-item">
+                Our Team
+              </a>
+              <a @click.prevent="goTo('/clients')" class="dropdown-item">
+                Client
+              </a>
+              <a @click.prevent="goTo('/blog')" class="dropdown-item">
+                Blog
+              </a>
               </div>
             </Transition>
           </div>
