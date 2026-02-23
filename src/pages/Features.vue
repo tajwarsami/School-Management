@@ -874,23 +874,23 @@ function toggleModule(name) {
   .module-name {
     font-size: 20px;
   }
-  
+
   .features-masonry {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .benefits-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 640px) {
   .container {
-    padding: 40px 20px;
+    padding: 40px 16px;
   }
   
   .demo-section {
-    padding: 40px 30px;
+    padding: 40px 24px;
   }
   
   .demo-title {
@@ -898,11 +898,84 @@ function toggleModule(name) {
   }
   
   .section-title {
-    font-size: 32px;
+    font-size: 28px;
   }
-  
+
   .module-number {
     display: none;
+  }
+
+  .module-icon-wrapper {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+  }
+
+  .module-icon {
+    font-size: 22px;
+  }
+
+  .module-name {
+    font-size: 16px;
+  }
+
+  .module-subtitle {
+    font-size: 13px;
+  }
+
+  .toggle-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .features-masonry {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .feature-box {
+    padding: 16px 12px;
+  }
+
+  .feature-icon-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .feature-name {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .feature-text {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .benefit-card {
+    padding: 24px 16px;
+  }
+
+  .benefit-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+
+  .benefit-title {
+    font-size: 16px;
+  }
+
+  .benefit-description {
+    font-size: 13px;
   }
 }
 </style>
