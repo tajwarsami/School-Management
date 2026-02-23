@@ -134,19 +134,14 @@
       </div>
     </section>
 
-    <CtaSection />
   </div>
 </template>
 
 <script>
-import CtaSection from '../components/CtaSection.vue';
 import { servicesData, productsData, serviceHighlights } from '../data/servicesData.js';
 
 export default {
   name: 'Services',
-  components: {
-    CtaSection
-  },
   data() {
     return {
       servicesData,
