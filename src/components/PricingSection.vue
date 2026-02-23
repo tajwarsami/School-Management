@@ -1,12 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Check, Users } from 'lucide-vue-next'
+import { Check, Users, ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import { plans as initialPlans, studentRanges } from '../data/pricing'
 
 const router = useRouter()
 const billingType = ref('monthly')
 const plans = ref(JSON.parse(JSON.stringify(initialPlans)))
+const currentSlide = ref(0)
 
 const getPrice = (plan) => {
   if (plan.custom) return 'Custom'
@@ -31,9 +32,31 @@ const handleOrderClick = (plan) => {
     })
   }
 }
+
+const prevSlide = () => {
+  if (currentSlide.value > 0) currentSlide.value--
+}
+
+const nextSlide = () => {
+  if (currentSlide.value < plans.value.length - 1) currentSlide.value++
+}
+
+const touchStartX = ref(0)
+const touchEndX = ref(0)
+
+const onTouchStart = (e) => {
+  touchStartX.value = e.changedTouches[0].screenX
+}
+
+const onTouchEnd = (e) => {
+  touchEndX.value = e.changedTouches[0].screenX
+  const diff = touchStartX.value - touchEndX.value
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) nextSlide()
+    else prevSlide()
+  }
+}
 </script>
-
-
 
 <template>
   <section class="pricing-section">
@@ -63,7 +86,7 @@ const handleOrderClick = (plan) => {
         </div>
       </div>
 
-      <div class="pricing-grid">
+      <div class="pricing-grid desktop-grid">
         <div
           v-for="plan in plans"
           :key="plan.name"
@@ -140,6 +163,128 @@ const handleOrderClick = (plan) => {
             <span class="arrow">→</span>
           </button>
         </div>
+      </div>
+
+      <div class="mobile-carousel">
+        <div 
+          class="carousel-track-wrapper"
+          @touchstart="onTouchStart"
+          @touchend="onTouchEnd"
+        >
+          <div 
+            class="carousel-track"
+            :style="{ transform: `translateX(calc(-${currentSlide * 100}% - ${currentSlide * 1}rem))` }"
+          >
+            <div
+              v-for="plan in plans"
+              :key="plan.name"
+              class="pricing-card carousel-card"
+              :class="{ 
+                recommended: plan.recommended,
+                custom: plan.custom 
+              }"
+            >
+              <div v-if="plan.recommended" class="recommended-badge">
+                ⭐ Most Popular
+              </div>
+
+              <div class="card-header">
+                <div class="plan-icon">{{ plan.icon }}</div>
+                <h3 class="plan-name">{{ plan.name }}</h3>
+                <p class="plan-description">{{ plan.description }}</p>
+              </div>
+
+              <div class="price-section">
+                <div v-if="!plan.custom" class="price">
+                  <span class="currency">৳</span>
+                  <span class="amount">{{ formatPrice(getPrice(plan)) }}</span>
+                  <span class="period">/ {{ billingType }}</span>
+                </div>
+                <div v-else class="price custom-price">
+                  <span class="amount">Let's Talk</span>
+                </div>
+                <p v-if="!plan.custom" class="one-time-charge">
+                  + ৳{{ formatPrice(plan.oneTimeCharge) }} one-time setup
+                </p>
+              </div>
+
+              <div v-if="!plan.custom" class="range-selector">
+                <label class="range-label">
+                  <Users :size="16" />
+                  Select Student Range
+                </label>
+                <div class="range-grid">
+                  <button
+                    v-for="range in studentRanges"
+                    :key="range.value"
+                    :class="{ active: plan.selectedRange === range.value }"
+                    @click="plan.selectedRange = range.value"
+                    class="range-button"
+                  >
+                    <span class="radio-circle">
+                      <span class="radio-inner"></span>
+                    </span>
+                    <span class="range-text">{{ range.label }}</span>
+                  </button>
+                </div>
+              </div>
+
+              <div v-if="plan.custom" class="features-section">
+                <h4 class="features-title">What's included:</h4>
+                <ul class="features-list">
+                  <li v-for="feature in plan.features" :key="feature">
+                    <div class="check-icon">
+                      <Check :size="16" />
+                    </div>
+                    <span>{{ feature }}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <button 
+                class="cta-button" 
+                :class="{ primary: plan.recommended }"
+                @click="handleOrderClick(plan)"
+              >
+                {{ plan.custom ? 'Contact Sales' : 'Order Now' }}
+                <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button 
+            class="carousel-arrow left" 
+            :disabled="currentSlide === 0"
+            @click="prevSlide"
+            aria-label="Previous plan"
+          >
+            <ChevronLeft :size="22" />
+          </button>
+
+          <div class="carousel-dots">
+            <button
+              v-for="(plan, index) in plans"
+              :key="index"
+              class="carousel-dot"
+              :class="{ active: currentSlide === index }"
+              @click="currentSlide = index"
+              :aria-label="`Go to ${plan.name}`"
+            />
+          </div>
+
+          <button 
+            class="carousel-arrow right" 
+            :disabled="currentSlide === plans.length - 1"
+            @click="nextSlide"
+            aria-label="Next plan"
+          >
+            <ChevronRight :size="22" />
+          </button>
+        </div>
+
+        <p class="carousel-counter">{{ currentSlide + 1 }} / {{ plans.length }}</p>
       </div>
 
       <div class="info-section">
@@ -288,17 +433,20 @@ const handleOrderClick = (plan) => {
   box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 }
 
-.pricing-grid {
+.desktop-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
   margin-bottom: 2.5rem;
 }
 
+.mobile-carousel {
+  display: none;
+}
 .pricing-card {
   background: var(--color-card-dark);
   border-radius: 16px;
-  padding: 1.5rem;
+  padding: 1rem 1rem 0.85rem;
   position: relative;
   border: 2px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -343,12 +491,12 @@ const handleOrderClick = (plan) => {
 
 .card-header {
   text-align: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
 .plan-icon {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
@@ -368,8 +516,8 @@ const handleOrderClick = (plan) => {
 
 .price-section {
   text-align: center;
-  margin-bottom: 1.25rem;
-  padding-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -388,7 +536,7 @@ const handleOrderClick = (plan) => {
 }
 
 .amount {
-  font-size: 2.2rem;
+  font-size: 1.9rem;
   font-weight: 800;
   color: var(--color-text-card);
   line-height: 1;
@@ -416,7 +564,7 @@ const handleOrderClick = (plan) => {
 }
 
 .range-selector {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
 .range-label {
@@ -425,38 +573,21 @@ const handleOrderClick = (plan) => {
   gap: 0.4rem;
   font-weight: 600;
   color: var(--color-text-card);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   font-size: 0.8rem;
 }
 
 .range-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-  max-height: 180px;
-  overflow-y: auto;
-  padding-right: 4px;
-}
-
-.range-grid::-webkit-scrollbar {
-  width: 4px;
-}
-
-.range-grid::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.range-grid::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
-  border-radius: 10px;
+  gap: 0.35rem;
 }
 
 .range-button {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 0.7rem;
+  gap: 0.4rem;
+  padding: 0.4rem 0.55rem;
   border: 1.5px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
@@ -511,7 +642,7 @@ const handleOrderClick = (plan) => {
 }
 
 .features-section {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
   flex-grow: 1;
 }
 
@@ -554,7 +685,7 @@ const handleOrderClick = (plan) => {
 
 .cta-button {
   width: 100%;
-  padding: 0.75rem 1.5rem;
+  padding: 0.55rem 1.25rem;
   border: 2px solid var(--color-primary);
   background: white;
   color: var(--color-primary);
@@ -658,7 +789,7 @@ const handleOrderClick = (plan) => {
 }
 
 @media (max-width: 1400px) {
-  .pricing-grid {
+  .desktop-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
@@ -674,37 +805,280 @@ const handleOrderClick = (plan) => {
 
 @media (max-width: 768px) {
   .pricing-section {
-    padding: 2rem 1rem;
+    padding: 0.75rem 0.75rem 1rem;
+  }
+
+  .section-header {
+    margin-bottom: 0.6rem;
   }
 
   .section-title {
-    font-size: 1.8rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.2rem;
   }
 
   .section-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.72rem;
+    line-height: 1.3;
   }
 
-  .pricing-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .billing-toggle-wrapper {
+    margin-bottom: 0.6rem;
   }
 
-  .range-grid {
-    grid-template-columns: 1fr;
+  .billing-toggle {
+    padding: 3px;
   }
 
   .billing-toggle button {
-    padding: 0.5rem 1.2rem;
-    font-size: 0.85rem;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.75rem;
+  }
+
+  .desktop-grid {
+    display: none;
+  }
+
+  .mobile-carousel {
+    display: block;
+    margin-bottom: 0;
+  }
+
+  .carousel-track-wrapper {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 14px;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1rem;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  .carousel-card {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+
+  .carousel-card:hover,
+  .carousel-card.recommended,
+  .carousel-card.recommended:hover {
+    transform: none;
+  }
+
+  .carousel-card.recommended {
+    border-color: var(--color-accent);
+  }
+
+  .carousel-card.pricing-card {
+    padding: 0.65rem 0.75rem 0.6rem;
+    border-radius: 14px;
+  }
+
+  .card-header {
+    margin-bottom: 0.4rem;
+  }
+
+  .plan-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .plan-name {
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .plan-description {
+    font-size: 0.68rem;
+    line-height: 1.3;
+  }
+
+  .price-section {
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.4rem;
   }
 
   .amount {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
-  
+
+  .currency {
+    font-size: 0.85rem;
+  }
+
+  .period {
+    font-size: 0.7rem;
+  }
+
+  .one-time-charge {
+    font-size: 0.65rem;
+    margin-top: 0.1rem;
+  }
+
+  .range-selector {
+    margin-bottom: 0.4rem;
+  }
+
+  .range-label {
+    font-size: 0.7rem;
+    margin-bottom: 0.3rem;
+    gap: 0.3rem;
+  }
+
+  .range-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.25rem;
+  }
+
+  .range-button {
+    padding: 0.28rem 0.4rem;
+    font-size: 0.65rem;
+    gap: 0.3rem;
+    border-radius: 7px;
+  }
+
+  .radio-circle {
+    width: 12px;
+    height: 12px;
+  }
+
+  .radio-inner {
+    width: 6px;
+    height: 6px;
+  }
+
+  .features-section {
+    margin-bottom: 0.4rem;
+  }
+
+  .features-title {
+    font-size: 0.72rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .features-list li {
+    font-size: 0.68rem;
+    padding: 0.2rem 0;
+    gap: 0.35rem;
+  }
+
+  .check-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .cta-button {
+    padding: 0.42rem 1rem;
+    font-size: 0.78rem;
+    border-radius: 8px;
+  }
+
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.65rem;
+  }
+
+  .carousel-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary, #00529b);
+    background: white;
+    color: var(--color-primary, #00529b);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 82, 155, 0.15);
+  }
+
+  .carousel-arrow:hover:not(:disabled) {
+    background: var(--color-primary, #00529b);
+    color: white;
+    transform: scale(1.08);
+  }
+
+  .carousel-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .carousel-dots {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .carousel-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 82, 155, 0.2);
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+
+  .carousel-dot.active {
+    background: var(--color-primary, #00529b);
+    width: 18px;
+    border-radius: 4px;
+  }
+
+  .carousel-counter {
+    text-align: center;
+    color: #888;
+    font-size: 0.68rem;
+    margin-top: 0.3rem;
+    font-weight: 500;
+  }
+
+  .info-section {
+    margin: 1rem 0 0.75rem;
+  }
+
   .info-cards {
     grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .info-card {
+    padding: 0.75rem;
+    border-radius: 10px;
+  }
+
+  .info-icon {
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .info-card h4 {
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .info-card p {
+    font-size: 0.7rem;
+  }
+
+  .notes {
+    padding: 0.75rem;
+  }
+
+  .notes p {
+    font-size: 0.68rem;
+    margin: 0.2rem 0;
   }
 }
 </style>
