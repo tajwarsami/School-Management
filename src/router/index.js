@@ -13,18 +13,22 @@ import DemoRequest from '../pages/DemoRequest.vue'
 import BlogDetail from '../pages/BlogDetail.vue'
 import OurTeam from '../pages/OurTeam.vue'
 import Clients from '../pages/Clients.vue'
+import HelpCenter from '../pages/HelpCenter.vue'
+import PrivacyPolicy from '../pages/PrivacyPolicy.vue'
+import TermsOfService from '../pages/TermsOfService.vue'
+import RefundPolicy from '../pages/RefundPolicy.vue'
 
 
 const routes = [
   {
     path: '/',
     component: Home,
-    meta: { title: 'Home' }
+    meta: { title: 'Academy All in one' }
   },
   {
     path: '/features',
     component: Features,
-    meta: { title: 'Key Features of School Management' }
+    meta: { title: 'Academy Features :Key Features of School Management' }
   },
   {
     path: '/pricing',
@@ -80,6 +84,26 @@ const routes = [
     path: '/blog/:slug',
     component: BlogDetail,
     meta: { title: 'Blog' }
+  },
+  {
+    path: '/help-center',
+    component: HelpCenter,
+    meta: { title: 'Help Center' }
+  },
+  {
+    path: '/privacy-policy',
+    component: PrivacyPolicy,
+    meta: { title: 'Privacy Policy' }
+  },
+  {
+    path: '/terms-of-service',
+    component: TermsOfService,
+    meta: { title: 'Terms of Service' }
+  },
+  {
+    path: '/refund-policy',
+    component: RefundPolicy,
+    meta: { title: 'Refund Policy' }
   },
 ]
 
