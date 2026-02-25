@@ -139,7 +139,7 @@ export default {
   .cta-content {
     flex-direction: column;
     text-align: center;
-    padding: 50px;
+    padding: 10px;
   }
 }
 

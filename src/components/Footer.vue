@@ -1,5 +1,7 @@
 <script setup>
-import { Facebook, Linkedin, Twitter, Download, Mail, Phone } from 'lucide-vue-next';
+import { Facebook, Linkedin, Twitter, Download, Mail, Phone, ChevronDown } from 'lucide-vue-next';
+import { RouterLink } from 'vue-router';
+import { ref } from 'vue';
 
 const props = defineProps({
   isHomePage: {
@@ -7,11 +9,18 @@ const props = defineProps({
     default: false
   }
 });
+
+const openSection = ref(null);
+
+const toggle = (section) => {
+  openSection.value = openSection.value === section ? null : section;
+};
 </script>
 
 <template>
   <footer class="footer" :class="{ 'footer-home': isHomePage }">
     <div class="container footer-content">
+
       <div class="footer-col brand-col">
         <div class="logo">
           <span class="logo-text">Academy</span>
@@ -33,29 +42,54 @@ const props = defineProps({
         </div>
       </div>
 
-      <div class="footer-col">
-        <h4 class="col-title">Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Features</a></li>
-          <li><a href="#">Pricing</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
+      <div class="footer-col accordion-col">
+        <button
+          class="col-title-btn"
+          @click="toggle('quick')"
+          :aria-expanded="openSection === 'quick'"
+        >
+          <span class="col-title">Quick Links</span>
+          <span class="hamburger-icon" :class="{ 'is-open': openSection === 'quick' }">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+        <div class="links-wrapper" :class="{ 'links-wrapper-open': openSection === 'quick' }">
+          <ul class="footer-links">
+            <li><RouterLink to="/about" @click="openSection = null">About Company</RouterLink></li>
+            <li><RouterLink to="/services" @click="openSection = null">Services</RouterLink></li>
+            <li><RouterLink to="/contact" @click="openSection = null">Contact Us</RouterLink></li>
+            <li><RouterLink to="/clients" @click="openSection = null">Clients</RouterLink></li>
+          </ul>
+        </div>
       </div>
 
-      <div class="footer-col">
-        <h4 class="col-title">Support</h4>
-        <ul class="footer-links">
-          <li><a href="#">Help Center</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Status</a></li>
-        </ul>
+      <div class="footer-col accordion-col">
+        <button
+          class="col-title-btn"
+          @click="toggle('support')"
+          :aria-expanded="openSection === 'support'"
+        >
+          <span class="col-title">Support</span>
+          <span class="hamburger-icon" :class="{ 'is-open': openSection === 'support' }">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+        <div class="links-wrapper" :class="{ 'links-wrapper-open': openSection === 'support' }">
+          <ul class="footer-links">
+            <li><RouterLink to="/help-center" @click="openSection = null">Help Center</RouterLink></li>
+            <li><RouterLink to="/privacy-policy" @click="openSection = null">Privacy Policy</RouterLink></li>
+            <li><RouterLink to="/terms-of-service" @click="openSection = null">Terms of Service</RouterLink></li>
+            <li><RouterLink to="/refund-policy" @click="openSection = null">Refund Policy</RouterLink></li>
+          </ul>
+        </div>
       </div>
 
-      <div class="footer-col">
-        <h4 class="col-title">Get Our App</h4>
+      <div class="footer-col app-col">
+        <h4 class="col-title col-title-static">Get Our App</h4>
         <div class="app-buttons">
           <a href="#" class="store-btn">
             <Download :size="18" />
@@ -67,7 +101,7 @@ const props = defineProps({
           </a>
         </div>
         <div class="contact-info">
-          <a href="mailto:hello@Academy.com" class="contact-item">
+          <a href="mailto:hello@academy.com" class="contact-item">
             <Mail :size="16" />
             <span>hello@academy.com</span>
           </a>
@@ -77,6 +111,7 @@ const props = defineProps({
           </a>
         </div>
       </div>
+
     </div>
 
     <div class="container copyright">
@@ -97,38 +132,11 @@ const props = defineProps({
   padding-top: 10rem;
 }
 
-@media (max-width: 640px) {
-  .footer {
-    padding: 3rem 0 2rem;
-    margin-top: 3rem;
-  }
-  
-  .footer-home {
-    margin-top: -60px;
-    padding-top: 8rem;
-  }
-}
-
 .footer-content {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1.2fr;
   gap: 3rem;
   margin-bottom: 3rem;
-}
-
-@media (max-width: 968px) {
-  .footer-content {
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    text-align: center;
-  }
 }
 
 .logo {
@@ -139,12 +147,6 @@ const props = defineProps({
   font-weight: 700;
   color: white;
   margin-bottom: 1rem;
-}
-
-@media (max-width: 640px) {
-  .logo {
-    justify-content: center;
-  }
 }
 
 .logo-dot {
@@ -162,21 +164,9 @@ const props = defineProps({
   font-size: 0.95rem;
 }
 
-@media (max-width: 640px) {
-  .brand-desc {
-    margin: 0 auto 1.5rem;
-  }
-}
-
 .social-links {
   display: flex;
   gap: 0.75rem;
-}
-
-@media (max-width: 640px) {
-  .social-links {
-    justify-content: center;
-  }
 }
 
 .social-link {
@@ -202,6 +192,61 @@ const props = defineProps({
   font-size: 1.05rem;
   font-weight: 600;
   margin-bottom: 1.25rem;
+  display: block;
+}
+
+.col-title-static {
+  margin-bottom: 1.25rem;
+}
+
+.col-title-btn {
+  display: flex;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.col-title-btn .col-title {
+  margin-bottom: 0;
+}
+
+.hamburger-icon {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  width: 22px;
+  flex-shrink: 0;
+}
+
+.hamburger-icon span {
+  display: block;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger-icon.is-open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.hamburger-icon.is-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger-icon.is-open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.links-wrapper {
+  display: contents;
 }
 
 .footer-links {
@@ -219,15 +264,10 @@ const props = defineProps({
   display: inline-block;
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-links a.router-link-active {
   color: var(--color-accent);
   transform: translateX(4px);
-}
-
-@media (max-width: 640px) {
-  .footer-links a:hover {
-    transform: none;
-  }
 }
 
 .app-buttons {
@@ -276,12 +316,6 @@ const props = defineProps({
   font-size: 0.9rem;
 }
 
-@media (max-width: 640px) {
-  .contact-item {
-    justify-content: center;
-  }
-}
-
 .contact-item:hover {
   color: var(--color-accent);
 }
@@ -291,5 +325,116 @@ const props = defineProps({
   padding-top: 1.5rem;
   text-align: center;
   font-size: 0.875rem;
+}
+
+@media (max-width: 1024px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .brand-col {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 3rem 0 2rem;
+    margin-top: 3rem;
+  }
+
+  .footer-home {
+    margin-top: -60px;
+    padding-top: 8rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 2rem;
+  }
+
+  .brand-col {
+    grid-column: auto;
+    text-align: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 0;
+  }
+
+  .logo {
+    justify-content: center;
+  }
+
+  .brand-desc {
+    margin: 0 auto 1.5rem;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .accordion-col {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .col-title-btn {
+    padding: 1rem 0;
+  }
+
+  .col-title-btn .col-title {
+    margin-bottom: 0;
+    font-size: 1rem;
+  }
+
+  .hamburger-icon {
+    display: flex;
+  }
+
+  .links-wrapper {
+    display: block;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  .links-wrapper-open {
+    max-height: 300px;
+    opacity: 1;
+  }
+
+  .footer-links {
+    padding-bottom: 1rem;
+    gap: 0.85rem;
+  }
+
+  .footer-links a {
+    font-size: 0.95rem;
+    padding: 0.2rem 0;
+  }
+
+  .footer-links a:hover {
+    transform: none;
+  }
+
+  .app-col {
+    padding-top: 1.5rem;
+    text-align: center;
+  }
+
+  .col-title-static {
+    margin-bottom: 1rem;
+  }
+
+  .app-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .contact-item {
+    justify-content: center;
+  }
 }
 </style>
